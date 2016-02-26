@@ -1,0 +1,16 @@
+#ifndef HELLOWORLDREQUEST_H
+#define HELLOWORLDREQUEST_H
+
+#include "IRequest.h"
+
+class HelloWorldRequest : public IRequest
+{
+	public:
+		HelloWorldRequest();
+
+		QString trigger() const override;
+
+		void invoke(const QStringList &arguments, const RequestInvocationContext &context) override;
+};
+
+#endif // HELLOWORLDREQUEST_H
