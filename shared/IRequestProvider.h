@@ -75,62 +75,82 @@ Q_DECLARE_INTERFACE(IRequestProvider, "com.avoidpointer.IRequestProvider")
 
 class Plugin
 {
+	class PluginImpl
+	{
+		public:
+			PluginImpl(const QString &fileName, RequestRepository &repository)
+				: m_loader(fileName)
+				, m_fileName(fileName)
+				, m_repository(repository)
+			{
+				qDebug() << "Loading plugin" << fileName;
+
+				if (!m_loader.load())
+				{
+					qDebug() << m_loader.errorString();
+				}
+
+				QObject *instance = m_loader.instance();
+
+				IRequestProvider *provider = qobject_cast<IRequestProvider *>(instance);
+				RequestRegistrator registrator;
+
+				if (provider)
+				{
+					provider->definition(registrator);
+				}
+
+				registrator.attach(repository);
+			}
+
+			~PluginImpl()
+			{
+				qDebug() << "Unloading plugin" << m_fileName;
+
+				QObject *instance = m_loader.instance();
+
+				IRequestProvider *provider = qobject_cast<IRequestProvider *>(instance);
+				RequestRegistrator registrator;
+
+				if (provider)
+				{
+					provider->definition(registrator);
+				}
+
+				registrator.detach(m_repository);
+
+				if (!m_loader.unload())
+				{
+					qDebug() << m_loader.errorString();
+				}
+			}
+
+			QString fileName() const
+			{
+				return m_fileName;
+			}
+
+		private:
+			QPluginLoader m_loader;
+			QString m_fileName;
+
+			RequestRepository &m_repository;
+	};
+
 	public:
-		Plugin(const QString &fileName)
-			: m_loader(fileName)
-			, m_fileName(fileName)
+		Plugin(const QString &fileName, RequestRepository &requestRepository)
+			: m_instance(new PluginImpl(fileName, requestRepository))
 		{
 
 		}
 
-		QString fileName() const
+		operator QString() const
 		{
-			return m_fileName;
-		}
-
-		void load(RequestRepository &repository)
-		{
-			if (!m_loader.load())
-			{
-				qDebug() << m_loader.errorString();
-			}
-
-			QObject *instance = m_loader.instance();
-
-			IRequestProvider *provider = qobject_cast<IRequestProvider *>(instance);
-			RequestRegistrator registrator;
-
-			if (provider)
-			{
-				provider->definition(registrator);
-			}
-
-			registrator.attach(repository);
-		}
-
-		void unload(RequestRepository &repository)
-		{
-			QObject *instance = m_loader.instance();
-
-			IRequestProvider *provider = qobject_cast<IRequestProvider *>(instance);
-			RequestRegistrator registrator;
-
-			if (provider)
-			{
-				provider->definition(registrator);
-			}
-
-			registrator.detach(repository);
-
-			if (!m_loader.unload())
-			{
-				qDebug() << m_loader.errorString();
-			}
+			return m_instance->fileName();
 		}
 
 	private:
-		QPluginLoader m_loader;
-		QString m_fileName;
+		QSharedPointer<PluginImpl> m_instance;
 };
 
 #endif // IREQUESTPROVIDER_H

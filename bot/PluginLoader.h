@@ -15,7 +15,7 @@ class PluginLoader : public IPluginLoader
 	private:
 		RequestRepository &m_requestRepository;
 
-		QList<Plugin *> m_plugins;
+		QList<Plugin> m_plugins;
 };
 
 #endif // PLUGINLOADER_H

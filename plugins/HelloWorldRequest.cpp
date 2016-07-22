@@ -1,6 +1,8 @@
 #include <QDebug>
 
 #include "HelloWorldRequest.h"
+#include "RequestInvocationContext.h"
+#include "IOutputHandler.h"
 
 HelloWorldRequest::HelloWorldRequest()
 {
@@ -12,9 +14,11 @@ QString HelloWorldRequest::trigger() const
 	return "!hello";
 }
 
-void HelloWorldRequest::invoke(const QStringList &arguments, const RequestInvocationContext &context)
+void HelloWorldRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
-	Q_UNUSED(context);
+	Q_UNUSED(arguments);
 
-	qDebug() << "hello world?" << arguments;
+	const IOutputHandler &outputHandler = context.outputHandler();
+
+	outputHandler.say("Hello %1!", who);
 }

@@ -1,12 +1,12 @@
 #include "RequestInvocationContext.h"
 
-RequestInvocationContext::RequestInvocationContext(IPluginLoader &pluginLoader)
-	: m_pluginLoader(pluginLoader)
+RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler)
+	: m_outputHandler(outputHandler)
 {
 
 }
 
-IPluginLoader &RequestInvocationContext::pluginLoader() const
+IOutputHandler &RequestInvocationContext::outputHandler() const
 {
-	return m_pluginLoader;
+	return m_outputHandler;
 }

@@ -3,19 +3,19 @@
 
 #include <IrcMessage>
 
-#include "PluginLoader.h"
-#include "RequestRepository.h"
+class OutputHandler;
+class RequestRepository;
 
 class MessageHandler
 {
 	public:
-		MessageHandler();
+		MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository);
 
 		void handle(IrcPrivateMessage *message);
 
 	private:
-		RequestRepository m_requestRepository;
-		PluginLoader m_pluginLoader;
+		OutputHandler &m_outputHandler;
+		RequestRepository &m_requestRepository;
 };
 
 #endif // MESSAGEHANDLER_H

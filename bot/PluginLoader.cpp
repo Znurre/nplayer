@@ -1,6 +1,7 @@
 #include <QDebug>
 
 #include "PluginLoader.h"
+#include "QMutableListIteratorEx.h"
 
 PluginLoader::PluginLoader(RequestRepository &requestRepository)
 	: m_requestRepository(requestRepository)
@@ -10,21 +11,20 @@ PluginLoader::PluginLoader(RequestRepository &requestRepository)
 
 void PluginLoader::load(const QString &fileName)
 {
-	qDebug() << "Loading plugin" << fileName;
-
-	Plugin *plugin = new Plugin(fileName);
-	plugin->load(m_requestRepository);
-
-	m_plugins << plugin;
+	m_plugins << Plugin(fileName, m_requestRepository);
 }
 
 void PluginLoader::unload(const QString &fileName)
 {
-	for (Plugin *plugin : m_plugins)
+	QMutableListIteratorEx<Plugin> iterator(m_plugins);
+
+	while (iterator)
 	{
-		if (plugin->fileName() == fileName)
+		const Plugin &plugin = iterator.next();
+
+		if (plugin == fileName)
 		{
-			plugin->unload(m_requestRepository);
+			iterator.remove();
 		}
 	}
 }

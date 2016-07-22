@@ -1,4 +1,4 @@
-QT -= gui
+QT += quick
 
 CONFIG += c++11 communi
 COMMUNI += core
@@ -17,7 +17,10 @@ SOURCES += main.cpp \
     MessageHandler.cpp \
     RequestProvider.cpp \
     PluginLoader.cpp \
-    requests/UnloadRequest.cpp
+	requests/UnloadRequest.cpp \
+	PluginScanner.cpp \
+    OutputHandler.cpp \
+    Channel.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -25,7 +28,11 @@ HEADERS += \
     MessageHandler.h \
 	RequestProvider.h \
     PluginLoader.h \
-    requests/UnloadRequest.h
+	requests/UnloadRequest.h \
+	PluginScanner.h \
+    QMutableListIteratorEx.h \
+    OutputHandler.h \
+    Channel.h
 
 LIBS += -L../shared -lshared
 

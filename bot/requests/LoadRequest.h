@@ -10,7 +10,7 @@ class LoadRequest : public IRequest
 
 		QString trigger() const override;
 
-		void invoke(const QStringList &arguments, const RequestInvocationContext &context) override;
+		void invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 };
 
 #endif // LOADREQUEST_H

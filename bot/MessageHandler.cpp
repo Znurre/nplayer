@@ -1,17 +1,15 @@
 #include <QDebug>
 
 #include "MessageHandler.h"
-#include "RequestProvider.h"
 #include "RequestInvocationContext.h"
+#include "RequestRepository.h"
+#include "OutputHandler.h"
 
-MessageHandler::MessageHandler()
-	: m_pluginLoader(m_requestRepository)
+MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository)
+	: m_outputHandler(outputHandler)
+	, m_requestRepository(requestRepository)
 {
-	RequestRegistrator requestRegistrator;
-	RequestProvider requestProvider;
-	requestProvider.definition(requestRegistrator);
 
-	requestRegistrator.attach(m_requestRepository);
 }
 
 void MessageHandler::handle(IrcPrivateMessage *message)
@@ -31,9 +29,9 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 
 	if (request)
 	{
-		RequestInvocationContext context(m_pluginLoader);
+		RequestInvocationContext context(m_outputHandler);
 
-		request->invoke(arguments, context);
+		request->invoke(arguments, who, context);
 	}
 
 	qDebug() << trigger << arguments;

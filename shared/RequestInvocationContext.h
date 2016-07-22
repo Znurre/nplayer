@@ -1,17 +1,18 @@
 #ifndef REQUESTINVOCATIONCONTEXT_H
 #define REQUESTINVOCATIONCONTEXT_H
 
+class IOutputHandler;
 class IPluginLoader;
 
 class RequestInvocationContext
 {
 	public:
-		RequestInvocationContext(IPluginLoader &pluginLoader);
+		RequestInvocationContext(IOutputHandler &outputHandler);
 
-		IPluginLoader &pluginLoader() const;
+		IOutputHandler &outputHandler() const;
 
 	private:
-		IPluginLoader &m_pluginLoader;
+		IOutputHandler &m_outputHandler;
 };
 
 #endif // REQUESTINVOCATIONCONTEXT_H
