@@ -21,7 +21,9 @@ HEADERS += \
     components/Section.h \
     components/ITemplateComponent.h \
     components/Text.h \
-    RequestResult.h
+    RequestResult.h \
+    components/StringModel.h \
+    components/List.h
 
 SOURCES += \
     RequestInvocationContext.cpp \
@@ -35,7 +37,9 @@ SOURCES += \
     components/Template.cpp \
     components/Section.cpp \
     components/Text.cpp \
-    RequestResult.cpp
+    RequestResult.cpp \
+    components/StringModel.cpp \
+    components/List.cpp
 
 QMAKE_CXXFLAGS += -Werror
 

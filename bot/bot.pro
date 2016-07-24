@@ -4,7 +4,7 @@ CONFIG += c++11 communi
 COMMUNI += core
 
 TARGET = nplayer
-CONFIG += console
+CONFIG += console jsonserializer
 
 TEMPLATE = app
 

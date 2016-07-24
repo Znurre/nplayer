@@ -14,7 +14,33 @@ Template
 
 		Text
 		{
+			text: "-"
+		}
+
+		Text
+		{
 			text: name
+		}
+	}
+
+	Section
+	{
+		title: "Tags"
+
+		List
+		{
+			values: tags
+			limit: 3
+		}
+	}
+
+	Section
+	{
+		title: "Plays"
+
+		Text
+		{
+			text: userPlayCount
 		}
 	}
 }

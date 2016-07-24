@@ -77,17 +77,21 @@ class Plugin
 {
 	class PluginImpl
 	{
+		Q_DISABLE_COPY(PluginImpl)
+
 		public:
 			PluginImpl(const QString &fileName, RequestRepository &repository)
 				: m_loader(fileName)
 				, m_fileName(fileName)
 				, m_repository(repository)
 			{
+				m_loader.setLoadHints(QLibrary::DeepBindHint);
+
 				qDebug() << "Loading plugin" << fileName;
 
 				if (!m_loader.load())
 				{
-					qDebug() << m_loader.errorString();
+					qDebug() << "Failed to load plugin" << m_loader.errorString();
 				}
 
 				QObject *instance = m_loader.instance();
@@ -101,6 +105,8 @@ class Plugin
 				}
 
 				registrator.attach(repository);
+
+				qDebug() << provider;
 			}
 
 			~PluginImpl()
@@ -121,7 +127,7 @@ class Plugin
 
 				if (!m_loader.unload())
 				{
-					qDebug() << m_loader.errorString();
+					qDebug() << "Failed to unload plugin" << m_loader.errorString();
 				}
 			}
 

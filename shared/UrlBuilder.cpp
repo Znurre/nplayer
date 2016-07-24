@@ -16,7 +16,7 @@ void UrlBuilder::setParameters(const QList<as::KeyValue> &values)
 QString UrlBuilder::url(const SignatureBuilder &signatureBuilder) const
 {
 	const QString &query = m_queryBuilder.build(signatureBuilder);
-	const QString &url = QStringEx::format("%1/?%2", m_baseUrl, query);
+	const QString &url = QStringEx::format("%1/?%2&format=json", m_baseUrl, query);
 
 	return url;
 }

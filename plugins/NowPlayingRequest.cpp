@@ -35,9 +35,6 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 	{
 		const IOutputHandler &outputHandler = context.outputHandler();
 
-		const QString &artist = nowPlaying->artist();
-		const QString &title = nowPlaying->name();
-
 		QQmlEngine engine;
 		QQmlComponent component(&engine, "shared/templates/NowPlaying.qml");
 
@@ -56,8 +53,6 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 		const QString &text = tc->render();
 
 		outputHandler.say(text);
-
-//		outputHandler.say("Znurre np: %1 - %2", artist, title);
 	}
 }
 
@@ -65,18 +60,16 @@ Track *NowPlayingRequest::getNowPlaying() const
 {
 	const RequestHandler requestHandler;
 	const RecentTracks *recentTracks = requestHandler
-		.get<RecentTracks *>("user.getRecentTracks"
+		.get<RecentTracks>("user.getRecentTracks"
 			, as::limit = "1"
 			, as::user = "Znurre"
 		);
 
 	if (recentTracks)
 	{
-		qDebug() << "recentTracks";
-
 		for (Track *track : recentTracks->tracks())
 		{
-//			if (track->nowPlaying())
+			if (track->nowPlaying())
 			{
 				return track;
 			}

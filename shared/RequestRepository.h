@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "IRequest.h"
+#include "RequestInvocationContext.h"
 
 class RequestRepository
 {
@@ -12,7 +13,7 @@ class RequestRepository
 		template<class TRequest>
 		void attach()
 		{
-			TRequest *request = new TRequest();
+			IRequest *request = new TRequest();
 
 			qDebug() << "Attaching request with trigger" << request->trigger();
 
@@ -30,6 +31,8 @@ class RequestRepository
 
 				if (casted)
 				{
+					qDebug() << "Detaching request with trigger" << casted->trigger();
+
 					toRemove << casted;
 				}
 			}

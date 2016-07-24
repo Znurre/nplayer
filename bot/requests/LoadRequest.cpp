@@ -16,7 +16,10 @@ QString LoadRequest::trigger() const
 
 void LoadRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
-	Q_UNUSED(arguments);
 	Q_UNUSED(who);
-	Q_UNUSED(context);
+
+	const QString &fileName = arguments.join(QChar::Space);
+
+	IPluginLoader &pluginLoader = context.pluginLoader();
+	pluginLoader.load(fileName);
 }

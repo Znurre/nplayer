@@ -5,17 +5,19 @@
 
 class OutputHandler;
 class RequestRepository;
+class IPluginLoader;
 
 class MessageHandler
 {
 	public:
-		MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository);
+		MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository, IPluginLoader &pluginLoader);
 
 		void handle(IrcPrivateMessage *message);
 
 	private:
 		OutputHandler &m_outputHandler;
 		RequestRepository &m_requestRepository;
+		IPluginLoader &m_pluginLoader;
 };
 
 #endif // MESSAGEHANDLER_H

@@ -17,8 +17,23 @@ const QByteArray SECRET = "02194139392e43fb7d89753185caeeb5";
 class RequestHandler : public QObject
 {
 	public:
+		RequestHandler()
+		{
+
+		}
+
 		template<class TReturn, class ...TArguments>
-		TReturn get(const QString &method, TArguments ...arguments) const
+		TReturn *get(const QString &method, TArguments ...arguments) const
+		{
+			TReturn *target = new TReturn();
+
+			get(target, method, arguments...);
+
+			return target;
+		}
+
+		template<class TReturn, class ...TArguments>
+		void get(TReturn *target, const QString &method, TArguments ...arguments) const
 		{
 			QList<as::KeyValue> list =
 			{
@@ -53,7 +68,11 @@ class RequestHandler : public QObject
 
 			eventLoop.exec();
 
-			return serializer.deserialize<TReturn>(reply);
+			const QByteArray &data = reply->readAll();
+
+			qDebug() << data;
+
+			serializer.deserialize(data, target);
 		}
 };
 
