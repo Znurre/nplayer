@@ -15,7 +15,7 @@ class NowPlayingRequest : public IRequest
 		void invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 
 	private:
-		Track *getNowPlaying() const;
+		Track *getNowPlaying(const QString &user) const;
 };
 
 #endif // NOWPLAYINGREQUEST_H

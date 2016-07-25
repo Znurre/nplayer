@@ -27,9 +27,8 @@ QString NowPlayingRequest::trigger() const
 void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
 	Q_UNUSED(arguments);
-	Q_UNUSED(who);
 
-	Track *nowPlaying = getNowPlaying();
+	Track *nowPlaying = getNowPlaying(who);
 
 	if (nowPlaying)
 	{
@@ -56,13 +55,13 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 	}
 }
 
-Track *NowPlayingRequest::getNowPlaying() const
+Track *NowPlayingRequest::getNowPlaying(const QString &user) const
 {
 	const RequestHandler requestHandler;
 	const RecentTracks *recentTracks = requestHandler
 		.get<RecentTracks>("user.getRecentTracks"
 			, as::limit = "1"
-			, as::user = "Znurre"
+			, as::user = user
 		);
 
 	if (recentTracks)

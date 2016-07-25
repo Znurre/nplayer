@@ -34,7 +34,12 @@ class ITemplateComponent : public QQuickItem
 
 				if (component)
 				{
-					components << component->render();
+					const QString &content = component->render();
+
+					if (!content.isEmpty())
+					{
+						components << content;
+					}
 				}
 			}
 

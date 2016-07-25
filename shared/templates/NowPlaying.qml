@@ -5,32 +5,37 @@ Template
 {
 	Section
 	{
-		title: "Znurre np"
+		title: "%1 np".arg(user)
 
-		Text
+		Conditional
 		{
-			text: artist
+			condition: userLoved
+
+			Text
+			{
+				text: "[♥]"
+			}
 		}
 
 		Text
 		{
-			text: "-"
-		}
-
-		Text
-		{
-			text: name
+			text: formattedTitle()
 		}
 	}
 
-	Section
+	Conditional
 	{
-		title: "Tags"
+		condition: hasTags
 
-		List
+		Section
 		{
-			values: tags
-			limit: 3
+			title: "Tags"
+
+			List
+			{
+				values: tags
+				limit: 3
+			}
 		}
 	}
 

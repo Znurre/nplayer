@@ -23,7 +23,8 @@ HEADERS += \
     components/Text.h \
     RequestResult.h \
     components/StringModel.h \
-    components/List.h
+    components/List.h \
+    components/Conditional.h
 
 SOURCES += \
     RequestInvocationContext.cpp \
@@ -39,7 +40,8 @@ SOURCES += \
     components/Text.cpp \
     RequestResult.cpp \
     components/StringModel.cpp \
-    components/List.cpp
+    components/List.cpp \
+    components/Conditional.cpp
 
 QMAKE_CXXFLAGS += -Werror
 

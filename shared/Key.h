@@ -31,6 +31,7 @@ namespace as
 	const Key artist0 = "artist[0]";
 	const Key track0 = "track[0]";
 	const Key timestamp0 = "timestamp[0]";
+
 }
 
 #endif // KEY_H
