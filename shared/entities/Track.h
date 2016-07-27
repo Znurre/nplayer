@@ -9,6 +9,7 @@
 
 class Artist;
 class Track;
+class InformationResourceRepository;
 
 template<class T>
 using Callback = T (*)(Track &);
@@ -31,7 +32,7 @@ class Track : public QObject, public IInformationResource
 	Q_PROPERTY(int userPlayCount READ userPlayCount WRITE setUserPlayCount NOTIFY userPlayCountChanged)
 
 	public:
-		Q_INVOKABLE Track();
+		Track(InformationResourceRepository &repository);
 
 		QString hash() const override;
 

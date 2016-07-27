@@ -24,7 +24,12 @@ HEADERS += \
     RequestResult.h \
     components/StringModel.h \
     components/List.h \
-    components/Conditional.h
+    components/Conditional.h \
+    ObjectFactory.h \
+    entities/Track.h \
+    IInformationResource.h \
+    InformationResourceRepository.h \
+    entities/RecentTracks.h
 
 SOURCES += \
     RequestInvocationContext.cpp \
@@ -41,7 +46,11 @@ SOURCES += \
     RequestResult.cpp \
     components/StringModel.cpp \
     components/List.cpp \
-    components/Conditional.cpp
+    components/Conditional.cpp \
+    ObjectFactory.cpp \
+    entities/Track.cpp \
+    InformationResourceRepository.cpp \
+    entities/RecentTracks.cpp
 
 QMAKE_CXXFLAGS += -Werror
 

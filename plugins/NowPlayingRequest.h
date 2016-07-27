@@ -4,6 +4,7 @@
 #include "IRequest.h"
 
 class Track;
+class InformationResourceRepository;
 
 class NowPlayingRequest : public IRequest
 {
@@ -15,7 +16,7 @@ class NowPlayingRequest : public IRequest
 		void invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 
 	private:
-		Track *getNowPlaying(const QString &user) const;
+		Track *getNowPlaying(const QString &user, InformationResourceRepository &repository) const;
 };
 
 #endif // NOWPLAYINGREQUEST_H

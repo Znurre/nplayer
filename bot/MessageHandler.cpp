@@ -6,10 +6,11 @@
 #include "OutputHandler.h"
 #include "RequestProvider.h"
 
-MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository, IPluginLoader &pluginLoader)
+MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository, IPluginLoader &pluginLoader, InformationResourceRepository &informationResourceRepository)
 	: m_outputHandler(outputHandler)
 	, m_requestRepository(requestRepository)
 	, m_pluginLoader(pluginLoader)
+	, m_informationResourceRepository(informationResourceRepository)
 {
 	RequestRegistrator registrator;
 
@@ -36,7 +37,7 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 
 	if (request)
 	{
-		RequestInvocationContext context(m_outputHandler, m_pluginLoader);
+		RequestInvocationContext context(m_outputHandler, m_pluginLoader, m_informationResourceRepository);
 
 		request->invoke(arguments, who, context);
 	}

@@ -8,6 +8,7 @@
 
 #include "Key.h"
 #include "KeyValue.h"
+#include "ObjectFactory.h"
 #include "SignatureBuilder.h"
 #include "UrlBuilder.h"
 
@@ -17,7 +18,8 @@ const QByteArray SECRET = "02194139392e43fb7d89753185caeeb5";
 class RequestHandler : public QObject
 {
 	public:
-		RequestHandler()
+		RequestHandler(InformationResourceRepository &informationResourceRepository)
+			: m_objectFactory(informationResourceRepository)
 		{
 
 		}
@@ -72,8 +74,12 @@ class RequestHandler : public QObject
 
 			qDebug() << data;
 
+			serializer.setObjectFactory(&m_objectFactory);
 			serializer.deserialize(data, target);
 		}
+
+	private:
+		ObjectFactory m_objectFactory;
 };
 
 #endif // REQUESTHANDLER_H

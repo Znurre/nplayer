@@ -3,12 +3,13 @@
 #include "RequestHandler.h"
 #include "IOutputHandler.h"
 #include "RecentTracksResponse.h"
-#include "RecentTracks.h"
 #include "Artist.h"
 
 #include <QQmlComponent>
 #include <QQmlContext>
 #include <QQmlEngine>
+
+#include "entities/RecentTracks.h"
 
 #include "components/ITemplateComponent.h"
 
@@ -28,7 +29,8 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 {
 	Q_UNUSED(arguments);
 
-	Track *nowPlaying = getNowPlaying(who);
+	InformationResourceRepository &repository = context.informationResourceRepository();
+	Track *nowPlaying = getNowPlaying(who, repository);
 
 	if (nowPlaying)
 	{
@@ -55,9 +57,9 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 	}
 }
 
-Track *NowPlayingRequest::getNowPlaying(const QString &user) const
+Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository) const
 {
-	const RequestHandler requestHandler;
+	const RequestHandler requestHandler(repository);
 	const RecentTracks *recentTracks = requestHandler
 		.get<RecentTracks>("user.getRecentTracks"
 			, as::limit = "1"

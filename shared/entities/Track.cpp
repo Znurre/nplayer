@@ -1,8 +1,9 @@
 #include "Track.h"
 #include "QStringEx.h"
 
-Track::Track()
-	: m_nowPlaying(false)
+Track::Track(InformationResourceRepository &repository)
+	: m_requestHandler(repository)
+	, m_nowPlaying(false)
 	, m_fetched(false)
 	, m_userLoved(false)
 	, m_userPlayCount(0)
