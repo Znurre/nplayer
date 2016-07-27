@@ -30,7 +30,9 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 	Q_UNUSED(arguments);
 
 	InformationResourceRepository &repository = context.informationResourceRepository();
-	Track *nowPlaying = getNowPlaying(who, repository);
+	IdGenerator &idGenerator = context.idGenerator();
+
+	Track *nowPlaying = getNowPlaying(who, repository, idGenerator);
 
 	if (nowPlaying)
 	{
@@ -57,9 +59,9 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 	}
 }
 
-Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository) const
+Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const
 {
-	const RequestHandler requestHandler(repository);
+	const RequestHandler requestHandler(repository, idGenerator);
 	const RecentTracks *recentTracks = requestHandler
 		.get<RecentTracks>("user.getRecentTracks"
 			, as::limit = "1"

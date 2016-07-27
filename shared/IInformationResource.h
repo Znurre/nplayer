@@ -6,7 +6,7 @@
 class IInformationResource
 {
 	public:
-		virtual QString hash() const = 0;
+		virtual QString id() const = 0;
 };
 
 #endif // IINFORMATIONRESOURCE_H

@@ -2,10 +2,11 @@
 
 #include "RequestInvocationContext.h"
 
-RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler, IPluginLoader &pluginLoader, InformationResourceRepository &informationResourceRepository)
+RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler, IPluginLoader &pluginLoader, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_outputHandler(outputHandler)
 	, m_pluginLoader(pluginLoader)
 	, m_informationResourceRepository(informationResourceRepository)
+	, m_idGenerator(idGenerator)
 {
 
 }
@@ -23,4 +24,9 @@ IPluginLoader &RequestInvocationContext::pluginLoader() const
 InformationResourceRepository &RequestInvocationContext::informationResourceRepository() const
 {
 	return m_informationResourceRepository;
+}
+
+IdGenerator &RequestInvocationContext::idGenerator() const
+{
+	return m_idGenerator;
 }

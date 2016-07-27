@@ -10,15 +10,18 @@ HEADERS += \
     HelloWorldRequest.h \
     NowPlayingRequest.h \
     RecentTracksResponse.h \
-    Artist.h
+    Artist.h \
+    AlbumRequest.h
 
 SOURCES += \
     RequestProvider.cpp \
     HelloWorldRequest.cpp \
     NowPlayingRequest.cpp \
     RecentTracksResponse.cpp \
-    Artist.cpp
+    Artist.cpp \
+    AlbumRequest.cpp
 
-LIBS += -L../shared -lshared
+win32:LIBS += -L../shared/debug -lshared
+unix:LIBS += -L../shared -lshared
 
-QMAKE_CXXFLAGS += -Werror
+gcc:QMAKE_CXXFLAGS += -Werror

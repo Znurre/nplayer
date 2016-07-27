@@ -34,6 +34,7 @@ HEADERS += \
     OutputHandler.h \
     Channel.h
 
-LIBS += -L../shared -lshared
+win32:LIBS += -L../shared/debug -lshared
+unix:LIBS += -L../shared -lshared
 
-QMAKE_CXXFLAGS += -Werror
+gcc:QMAKE_CXXFLAGS += -Werror

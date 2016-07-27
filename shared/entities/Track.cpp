@@ -1,21 +1,22 @@
 #include "Track.h"
+#include "InformationResourceRepository.h"
+#include "IdGenerator.h"
 #include "QStringEx.h"
 
-Track::Track(InformationResourceRepository &repository)
-	: m_requestHandler(repository)
+Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
+	: m_requestHandler(repository, idGenerator)
 	, m_nowPlaying(false)
 	, m_fetched(false)
 	, m_userLoved(false)
+	, m_id(idGenerator)
 	, m_userPlayCount(0)
 {
-
+	repository.add(this);
 }
 
-QString Track::hash() const
+QString Track::id() const
 {
-	const QStringList components = { m_artist, m_name, m_user };
-
-	return components.join(QString::null);
+	return m_id;
 }
 
 bool Track::nowPlaying() const

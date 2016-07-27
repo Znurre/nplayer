@@ -18,11 +18,7 @@ const QByteArray SECRET = "02194139392e43fb7d89753185caeeb5";
 class RequestHandler : public QObject
 {
 	public:
-		RequestHandler(InformationResourceRepository &informationResourceRepository)
-			: m_objectFactory(informationResourceRepository)
-		{
-
-		}
+		RequestHandler(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator);
 
 		template<class TReturn, class ...TArguments>
 		TReturn *get(const QString &method, TArguments ...arguments) const

@@ -2,8 +2,9 @@
 
 #include "entities/Track.h"
 
-ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceRepository)
+ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_informationResourceRepository(informationResourceRepository)
+	, m_idGenerator(idGenerator)
 {
 	m_factories =
 	{
@@ -17,7 +18,7 @@ QObject *ObjectFactory::create(const QMetaObject *metaObject) const
 	{
 		if (factory->canHandle(metaObject))
 		{
-			return factory->create(m_informationResourceRepository);
+			return factory->create(m_informationResourceRepository, m_idGenerator);
 		}
 	}
 

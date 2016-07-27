@@ -7,7 +7,7 @@ IrcHandler::IrcHandler()
 	, m_outputHandler(*this, m_channel)
 	, m_pluginLoader(m_requestRepository)
 	, m_pluginScanner(m_pluginLoader)
-	, m_messageHandler(m_outputHandler, m_requestRepository, m_pluginLoader, m_informationResourceRepository)
+	, m_messageHandler(m_outputHandler, m_requestRepository, m_pluginLoader)
 {
 	setUserName("nplayer");
 	setNickName("nplayer");

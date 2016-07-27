@@ -10,6 +10,7 @@
 class Artist;
 class Track;
 class InformationResourceRepository;
+class IdGenerator;
 
 template<class T>
 using Callback = T (*)(Track &);
@@ -22,6 +23,7 @@ class Track : public QObject, public IInformationResource
 	Q_PROPERTY(bool userLoved READ userLoved WRITE setUserLoved NOTIFY userLovedChanged)
 	Q_PROPERTY(bool hasTags READ hasTags NOTIFY hasTagsChanged)
 
+	Q_PROPERTY(QString id READ id CONSTANT)
 	Q_PROPERTY(QString artist READ artist WRITE setArtist NOTIFY artistChanged)
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	Q_PROPERTY(QString album READ album WRITE setAlbum NOTIFY albumChanged)
@@ -32,9 +34,9 @@ class Track : public QObject, public IInformationResource
 	Q_PROPERTY(int userPlayCount READ userPlayCount WRITE setUserPlayCount NOTIFY userPlayCountChanged)
 
 	public:
-		Track(InformationResourceRepository &repository);
+		Track(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
-		QString hash() const override;
+		QString id() const override;
 
 		bool nowPlaying() const;
 		void setNowPlaying(bool nowPlaying);
@@ -92,6 +94,7 @@ class Track : public QObject, public IInformationResource
 		QString m_name;
 		QString m_album;
 		QString m_user;
+		QString m_id;
 
 		Array<QString> m_tags;
 

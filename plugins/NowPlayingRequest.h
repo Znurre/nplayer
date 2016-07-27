@@ -5,6 +5,7 @@
 
 class Track;
 class InformationResourceRepository;
+class IdGenerator;
 
 class NowPlayingRequest : public IRequest
 {
@@ -16,7 +17,7 @@ class NowPlayingRequest : public IRequest
 		void invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 
 	private:
-		Track *getNowPlaying(const QString &user, InformationResourceRepository &repository) const;
+		Track *getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const;
 };
 
 #endif // NOWPLAYINGREQUEST_H

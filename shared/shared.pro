@@ -29,7 +29,9 @@ HEADERS += \
     entities/Track.h \
     IInformationResource.h \
     InformationResourceRepository.h \
-    entities/RecentTracks.h
+    entities/RecentTracks.h \
+    IdGenerator.h \
+    RequestResponse.h
 
 SOURCES += \
     RequestInvocationContext.cpp \
@@ -50,9 +52,12 @@ SOURCES += \
     ObjectFactory.cpp \
     entities/Track.cpp \
     InformationResourceRepository.cpp \
-    entities/RecentTracks.cpp
+    entities/RecentTracks.cpp \
+    IdGenerator.cpp \
+    RequestResponse.cpp
 
-QMAKE_CXXFLAGS += -Werror
+gcc:QMAKE_CXXFLAGS += -Werror
 
 DISTFILES += \
-    templates/NowPlaying.qml
+    templates/NowPlaying.qml \
+    templates/Album.qml

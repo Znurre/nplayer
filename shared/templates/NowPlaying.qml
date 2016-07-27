@@ -48,4 +48,14 @@ Template
 			text: userPlayCount
 		}
 	}
+
+	Section
+	{
+		title: "Id"
+
+		Text
+		{
+			text: id
+		}
+	}
 }

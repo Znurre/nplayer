@@ -4,13 +4,14 @@
 #include <QJsonSerializer>
 
 class InformationResourceRepository;
+class IdGenerator;
 
 class IInformationResourceFactory
 {
 	public:
 		virtual bool canHandle(const QMetaObject *metaObject) = 0;
 
-		virtual QObject *create(InformationResourceRepository &informationResourceRepository) = 0;
+		virtual QObject *create(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;
 };
 
 template<class T>
@@ -22,21 +23,22 @@ class InformationResourceFactory : public IInformationResourceFactory
 			return metaObject == &T::staticMetaObject;
 		}
 
-		QObject *create(InformationResourceRepository &informationResourceRepository)
+		QObject *create(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 		{
-			return new T(informationResourceRepository);
+			return new T(informationResourceRepository, idGenerator);
 		}
 };
 
 class ObjectFactory : public DefaultObjectFactory
 {
 	public:
-		ObjectFactory(InformationResourceRepository &informationResourceRepository);
+		ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator);
 
 		QObject *create(const QMetaObject *metaObject) const override;
 
 	private:
 		InformationResourceRepository &m_informationResourceRepository;
+		IdGenerator &m_idGenerator;
 
 		QList<IInformationResourceFactory *> m_factories;
 };

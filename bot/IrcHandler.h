@@ -9,7 +9,6 @@
 #include "PluginScanner.h"
 #include "MessageHandler.h"
 #include "Channel.h"
-#include "InformationResourceRepository.h"
 
 class IrcHandler : public IrcConnection
 {
@@ -29,7 +28,6 @@ class IrcHandler : public IrcConnection
 		RequestRepository m_requestRepository;
 		PluginLoader m_pluginLoader;
 		PluginScanner m_pluginScanner;
-		InformationResourceRepository m_informationResourceRepository;
 		MessageHandler m_messageHandler;
 };
 
