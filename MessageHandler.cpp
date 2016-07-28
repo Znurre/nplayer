@@ -6,21 +6,14 @@
 #include "RequestInvocationContext.h"
 #include "RequestRepository.h"
 #include "OutputHandler.h"
-#include "RequestProvider.h"
 
 #include "components/ITemplateComponent.h"
 
-MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository, IPluginLoader &pluginLoader)
+MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository)
 	: m_outputHandler(outputHandler)
 	, m_requestRepository(requestRepository)
-	, m_pluginLoader(pluginLoader)
 {
-	RequestRegistrator registrator;
 
-	RequestProvider requestProvider;
-	requestProvider.definition(registrator);
-
-	registrator.attach(requestRepository);
 }
 
 void MessageHandler::handle(IrcPrivateMessage *message)
@@ -40,7 +33,7 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 
 	if (request)
 	{
-		const RequestInvocationContext context(m_outputHandler, m_pluginLoader, m_informationResourceRepository, m_idGenerator);
+		const RequestInvocationContext context(m_outputHandler, m_informationResourceRepository, m_idGenerator);
 		const RequestResponse &response = request->invoke(arguments, who, context);
 
 		if (response.isValid())

@@ -4,9 +4,7 @@
 #include <IrcConnection>
 
 #include "OutputHandler.h"
-#include "PluginLoader.h"
 #include "RequestRepository.h"
-#include "PluginScanner.h"
 #include "MessageHandler.h"
 #include "Channel.h"
 
@@ -26,8 +24,6 @@ class IrcHandler : public IrcConnection
 		Channel m_channel;
 		OutputHandler m_outputHandler;
 		RequestRepository m_requestRepository;
-		PluginLoader m_pluginLoader;
-		PluginScanner m_pluginScanner;
 		MessageHandler m_messageHandler;
 };
 

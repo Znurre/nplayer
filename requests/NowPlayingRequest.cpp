@@ -2,8 +2,6 @@
 #include "RequestInvocationContext.h"
 #include "RequestHandler.h"
 #include "IOutputHandler.h"
-#include "RecentTracksResponse.h"
-#include "Artist.h"
 
 #include "entities/RecentTracks.h"
 #include "entities/NotPlaying.h"
@@ -12,9 +10,7 @@
 
 NowPlayingRequest::NowPlayingRequest()
 {
-	qRegisterMetaType<RecentTracksResponse *>();
 	qRegisterMetaType<RecentTracks *>();
-	qRegisterMetaType<Artist *>();
 }
 
 QString NowPlayingRequest::trigger() const

@@ -10,6 +10,8 @@
 class RequestRepository
 {
 	public:
+		RequestRepository();
+
 		template<class TRequest>
 		void attach()
 		{
@@ -18,26 +20,6 @@ class RequestRepository
 			qDebug() << "Attaching request with trigger" << request->trigger();
 
 			m_requests << request;
-		}
-
-		template<class TRequest>
-		void detach()
-		{
-			QSet<IRequest *> toRemove;
-
-			for (IRequest *request : m_requests)
-			{
-				TRequest *casted = dynamic_cast<TRequest *>(request);
-
-				if (casted)
-				{
-					qDebug() << "Detaching request with trigger" << casted->trigger();
-
-					toRemove << casted;
-				}
-			}
-
-			m_requests -= toRemove;
 		}
 
 		IRequest *resolve(const QString &trigger)

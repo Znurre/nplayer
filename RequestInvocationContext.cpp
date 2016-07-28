@@ -2,9 +2,8 @@
 
 #include "RequestInvocationContext.h"
 
-RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler, IPluginLoader &pluginLoader, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
+RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_outputHandler(outputHandler)
-	, m_pluginLoader(pluginLoader)
 	, m_informationResourceRepository(informationResourceRepository)
 	, m_idGenerator(idGenerator)
 {
@@ -14,11 +13,6 @@ RequestInvocationContext::RequestInvocationContext(IOutputHandler &outputHandler
 IOutputHandler &RequestInvocationContext::outputHandler() const
 {
 	return m_outputHandler;
-}
-
-IPluginLoader &RequestInvocationContext::pluginLoader() const
-{
-	return m_pluginLoader;
 }
 
 InformationResourceRepository &RequestInvocationContext::informationResourceRepository() const
