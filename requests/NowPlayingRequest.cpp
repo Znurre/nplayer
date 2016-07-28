@@ -29,13 +29,13 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 
 	if (nowPlaying)
 	{
-		return RequestResponse("shared/templates/NowPlaying.qml", nowPlaying);
+		return RequestResponse("templates/NowPlaying.qml", nowPlaying);
 	}
 
 	NotPlaying *notPlaying = new NotPlaying();
 	notPlaying->setUser(who);
 
-	return RequestResponse("shared/templates/NotPlaying.qml", notPlaying);
+	return RequestResponse("templates/NotPlaying.qml", notPlaying);
 }
 
 Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const

@@ -25,7 +25,7 @@ RequestResponse AlbumRequest::invoke(const QStringList &arguments, const QString
 
 	if (track)
 	{
-		return RequestResponse("shared/templates/Album.qml", track);
+		return RequestResponse("templates/Album.qml", track);
 	}
 
 	return RequestResponse();
