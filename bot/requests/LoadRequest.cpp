@@ -14,7 +14,7 @@ QString LoadRequest::trigger() const
 	return "!load";
 }
 
-void LoadRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
+RequestResponse LoadRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
 	Q_UNUSED(who);
 
@@ -22,4 +22,6 @@ void LoadRequest::invoke(const QStringList &arguments, const QString &who, const
 
 	IPluginLoader &pluginLoader = context.pluginLoader();
 	pluginLoader.load(fileName);
+
+	return RequestResponse();
 }

@@ -1,10 +1,14 @@
 #include <QDebug>
+#include <QQmlContext>
+#include <QQmlEngine>
 
 #include "MessageHandler.h"
 #include "RequestInvocationContext.h"
 #include "RequestRepository.h"
 #include "OutputHandler.h"
 #include "RequestProvider.h"
+
+#include "components/ITemplateComponent.h"
 
 MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository, IPluginLoader &pluginLoader)
 	: m_outputHandler(outputHandler)
@@ -36,13 +40,33 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 
 	if (request)
 	{
-		RequestInvocationContext context(m_outputHandler, m_pluginLoader, m_informationResourceRepository, m_idGenerator);
+		const RequestInvocationContext context(m_outputHandler, m_pluginLoader, m_informationResourceRepository, m_idGenerator);
+		const RequestResponse &response = request->invoke(arguments, who, context);
 
-		request->invoke(arguments, who, context);
+		if (response.isValid())
+		{
+			QQmlEngine engine;
+			QQmlComponent component(&engine, response.templateName());
+
+			QQmlContext *context = engine.rootContext();
+			context->setContextObject(response.dataContext());
+
+			ITemplateComponent *templateComponent = (ITemplateComponent *)component.create();
+
+			if (!templateComponent)
+			{
+				qDebug() << component.errorString();
+
+				return;
+			}
+
+			const QString &text = templateComponent->render();
+
+			m_outputHandler.say(text);
+		}
 	}
 
 	qDebug() << trigger << arguments;
 
-	Q_UNUSED(who);
 	Q_UNUSED(prefix);
 }

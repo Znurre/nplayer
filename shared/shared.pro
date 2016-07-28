@@ -31,7 +31,8 @@ HEADERS += \
     InformationResourceRepository.h \
     entities/RecentTracks.h \
     IdGenerator.h \
-    RequestResponse.h
+    RequestResponse.h \
+    entities/NotPlaying.h
 
 SOURCES += \
     RequestInvocationContext.cpp \
@@ -54,10 +55,12 @@ SOURCES += \
     InformationResourceRepository.cpp \
     entities/RecentTracks.cpp \
     IdGenerator.cpp \
-    RequestResponse.cpp
+    RequestResponse.cpp \
+    entities/NotPlaying.cpp
 
 gcc:QMAKE_CXXFLAGS += -Werror
 
 DISTFILES += \
     templates/NowPlaying.qml \
-    templates/Album.qml
+    templates/Album.qml \
+    templates/NotPlaying.qml

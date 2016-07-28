@@ -1,19 +1,25 @@
 #ifndef REQUESTRESPONSE_H
 #define REQUESTRESPONSE_H
 
+#include <QObject>
+
 #include "IInformationResource.h"
 
 class RequestResponse
 {
 	public:
-		RequestResponse(const QString &templateName, IInformationResource *resource);
+		RequestResponse();
+		RequestResponse(const QString &templateName, QObject *dataContext);
+		~RequestResponse();
 
 		QString templateName() const;
-		IInformationResource *resource() const;
+		QObject *dataContext() const;
+
+		bool isValid() const;
 
 	private:
 		QString m_templateName;
-		IInformationResource *m_resource;
+		QObject *m_dataContext;
 };
 
 #endif // REQUESTRESPONSE_H

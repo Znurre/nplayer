@@ -14,11 +14,13 @@ QString HelloWorldRequest::trigger() const
 	return "!hello";
 }
 
-void HelloWorldRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
+RequestResponse HelloWorldRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
 	Q_UNUSED(arguments);
 
 	const IOutputHandler &outputHandler = context.outputHandler();
 
 	outputHandler.say("Hello %1!", who);
+
+	return RequestResponse();
 }

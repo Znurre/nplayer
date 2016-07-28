@@ -36,7 +36,7 @@ class Track : public QObject, public IInformationResource
 	public:
 		Track(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
-		QString id() const override;
+		QString id() const;
 
 		bool nowPlaying() const;
 		void setNowPlaying(bool nowPlaying);

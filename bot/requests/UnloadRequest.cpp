@@ -14,7 +14,7 @@ QString UnloadRequest::trigger() const
 	return "!unload";
 }
 
-void UnloadRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
+RequestResponse UnloadRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
 	Q_UNUSED(who);
 
@@ -22,4 +22,6 @@ void UnloadRequest::invoke(const QStringList &arguments, const QString &who, con
 
 	IPluginLoader &pluginLoader = context.pluginLoader();
 	pluginLoader.unload(fileName);
+
+	return RequestResponse();
 }

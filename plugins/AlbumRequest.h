@@ -10,7 +10,7 @@ class AlbumRequest : public IRequest
 
 		QString trigger() const override;
 
-		void invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
+		RequestResponse invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 };
 
 #endif // ALBUMREQUEST_H

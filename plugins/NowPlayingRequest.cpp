@@ -5,11 +5,8 @@
 #include "RecentTracksResponse.h"
 #include "Artist.h"
 
-#include <QQmlComponent>
-#include <QQmlContext>
-#include <QQmlEngine>
-
 #include "entities/RecentTracks.h"
+#include "entities/NotPlaying.h"
 
 #include "components/ITemplateComponent.h"
 
@@ -25,7 +22,7 @@ QString NowPlayingRequest::trigger() const
 	return ".np";
 }
 
-void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
+RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
 	Q_UNUSED(arguments);
 
@@ -36,27 +33,13 @@ void NowPlayingRequest::invoke(const QStringList &arguments, const QString &who,
 
 	if (nowPlaying)
 	{
-		const IOutputHandler &outputHandler = context.outputHandler();
-
-		QQmlEngine engine;
-		QQmlComponent component(&engine, "shared/templates/NowPlaying.qml");
-
-		QQmlContext *context = engine.rootContext();
-		context->setContextObject(nowPlaying);
-
-		ITemplateComponent *tc = (ITemplateComponent *)component.create();
-
-		if (!tc)
-		{
-			qDebug() << component.errorString();
-
-			return;
-		}
-
-		const QString &text = tc->render();
-
-		outputHandler.say(text);
+		return RequestResponse("shared/templates/NowPlaying.qml", nowPlaying);
 	}
+
+	NotPlaying *notPlaying = new NotPlaying();
+	notPlaying->setUser(who);
+
+	return RequestResponse("shared/templates/NotPlaying.qml", notPlaying);
 }
 
 Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const
