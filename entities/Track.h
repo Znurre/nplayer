@@ -15,7 +15,7 @@ class IdGenerator;
 template<class T>
 using Callback = T (*)(Track &);
 
-class Track : public QObject, public IInformationResource
+class Track : public IInformationResource
 {
 	Q_OBJECT
 
@@ -36,7 +36,7 @@ class Track : public QObject, public IInformationResource
 	public:
 		Track(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
-		QString id() const;
+		QString id() const override;
 
 		bool nowPlaying() const;
 		void setNowPlaying(bool nowPlaying);
