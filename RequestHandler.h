@@ -23,7 +23,7 @@ class RequestHandler : public QObject
 		template<class TReturn, class ...TArguments>
 		TReturn *get(const QString &method, TArguments ...arguments) const
 		{
-			TReturn *target = new TReturn();
+			TReturn *target = (TReturn *)m_objectFactory.create(&TReturn::staticMetaObject);
 
 			get(target, method, arguments...);
 

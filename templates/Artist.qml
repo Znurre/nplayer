@@ -12,4 +12,46 @@ Template
 			text: name
 		}
 	}
+
+	Section
+	{
+		title: "Description"
+
+		Text
+		{
+			text: bio
+			maxLength: 250
+		}
+	}
+
+	Section
+	{
+		title: "Tags"
+
+		List
+		{
+			values: tags
+			limit: 3
+		}
+	}
+
+	Section
+	{
+		title: "Listeners"
+
+		Text
+		{
+			text: listeners
+		}
+	}
+
+	Section
+	{
+		title: "Id"
+
+		Text
+		{
+			text: id
+		}
+	}
 }

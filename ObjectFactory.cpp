@@ -1,6 +1,7 @@
 #include "ObjectFactory.h"
 
 #include "entities/Track.h"
+#include "entities/Artist.h"
 
 ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_informationResourceRepository(informationResourceRepository)
@@ -8,7 +9,8 @@ ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceR
 {
 	m_factories =
 	{
-		new InformationResourceFactory<Track>()
+		new InformationResourceFactory<Track>(),
+		new InformationResourceFactory<Artist>(),
 	};
 }
 

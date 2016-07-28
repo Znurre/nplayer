@@ -8,6 +8,8 @@ class IInformationResource : public QObject
 {
 	Q_OBJECT
 
+	Q_PROPERTY(QString id READ id CONSTANT)
+
 	public:
 		virtual QString id() const = 0;
 };

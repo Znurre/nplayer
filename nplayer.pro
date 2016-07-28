@@ -44,7 +44,8 @@ SOURCES += main.cpp \
     requests/AlbumRequest.cpp \
     RequestRepository.cpp \
     TriggerWalker.cpp \
-    requests/ArtistRequest.cpp
+    requests/ArtistRequest.cpp \
+    StringUtils.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -85,7 +86,8 @@ HEADERS += \
     requests/NowPlayingRequest.h \
     requests/AlbumRequest.h \
     TriggerWalker.h \
-    requests/ArtistRequest.h
+    requests/ArtistRequest.h \
+    StringUtils.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

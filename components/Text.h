@@ -9,19 +9,27 @@ class Text : public ITemplateComponent
 
 	Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
 
+	Q_PROPERTY(int maxLength READ maxLength WRITE setMaxLength NOTIFY maxLengthChanged)
+
 	public:
 		Text();
 
 		QString text() const;
 		void setText(const QString &text);
 
+		int maxLength() const;
+		void setMaxLength(int maxLength);
+
 		QString render() override;
 
 	private:
+		int m_maxLength;
+
 		QString m_text;
 
 	signals:
 		void textChanged();
+		void maxLengthChanged();
 };
 
 #endif // TEXT_H
