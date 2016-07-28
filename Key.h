@@ -25,6 +25,7 @@ namespace as
 	const Key format = "format";
 	const Key limit = "limit";
 	const Key user = "user";
+	const Key username = "username";
 	const Key artist = "artist";
 	const Key track = "track";
 	const Key sk = "sk";

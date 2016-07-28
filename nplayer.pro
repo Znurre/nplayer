@@ -43,7 +43,8 @@ SOURCES += main.cpp \
     requests/NowPlayingRequest.cpp \
     requests/AlbumRequest.cpp \
     RequestRepository.cpp \
-    TriggerWalker.cpp
+    TriggerWalker.cpp \
+    requests/ArtistRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -83,6 +84,15 @@ HEADERS += \
     requests/HelloWorldRequest.h \
     requests/NowPlayingRequest.h \
     requests/AlbumRequest.h \
-    TriggerWalker.h
+    TriggerWalker.h \
+    requests/ArtistRequest.h
+
+OTHER_FILES += \
+    templates/NowPlaying.qml \
+    templates/NotPlaying.qml \
+    templates/Album.qml
 
 gcc:QMAKE_CXXFLAGS += -Werror
+
+DISTFILES += \
+    templates/Artist.qml
