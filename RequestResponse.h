@@ -10,10 +10,11 @@ class RequestResponse
 	public:
 		RequestResponse();
 		RequestResponse(const QString &templateName, QObject *dataContext);
-		~RequestResponse();
 
 		QString templateName() const;
 		QObject *dataContext() const;
+
+		IInformationResource *resource() const;
 
 		bool isValid() const;
 

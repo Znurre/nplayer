@@ -42,7 +42,8 @@ SOURCES += main.cpp \
     requests/HelloWorldRequest.cpp \
     requests/NowPlayingRequest.cpp \
     requests/AlbumRequest.cpp \
-    RequestRepository.cpp
+    RequestRepository.cpp \
+    TriggerWalker.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -81,6 +82,7 @@ HEADERS += \
     entities/NotPlaying.h \
     requests/HelloWorldRequest.h \
     requests/NowPlayingRequest.h \
-    requests/AlbumRequest.h
+    requests/AlbumRequest.h \
+    TriggerWalker.h
 
 gcc:QMAKE_CXXFLAGS += -Werror

@@ -22,7 +22,7 @@ class RequestRepository
 			m_requests << request;
 		}
 
-		IRequest *resolve(const QString &trigger)
+		IRequest *resolve(const QString &trigger) const
 		{
 			for (IRequest *request : m_requests)
 			{

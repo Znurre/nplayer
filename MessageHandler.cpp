@@ -6,6 +6,7 @@
 #include "RequestInvocationContext.h"
 #include "RequestRepository.h"
 #include "OutputHandler.h"
+#include "TriggerWalker.h"
 
 #include "components/ITemplateComponent.h"
 
@@ -29,34 +30,30 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 		.value(0)
 		.toLower();
 
-	IRequest *request = m_requestRepository.resolve(trigger);
+	const RequestInvocationContext context(m_outputHandler, m_informationResourceRepository, m_idGenerator);
+	const TriggerWalker walker(m_requestRepository, context);
+	const RequestResponse &response = walker.walk(trigger, who, arguments);
 
-	if (request)
+	if (response.isValid())
 	{
-		const RequestInvocationContext context(m_outputHandler, m_informationResourceRepository, m_idGenerator);
-		const RequestResponse &response = request->invoke(arguments, who, context);
+		QQmlEngine engine;
+		QQmlComponent component(&engine, response.templateName());
 
-		if (response.isValid())
+		QQmlContext *context = engine.rootContext();
+		context->setContextObject(response.dataContext());
+
+		ITemplateComponent *templateComponent = (ITemplateComponent *)component.create();
+
+		if (!templateComponent)
 		{
-			QQmlEngine engine;
-			QQmlComponent component(&engine, response.templateName());
+			qDebug() << component.errorString();
 
-			QQmlContext *context = engine.rootContext();
-			context->setContextObject(response.dataContext());
-
-			ITemplateComponent *templateComponent = (ITemplateComponent *)component.create();
-
-			if (!templateComponent)
-			{
-				qDebug() << component.errorString();
-
-				return;
-			}
-
-			const QString &text = templateComponent->render();
-
-			m_outputHandler.say(text);
+			return;
 		}
+
+		const QString &text = templateComponent->render();
+
+		m_outputHandler.say(text);
 	}
 
 	qDebug() << trigger << arguments;

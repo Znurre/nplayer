@@ -15,11 +15,6 @@ RequestResponse::RequestResponse(const QString &templateName, QObject *dataConte
 
 }
 
-RequestResponse::~RequestResponse()
-{
-	delete m_dataContext;
-}
-
 QString RequestResponse::templateName() const
 {
 	return m_templateName;
@@ -28,6 +23,11 @@ QString RequestResponse::templateName() const
 QObject *RequestResponse::dataContext() const
 {
 	return m_dataContext;
+}
+
+IInformationResource *RequestResponse::resource() const
+{
+	return dynamic_cast<IInformationResource *>(m_dataContext);
 }
 
 bool RequestResponse::isValid() const
