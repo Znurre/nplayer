@@ -13,6 +13,13 @@ TriggerWalker::TriggerWalker(const RequestRepository &requestRepository, const R
 
 RequestResponse TriggerWalker::walk(const QString &string, const QString &who, const QStringList &arguments) const
 {
+	RequestResponse response;
+
+	return walk(response, string, who, arguments);
+}
+
+RequestResponse TriggerWalker::walk(const RequestResponse &response, const QString &string, const QString &who, const QStringList &arguments) const
+{
 	const QRegularExpressionMatch &match = m_regex.match(string);
 	const QString &trigger = match.captured("trigger");
 
@@ -38,13 +45,11 @@ RequestResponse TriggerWalker::walk(const QString &string, const QString &who, c
 						resource->id()
 					};
 
-					return walk(remaining, who, id);
+					return walk(response, remaining, who, id);
 				}
 			}
-
-			return response;
 		}
 	}
 
-	return RequestResponse();
+	return response;
 }
