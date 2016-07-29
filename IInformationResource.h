@@ -6,6 +6,9 @@
 
 #include "IIterator.h"
 
+template<class TResource>
+class IteratorResolverBase;
+
 class IIteratorResolver
 {
 	public:
@@ -32,8 +35,8 @@ class IteratorResolverBase : public IIteratorResolver
 		virtual IIterator<TResource> *resolve() = 0;
 };
 
-template<class TInstance, class TIterator, class TResource>
-class IteratorResolver : public IteratorResolverBase<TResource>
+template<class TInstance, class TIterator>
+class IteratorResolver : public IteratorResolverBase<typename TIterator::TResource>
 {
 	public:
 		IteratorResolver(TInstance *instance)
@@ -42,7 +45,7 @@ class IteratorResolver : public IteratorResolverBase<TResource>
 
 		}
 
-		IIterator<TResource> *resolve() override
+		IIterator<typename TIterator::TResource> *resolve() override
 		{
 			return &m_iterator;
 		}
@@ -87,7 +90,7 @@ class InformationResource : public IInformationResource
 		template<class TIterator>
 		void registerIterator()
 		{
-			m_iterators << new IteratorResolver<T, TIterator, TIterator::TResource>((T *)this);
+			m_iterators << new IteratorResolver<T, TIterator>((T *)this);
 		}
 };
 
