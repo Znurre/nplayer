@@ -43,7 +43,7 @@ Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResource
 	const RequestHandler requestHandler(repository, idGenerator);
 	const RecentTracks *recentTracks = requestHandler
 		.get<RecentTracks>("user.getRecentTracks"
-			, as::limit = "1"
+			, as::limit = 1
 			, as::user = user
 		);
 

@@ -4,6 +4,7 @@
 #include "requests/NowPlayingRequest.h"
 #include "requests/AlbumRequest.h"
 #include "requests/ArtistRequest.h"
+#include "requests/TrackRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -11,4 +12,5 @@ RequestRepository::RequestRepository()
 	attach<NowPlayingRequest>();
 	attach<AlbumRequest>();
 	attach<ArtistRequest>();
+	attach<TrackRequest>();
 }

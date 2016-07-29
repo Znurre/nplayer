@@ -7,8 +7,9 @@
 
 class InformationResourceRepository;
 class IdGenerator;
+class ArtistTrackIterator;
 
-class Artist : public IInformationResource
+class Artist : public InformationResource<Artist>
 {
 	Q_OBJECT
 

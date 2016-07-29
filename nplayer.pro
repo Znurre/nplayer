@@ -45,7 +45,9 @@ SOURCES += main.cpp \
     RequestRepository.cpp \
     TriggerWalker.cpp \
     requests/ArtistRequest.cpp \
-    StringUtils.cpp
+    StringUtils.cpp \
+    iterators/ArtistTrackIterator.cpp \
+    requests/TrackRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -87,7 +89,10 @@ HEADERS += \
     requests/AlbumRequest.h \
     TriggerWalker.h \
     requests/ArtistRequest.h \
-    StringUtils.h
+    StringUtils.h \
+    IIterator.h \
+    iterators/ArtistTrackIterator.h \
+    requests/TrackRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -97,4 +102,5 @@ OTHER_FILES += \
 gcc:QMAKE_CXXFLAGS += -Werror
 
 DISTFILES += \
-    templates/Artist.qml
+    templates/Artist.qml \
+    templates/Track.qml

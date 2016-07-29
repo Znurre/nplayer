@@ -14,6 +14,8 @@ namespace as
 			Key(const char *name);
 
 			KeyValue operator =(const QString &value) const;
+			KeyValue operator =(const QByteArray &value) const;
+			KeyValue operator =(int value) const;
 
 		private:
 			QString m_name;
@@ -24,6 +26,7 @@ namespace as
 	const Key method = "method";
 	const Key format = "format";
 	const Key limit = "limit";
+	const Key page = "page";
 	const Key user = "user";
 	const Key username = "username";
 	const Key artist = "artist";

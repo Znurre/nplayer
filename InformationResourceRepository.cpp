@@ -12,3 +12,8 @@ void InformationResourceRepository::add(IInformationResource *resource)
 
 	m_resources[id] = resource;
 }
+
+IInformationResource *InformationResourceRepository::get(const QString &id) const
+{
+	return m_resources[id];
+}

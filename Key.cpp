@@ -12,4 +12,14 @@ namespace as
 	{
 		return KeyValue(m_name, value);
 	}
+
+	KeyValue Key::operator =(const QByteArray &value) const
+	{
+		return KeyValue(m_name, QString(value));
+	}
+
+	KeyValue Key::operator =(int value) const
+	{
+		return KeyValue(m_name, QString::number(value));
+	}
 }

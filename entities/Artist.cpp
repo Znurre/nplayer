@@ -3,10 +3,14 @@
 #include "IdGenerator.h"
 #include "QStringEx.h"
 
+#include "iterators/ArtistTrackIterator.h"
+
 Artist::Artist(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
 {
 	Q_UNUSED(informationResourceRepository);
+
+	registerIterator<ArtistTrackIterator>();
 }
 
 QString Artist::id() const

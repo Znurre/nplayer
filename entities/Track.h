@@ -15,7 +15,7 @@ class IdGenerator;
 template<class T>
 using Callback = T (*)(Track &);
 
-class Track : public IInformationResource
+class Track : public InformationResource<Track>
 {
 	Q_OBJECT
 
@@ -76,7 +76,7 @@ class Track : public IInformationResource
 					.get(this, "track.getInfo"
 						, as::artist = m_artist
 						, as::track = m_name
-						, as::user = "Znurre"
+						, as::user = m_user
 					);
 			}
 
