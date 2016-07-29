@@ -6,7 +6,7 @@
 
 QString TrackRequest::trigger() const
 {
-	return ".album";
+	return ".track";
 }
 
 RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)

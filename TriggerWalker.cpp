@@ -47,6 +47,8 @@ RequestResponse TriggerWalker::walk(const RequestResponse &response, const QStri
 
 					return walk(response, remaining, who, id);
 				}
+
+				return response;
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 #include "StringUtils.h"
 #include "Artist.h"
 #include "IdGenerator.h"
+#include "InformationResourceRepository.h"
 #include "QStringEx.h"
 
 #include "iterators/ArtistTrackIterator.h"
@@ -8,7 +9,7 @@
 Artist::Artist(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
 {
-	Q_UNUSED(informationResourceRepository);
+	informationResourceRepository.add(this);
 
 	registerIterator<ArtistTrackIterator>();
 }
