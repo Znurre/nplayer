@@ -34,7 +34,6 @@ SOURCES += main.cpp \
     ObjectFactory.cpp \
     entities/Track.cpp \
     InformationResourceRepository.cpp \
-    entities/RecentTracks.cpp \
     entities/Artist.cpp \
     IdGenerator.cpp \
     RequestResponse.cpp \
@@ -47,7 +46,12 @@ SOURCES += main.cpp \
     requests/ArtistRequest.cpp \
     StringUtils.cpp \
     iterators/ArtistTrackIterator.cpp \
-    requests/TrackRequest.cpp
+    requests/TrackRequest.cpp \
+    iterators/ArtistAlbumIterator.cpp \
+    entities/TracksEnvelope.cpp \
+    entities/AlbumsEnvelope.cpp \
+    entities/Album.cpp \
+    iterators/TrackAlbumIterator.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -79,7 +83,6 @@ HEADERS += \
     entities/Track.h \
     IInformationResource.h \
     InformationResourceRepository.h \
-    entities/RecentTracks.h \
     entities/Artist.h \
     IdGenerator.h \
     RequestResponse.h \
@@ -92,7 +95,12 @@ HEADERS += \
     StringUtils.h \
     IIterator.h \
     iterators/ArtistTrackIterator.h \
-    requests/TrackRequest.h
+    requests/TrackRequest.h \
+    iterators/ArtistAlbumIterator.h \
+    entities/TracksEnvelope.h \
+    entities/AlbumsEnvelope.h \
+    entities/Album.h \
+    iterators/TrackAlbumIterator.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

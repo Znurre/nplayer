@@ -5,6 +5,7 @@
 #include "QStringEx.h"
 
 #include "iterators/ArtistTrackIterator.h"
+#include "iterators/ArtistAlbumIterator.h"
 
 Artist::Artist(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
@@ -12,6 +13,7 @@ Artist::Artist(InformationResourceRepository &informationResourceRepository, IdG
 	informationResourceRepository.add(this);
 
 	registerIterator<ArtistTrackIterator>();
+	registerIterator<ArtistAlbumIterator>();
 }
 
 QString Artist::id() const

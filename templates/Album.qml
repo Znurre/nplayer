@@ -9,7 +9,7 @@ Template
 
 		Text
 		{
-			text: album
+			text: name
 		}
 	}
 }

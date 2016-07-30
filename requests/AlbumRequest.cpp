@@ -2,7 +2,7 @@
 #include "RequestInvocationContext.h"
 #include "InformationResourceRepository.h"
 
-#include "entities/Track.h"
+#include "entities/Album.h"
 
 AlbumRequest::AlbumRequest()
 {
@@ -21,11 +21,25 @@ RequestResponse AlbumRequest::invoke(const QStringList &arguments, const QString
 	const QString &id = arguments.join(QChar::Space);
 
 	InformationResourceRepository &repository = context.informationResourceRepository();
-	Track *track = repository.get<Track>(id);
+	IdGenerator &idGenerator = context.idGenerator();
 
-	if (track)
+	IInformationResource *resource = repository.get(id);
+
+	if (resource)
 	{
-		return RequestResponse("templates/Album.qml", track);
+		IIterator<Album> *iterator = resource->iterator<Album>();
+
+		if (iterator)
+		{
+			Album *album = iterator->next(repository, idGenerator);
+
+			if (album)
+			{
+				return RequestResponse("templates/Album.qml", album);
+			}
+
+			return RequestResponse("templates/NoMoreData.qml", nullptr);
+		}
 	}
 
 	return RequestResponse();

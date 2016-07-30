@@ -51,7 +51,7 @@ class Track : public InformationResource<Track>
 		QString name() const;
 		void setName(const QString &name);
 
-		QString album() const;
+		QString album();
 		void setAlbum(const QString &album);
 
 		QString user() const;

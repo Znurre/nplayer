@@ -3,14 +3,14 @@
 #include "RequestHandler.h"
 #include "IOutputHandler.h"
 
-#include "entities/RecentTracks.h"
+#include "entities/TracksEnvelope.h"
 #include "entities/NotPlaying.h"
 
 #include "components/ITemplateComponent.h"
 
 NowPlayingRequest::NowPlayingRequest()
 {
-	qRegisterMetaType<RecentTracks *>();
+	qRegisterMetaType<TracksEnvelope *>();
 }
 
 QString NowPlayingRequest::trigger() const
@@ -41,8 +41,8 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const
 {
 	const RequestHandler requestHandler(repository, idGenerator);
-	const RecentTracks *recentTracks = requestHandler
-		.get<RecentTracks>("user.getRecentTracks"
+	const TracksEnvelope *recentTracks = requestHandler
+		.get<TracksEnvelope>("user.getRecentTracks"
 			, as::limit = 1
 			, as::user = user
 		);

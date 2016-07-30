@@ -4,6 +4,12 @@
 
 #include "entities/Track.h"
 
+TrackRequest::TrackRequest()
+	: m_regex("(?'artist'.+) \\- (?'title'.+)")
+{
+
+}
+
 QString TrackRequest::trigger() const
 {
 	return ".track";
@@ -34,6 +40,27 @@ RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString
 			}
 
 			return RequestResponse("templates/NoMoreData.qml", nullptr);
+		}
+	}
+	else
+	{
+		const QRegularExpressionMatch &match = m_regex.match(id);
+
+		if (match.hasMatch())
+		{
+			RequestHandler requestHandler(repository, idGenerator);
+
+			Track *track = requestHandler
+				.get<Track>("track.getInfo"
+					, as::artist = match.captured("artist")
+					, as::track = match.captured("title")
+					, as::username = who
+				);
+
+			if (track)
+			{
+				return RequestResponse("templates/Track.qml", track);
+			}
 		}
 	}
 

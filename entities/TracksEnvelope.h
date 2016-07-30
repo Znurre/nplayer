@@ -5,14 +5,14 @@
 
 #include "Track.h"
 
-class RecentTracks : public QObject
+class TracksEnvelope : public QObject
 {
 	Q_OBJECT
 
 	Q_PROPERTY(Array<Track *> tracks READ tracks WRITE setTracks)
 
 	public:
-		Q_INVOKABLE RecentTracks();
+		Q_INVOKABLE TracksEnvelope();
 
 		Array<Track *> tracks() const;
 		void setTracks(const Array<Track *> &tracks);

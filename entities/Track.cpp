@@ -3,6 +3,8 @@
 #include "IdGenerator.h"
 #include "QStringEx.h"
 
+#include "iterators/TrackAlbumIterator.h"
+
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_nowPlaying(false)
@@ -12,6 +14,8 @@ Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator
 	, m_userPlayCount(0)
 {
 	repository.add(this);
+
+	registerIterator<TrackAlbumIterator>();
 }
 
 QString Track::id() const
@@ -67,9 +71,12 @@ void Track::setName(const QString &name)
 	m_name = name;
 }
 
-QString Track::album() const
+QString Track::album()
 {
-	return m_album;
+	return property<QString>([](Track &track)
+	{
+		return track.m_album;
+	});
 }
 
 void Track::setAlbum(const QString &album)
