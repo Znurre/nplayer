@@ -31,6 +31,7 @@ namespace as
 	const Key username = "username";
 	const Key artist = "artist";
 	const Key track = "track";
+	const Key album = "album";
 	const Key sk = "sk";
 	const Key artist0 = "artist[0]";
 	const Key track0 = "track[0]";

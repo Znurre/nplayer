@@ -4,14 +4,21 @@
 #include <QObject>
 #include <QJsonSerializer>
 
-class Album : public QObject
+#include "IInformationResource.h"
+
+class InformationResourceRepository;
+class IdGenerator;
+
+class Album : public InformationResource<Album>
 {
 	Q_OBJECT
 
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 
 	public:
-		Q_INVOKABLE Album();
+		Album(InformationResourceRepository &repository, IdGenerator &idGenerator);
+
+		QString id() const override;
 
 		QString name() const;
 		void setName(const QString &name);
@@ -19,6 +26,7 @@ class Album : public QObject
 		operator bool() const;
 
 	private:
+		QString m_id;
 		QString m_name;
 
 	signals:

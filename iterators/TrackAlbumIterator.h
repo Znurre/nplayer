@@ -16,8 +16,6 @@ class TrackAlbumIterator : public IIterator<Album>
 
 	private:
 		Track *m_track;
-
-		Album m_album;
 };
 
 #endif // TRACKALBUMITERATOR_H

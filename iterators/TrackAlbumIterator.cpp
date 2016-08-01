@@ -1,6 +1,7 @@
 #include "TrackAlbumIterator.h"
 
 #include "entities/Track.h"
+#include "entities/Album.h"
 
 TrackAlbumIterator::TrackAlbumIterator(Track *track)
 	: m_track(track)
@@ -10,20 +11,11 @@ TrackAlbumIterator::TrackAlbumIterator(Track *track)
 
 Album *TrackAlbumIterator::next(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 {
-	Q_UNUSED(informationResourceRepository);
-	Q_UNUSED(idGenerator);
+	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 
-	if (m_track)
-	{
-		const QString &album = m_track->album();
-
-		m_album.setName(album);
-
-		if (m_album)
-		{
-			return &m_album;
-		}
-	}
-
-	return nullptr;
+	return requestHandler
+		.get<Album>("album.getInfo"
+			, as::artist = m_track->artist()
+			, as::album = m_track->album()
+		);
 }

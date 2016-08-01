@@ -12,4 +12,14 @@ Template
 			text: name
 		}
 	}
+
+	Section
+	{
+		title: "Id"
+
+		Text
+		{
+			text: id
+		}
+	}
 }
