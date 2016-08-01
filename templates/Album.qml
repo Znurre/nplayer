@@ -15,6 +15,27 @@ Template
 
 	Section
 	{
+		title: "Artist"
+
+		Text
+		{
+			text: artist
+		}
+	}
+
+	Section
+	{
+		title: "Tags"
+
+		List
+		{
+			values: tags
+			limit: 3
+		}
+	}
+
+	Section
+	{
 		title: "Id"
 
 		Text

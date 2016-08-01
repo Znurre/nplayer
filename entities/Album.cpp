@@ -23,7 +23,22 @@ void Album::setName(const QString &name)
 	m_name = name;
 }
 
-Album::operator bool() const
+QString Album::artist() const
 {
-	return !m_name.isEmpty();
+	return m_artist;
+}
+
+void Album::setArtist(const QString &artist)
+{
+	m_artist = artist;
+}
+
+Array<QString> Album::tags() const
+{
+	return m_tags;
+}
+
+void Album::setTags(const Array<QString> &tags)
+{
+	m_tags = tags;
 }
