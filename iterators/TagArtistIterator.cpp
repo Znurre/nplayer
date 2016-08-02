@@ -4,6 +4,7 @@
 #include "entities/ArtistsEnvelope.h"
 
 TagArtistIterator::TagArtistIterator(Tag *tag)
+	: m_tag(tag)
 {
 
 }
