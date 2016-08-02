@@ -35,10 +35,7 @@ void Track::setNowPlaying(bool nowPlaying)
 
 bool Track::userLoved()
 {
-	return property<bool>([](Track &track)
-	{
-		return track.m_userLoved;
-	});
+	return property(&Track::m_userLoved);
 }
 
 void Track::setUserLoved(bool userLoved)
@@ -73,10 +70,7 @@ void Track::setName(const QString &name)
 
 QString Track::album()
 {
-	return property<QString>([](Track &track)
-	{
-		return track.m_album;
-	});
+	return property(&Track::m_album);
 }
 
 void Track::setAlbum(const QString &album)
@@ -96,10 +90,7 @@ void Track::setUser(const QString &user)
 
 Array<QString> Track::tags()
 {
-	return property<Array<QString>>([](Track &track)
-	{
-		return track.m_tags;
-	});
+	return property(&Track::m_tags);
 }
 
 void Track::setTags(const Array<QString> &tags)
@@ -109,10 +100,7 @@ void Track::setTags(const Array<QString> &tags)
 
 int Track::userPlayCount()
 {
-	return property<int>([](Track &track)
-	{
-		return track.m_userPlayCount;
-	});
+	return property(&Track::m_userPlayCount);
 }
 
 void Track::setUserPlayCount(int userPlayCount)
@@ -123,4 +111,16 @@ void Track::setUserPlayCount(int userPlayCount)
 QString Track::formattedTitle() const
 {
 	return QStringEx::format("%1 - %2", m_artist, m_name);
+}
+
+bool Track::fetchExtendedInfo()
+{
+	m_requestHandler
+		.get(this, "track.getInfo"
+			, as::artist = m_artist
+			, as::track = m_name
+			, as::user = m_user
+		);
+
+	return true;
 }

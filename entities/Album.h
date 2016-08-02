@@ -5,6 +5,7 @@
 #include <QJsonSerializer>
 
 #include "IInformationResource.h"
+#include "RequestHandler.h"
 
 class InformationResourceRepository;
 class IdGenerator;
@@ -29,10 +30,14 @@ class Album : public InformationResource<Album>
 		QString artist() const;
 		void setArtist(const QString &artist);
 
-		Array<QString> tags() const;
+		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
 	private:
+		bool fetchExtendedInfo() override;
+
+		RequestHandler m_requestHandler;
+
 		QString m_id;
 		QString m_name;
 		QString m_artist;

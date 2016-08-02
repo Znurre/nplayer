@@ -66,22 +66,7 @@ class Track : public InformationResource<Track>
 		Q_INVOKABLE QString formattedTitle() const;
 
 	private:
-		template<class T>
-		T property(Callback<T> callback)
-		{
-			if (!m_fetched)
-			{
-				m_fetched = true;
-				m_requestHandler
-					.get(this, "track.getInfo"
-						, as::artist = m_artist
-						, as::track = m_name
-						, as::user = m_user
-					);
-			}
-
-			return callback(*this);
-		}
+		bool fetchExtendedInfo() override;
 
 		RequestHandler m_requestHandler;
 

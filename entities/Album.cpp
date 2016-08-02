@@ -4,6 +4,7 @@
 
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
+	, m_requestHandler(repository, idGenerator)
 {
 	repository.add(this);
 }
@@ -33,12 +34,23 @@ void Album::setArtist(const QString &artist)
 	m_artist = artist;
 }
 
-Array<QString> Album::tags() const
+Array<QString> Album::tags()
 {
-	return m_tags;
+	return property(&Album::m_tags);
 }
 
 void Album::setTags(const Array<QString> &tags)
 {
 	m_tags = tags;
+}
+
+bool Album::fetchExtendedInfo()
+{
+	m_requestHandler
+		.get(this, "album.getInfo"
+			, as::artist = m_artist
+			, as::album = m_name
+		);
+
+	return true;
 }

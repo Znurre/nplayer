@@ -86,12 +86,48 @@ class IInformationResource : public QObject
 template<class T>
 class InformationResource : public IInformationResource
 {
+	public:
+		InformationResource()
+			: m_fetched(false)
+		{
+
+		}
+
 	protected:
 		template<class TIterator>
 		void registerIterator()
 		{
 			m_iterators << new IteratorResolver<T, TIterator>((T *)this);
 		}
+
+		template<class TReturn>
+		TReturn property(TReturn T::*accessor)
+		{
+			static const TReturn DefaultValue;
+
+			const T *instance = static_cast<T *>(this);
+			const TReturn &field = (instance->*accessor);
+
+			if (field == DefaultValue)
+			{
+				if (!m_fetched)
+				{
+					m_fetched = fetchExtendedInfo();
+
+					return (instance->*accessor);
+				}
+			}
+
+			return field;
+		}
+
+		virtual bool fetchExtendedInfo()
+		{
+			return true;
+		}
+
+	private:
+		bool m_fetched;
 };
 
 #endif // IINFORMATIONRESOURCE_H
