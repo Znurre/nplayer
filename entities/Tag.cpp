@@ -3,6 +3,7 @@
 #include "InformationResourceRepository.h"
 
 #include "iterators/TagArtistIterator.h"
+#include "iterators/TagTrackIterator.h"
 
 Tag::Tag(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
@@ -10,6 +11,7 @@ Tag::Tag(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	repository.add(this);
 
 	registerIterator<TagArtistIterator>();
+	registerIterator<TagTrackIterator>();
 }
 
 QString Tag::id() const

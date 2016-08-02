@@ -7,10 +7,12 @@
 #include "iterators/ArtistTrackIterator.h"
 #include "iterators/ArtistAlbumIterator.h"
 
-Artist::Artist(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
-	: m_id(idGenerator)
+Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerator)
+	: m_requestHandler(repository, idGenerator)
+	, m_id(idGenerator)
+	, m_listeners(0)
 {
-	informationResourceRepository.add(this);
+	repository.add(this);
 
 	registerIterator<ArtistTrackIterator>();
 	registerIterator<ArtistAlbumIterator>();
@@ -31,9 +33,9 @@ void Artist::setName(const QString &name)
 	m_name = name;
 }
 
-QString Artist::bio() const
+QString Artist::bio()
 {
-	return m_bio;
+	return property(&Artist::m_bio);
 }
 
 void Artist::setBio(const QString &bio)
@@ -41,9 +43,9 @@ void Artist::setBio(const QString &bio)
 	m_bio = StringUtils::cleanup(bio);
 }
 
-Array<QString> Artist::tags() const
+Array<QString> Artist::tags()
 {
-	return m_tags;
+	return property(&Artist::m_tags);
 }
 
 void Artist::setTags(const Array<QString> &tags)
@@ -51,12 +53,20 @@ void Artist::setTags(const Array<QString> &tags)
 	m_tags = tags;
 }
 
-int Artist::listeners() const
+int Artist::listeners()
 {
-	return m_listeners;
+	return property(&Artist::m_listeners);
 }
 
 void Artist::setListeners(int listeners)
 {
 	m_listeners = listeners;
+}
+
+void Artist::fetchExtendedInfo()
+{
+	m_requestHandler
+		.get(this, "artist.getInfo"
+			, as::artist = m_name
+		);
 }

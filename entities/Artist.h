@@ -4,6 +4,7 @@
 #include <QJsonSerializer>
 
 #include "IInformationResource.h"
+#include "RequestHandler.h"
 
 class InformationResourceRepository;
 class IdGenerator;
@@ -21,23 +22,27 @@ class Artist : public InformationResource<Artist>
 	Q_PROPERTY(int listeners READ listeners WRITE setListeners NOTIFY listenersChanged)
 
 	public:
-		Artist(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator);
+		Artist(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
 		QString id() const override;
 
 		QString name() const;
 		void setName(const QString &name);
 
-		QString bio() const;
+		QString bio();
 		void setBio(const QString &bio);
 
-		Array<QString> tags() const;
+		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
-		int listeners() const;
+		int listeners();
 		void setListeners(int listeners);
 
 	private:
+		void fetchExtendedInfo() override;
+
+		RequestHandler m_requestHandler;
+
 		QString m_id;
 		QString m_name;
 		QString m_bio;

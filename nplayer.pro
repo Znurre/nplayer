@@ -55,7 +55,8 @@ SOURCES += main.cpp \
     entities/Tag.cpp \
     requests/TagRequest.cpp \
     iterators/TagArtistIterator.cpp \
-    entities/ArtistsEnvelope.cpp
+    entities/ArtistsEnvelope.cpp \
+    iterators/TagTrackIterator.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -108,7 +109,8 @@ HEADERS += \
     entities/Tag.h \
     requests/TagRequest.h \
     iterators/TagArtistIterator.h \
-    entities/ArtistsEnvelope.h
+    entities/ArtistsEnvelope.h \
+    iterators/TagTrackIterator.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
