@@ -12,6 +12,8 @@ QString TagRequest::trigger() const
 
 RequestResponse TagRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
+	Q_UNUSED(who);
+
 	InformationResourceRepository &repository = context.informationResourceRepository();
 	IdGenerator &idGenerator = context.idGenerator();
 

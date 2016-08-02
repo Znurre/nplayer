@@ -20,6 +20,7 @@ Template
 		Text
 		{
 			text: description
+			maxLength: 250
 		}
 	}
 
