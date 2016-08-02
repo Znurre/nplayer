@@ -113,7 +113,7 @@ QString Track::formattedTitle() const
 	return QStringEx::format("%1 - %2", m_artist, m_name);
 }
 
-bool Track::fetchExtendedInfo()
+void Track::fetchExtendedInfo()
 {
 	m_requestHandler
 		.get(this, "track.getInfo"
@@ -121,6 +121,4 @@ bool Track::fetchExtendedInfo()
 			, as::track = m_name
 			, as::user = m_user
 		);
-
-	return true;
 }

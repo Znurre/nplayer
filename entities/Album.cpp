@@ -44,13 +44,11 @@ void Album::setTags(const Array<QString> &tags)
 	m_tags = tags;
 }
 
-bool Album::fetchExtendedInfo()
+void Album::fetchExtendedInfo()
 {
 	m_requestHandler
 		.get(this, "album.getInfo"
 			, as::artist = m_artist
 			, as::album = m_name
 		);
-
-	return true;
 }

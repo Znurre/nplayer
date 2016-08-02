@@ -66,7 +66,7 @@ class Track : public InformationResource<Track>
 		Q_INVOKABLE QString formattedTitle() const;
 
 	private:
-		bool fetchExtendedInfo() override;
+		void fetchExtendedInfo() override;
 
 		RequestHandler m_requestHandler;
 

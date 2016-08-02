@@ -34,7 +34,7 @@ class Album : public InformationResource<Album>
 		void setTags(const Array<QString> &tags);
 
 	private:
-		bool fetchExtendedInfo() override;
+		void fetchExtendedInfo() override;
 
 		RequestHandler m_requestHandler;
 

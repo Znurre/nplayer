@@ -103,7 +103,7 @@ class InformationResource : public IInformationResource
 		template<class TReturn>
 		TReturn property(TReturn T::*accessor)
 		{
-			static const TReturn DefaultValue;
+			static const TReturn DefaultValue = TReturn();
 
 			const T *instance = static_cast<T *>(this);
 			const TReturn &field = (instance->*accessor);
@@ -112,7 +112,9 @@ class InformationResource : public IInformationResource
 			{
 				if (!m_fetched)
 				{
-					m_fetched = fetchExtendedInfo();
+					m_fetched = true;
+
+					fetchExtendedInfo();
 
 					return (instance->*accessor);
 				}
@@ -121,9 +123,9 @@ class InformationResource : public IInformationResource
 			return field;
 		}
 
-		virtual bool fetchExtendedInfo()
+		virtual void fetchExtendedInfo()
 		{
-			return true;
+
 		}
 
 	private:
