@@ -3,8 +3,8 @@
 #include "IdGenerator.h"
 
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
-	: m_id(idGenerator)
-	, m_requestHandler(repository, idGenerator)
+	: m_requestHandler(repository, idGenerator)
+	, m_id(idGenerator)
 {
 	repository.add(this);
 }
