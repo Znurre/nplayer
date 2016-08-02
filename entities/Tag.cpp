@@ -2,10 +2,14 @@
 #include "IdGenerator.h"
 #include "InformationResourceRepository.h"
 
+#include "iterators/TagArtistIterator.h"
+
 Tag::Tag(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_id(idGenerator)
 {
 	repository.add(this);
+
+	registerIterator<TagArtistIterator>();
 }
 
 QString Tag::id() const

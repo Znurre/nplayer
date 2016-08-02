@@ -53,4 +53,6 @@ class Artist : public InformationResource<Artist>
 		void listenersChanged();
 };
 
+Q_DECLARE_METATYPE(Array<Artist *>)
+
 #endif // ARTIST_H
