@@ -3,6 +3,7 @@
 #include "entities/Track.h"
 #include "entities/Artist.h"
 #include "entities/Album.h"
+#include "entities/Tag.h"
 
 ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_informationResourceRepository(informationResourceRepository)
@@ -13,6 +14,7 @@ ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceR
 		new InformationResourceFactory<Track>(),
 		new InformationResourceFactory<Artist>(),
 		new InformationResourceFactory<Album>(),
+		new InformationResourceFactory<Tag>(),
 	};
 }
 

@@ -5,6 +5,7 @@
 #include "requests/AlbumRequest.h"
 #include "requests/ArtistRequest.h"
 #include "requests/TrackRequest.h"
+#include "requests/TagRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -13,4 +14,5 @@ RequestRepository::RequestRepository()
 	attach<AlbumRequest>();
 	attach<ArtistRequest>();
 	attach<TrackRequest>();
+	attach<TagRequest>();
 }

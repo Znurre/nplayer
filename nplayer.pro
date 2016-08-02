@@ -51,7 +51,9 @@ SOURCES += main.cpp \
     entities/TracksEnvelope.cpp \
     entities/AlbumsEnvelope.cpp \
     entities/Album.cpp \
-    iterators/TrackAlbumIterator.cpp
+    iterators/TrackAlbumIterator.cpp \
+    entities/Tag.cpp \
+    requests/TagRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -100,7 +102,9 @@ HEADERS += \
     entities/TracksEnvelope.h \
     entities/AlbumsEnvelope.h \
     entities/Album.h \
-    iterators/TrackAlbumIterator.h
+    iterators/TrackAlbumIterator.h \
+    entities/Tag.h \
+    requests/TagRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -111,4 +115,5 @@ gcc:QMAKE_CXXFLAGS += -Werror
 
 DISTFILES += \
     templates/Artist.qml \
-    templates/Track.qml
+    templates/Track.qml \
+    templates/Tag.qml
