@@ -2,11 +2,15 @@
 #include "InformationResourceRepository.h"
 #include "IdGenerator.h"
 
+#include "iterators/AlbumTrackIterator.h"
+
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
 {
 	repository.add(this);
+
+	registerIterator<AlbumTrackIterator>();
 }
 
 QString Album::id() const
@@ -44,10 +48,20 @@ void Album::setTags(const Array<QString> &tags)
 	m_tags = tags;
 }
 
+Array<Track *> Album::tracks() const
+{
+	return m_tracks;
+}
+
+void Album::setTracks(const Array<Track *> &tracks)
+{
+	m_tracks = tracks;
+}
+
 void Album::fetchExtendedInfo()
 {
 	m_requestHandler
-		.get(this, "album.getInfo"
+			.get(this, "album.getInfo"
 			, as::artist = m_artist
 			, as::album = m_name
 		);

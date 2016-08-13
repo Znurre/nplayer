@@ -7,6 +7,8 @@
 #include "IInformationResource.h"
 #include "RequestHandler.h"
 
+#include "entities/Track.h"
+
 class InformationResourceRepository;
 class IdGenerator;
 
@@ -18,6 +20,7 @@ class Album : public InformationResource<Album>
 	Q_PROPERTY(QString artist READ artist WRITE setArtist NOTIFY artistChanged)
 
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
+	Q_PROPERTY(Array<Track *> tracks READ tracks WRITE setTracks)
 
 	public:
 		Album(InformationResourceRepository &repository, IdGenerator &idGenerator);
@@ -33,6 +36,9 @@ class Album : public InformationResource<Album>
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
+		Array<Track *> tracks() const;
+		void setTracks(const Array<Track *> &tracks);
+
 	private:
 		void fetchExtendedInfo() override;
 
@@ -43,6 +49,8 @@ class Album : public InformationResource<Album>
 		QString m_artist;
 
 		Array<QString> m_tags;
+
+		Array<Track *> m_tracks;
 
 	signals:
 		void nameChanged();
