@@ -21,12 +21,12 @@ class Track : public InformationResource<Track>
 
 	Q_PROPERTY(bool nowPlaying READ nowPlaying WRITE setNowPlaying)
 	Q_PROPERTY(bool userLoved READ userLoved WRITE setUserLoved NOTIFY userLovedChanged)
-	Q_PROPERTY(bool hasTags READ hasTags NOTIFY hasTagsChanged)
 
 	Q_PROPERTY(QString artist READ artist WRITE setArtist NOTIFY artistChanged)
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	Q_PROPERTY(QString album READ album WRITE setAlbum NOTIFY albumChanged)
 	Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
+	Q_PROPERTY(QString nick READ nick WRITE setNick NOTIFY nickChanged)
 
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 
@@ -43,8 +43,6 @@ class Track : public InformationResource<Track>
 		bool userLoved();
 		void setUserLoved(bool userLoved);
 
-		bool hasTags();
-
 		QString artist() const;
 		void setArtist(const QString &artist);
 
@@ -56,6 +54,9 @@ class Track : public InformationResource<Track>
 
 		QString user() const;
 		void setUser(const QString &user);
+
+		QString nick() const;
+		void setNick(const QString &nick);
 
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
@@ -79,6 +80,7 @@ class Track : public InformationResource<Track>
 		QString m_album;
 		QString m_user;
 		QString m_id;
+		QString m_nick;
 
 		Array<QString> m_tags;
 
@@ -86,11 +88,11 @@ class Track : public InformationResource<Track>
 
 	signals:
 		void userLovedChanged();
-		void hasTagsChanged();
 		void artistChanged();
 		void nameChanged();
 		void albumChanged();
 		void userChanged();
+		void nickChanged();
 		void tagsChanged();
 		void userPlayCountChanged();
 };

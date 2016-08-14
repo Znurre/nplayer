@@ -5,6 +5,7 @@
 
 #include "InformationResourceRepository.h"
 #include "IdGenerator.h"
+#include "UserMapper.h"
 
 class OutputHandler;
 class RequestRepository;
@@ -23,6 +24,7 @@ class MessageHandler
 
 		InformationResourceRepository m_informationResourceRepository;
 		IdGenerator m_idGenerator;
+		UserMapper m_userMapper;
 };
 
 #endif // MESSAGEHANDLER_H

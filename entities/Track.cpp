@@ -4,6 +4,7 @@
 #include "QStringEx.h"
 
 #include "iterators/TrackAlbumIterator.h"
+#include "iterators/TrackArtistIterator.h"
 
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
@@ -16,6 +17,7 @@ Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator
 	repository.add(this);
 
 	registerIterator<TrackAlbumIterator>();
+	registerIterator<TrackArtistIterator>();
 }
 
 QString Track::id() const
@@ -41,11 +43,6 @@ bool Track::userLoved()
 void Track::setUserLoved(bool userLoved)
 {
 	m_userLoved = userLoved;
-}
-
-bool Track::hasTags()
-{
-	return !tags().isEmpty();
 }
 
 QString Track::artist() const
@@ -88,6 +85,16 @@ void Track::setUser(const QString &user)
 	m_user = user;
 }
 
+QString Track::nick() const
+{
+	return m_nick;
+}
+
+void Track::setNick(const QString &nick)
+{
+	m_nick = nick;
+}
+
 Array<QString> Track::tags()
 {
 	return property(&Track::m_tags);
@@ -116,9 +123,9 @@ QString Track::formattedTitle() const
 void Track::fetchExtendedInfo()
 {
 	m_requestHandler
-		.get(this, "track.getInfo"
+			.get(this, "track.getInfo"
 			, as::artist = m_artist
 			, as::track = m_name
-			, as::user = m_user
+			, as::username = m_user
 		);
 }

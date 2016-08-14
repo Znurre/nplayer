@@ -6,6 +6,8 @@
 #include "requests/ArtistRequest.h"
 #include "requests/TrackRequest.h"
 #include "requests/TagRequest.h"
+#include "requests/AccountRequest.h"
+#include "requests/UserRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -15,4 +17,6 @@ RequestRepository::RequestRepository()
 	attach<ArtistRequest>();
 	attach<TrackRequest>();
 	attach<TagRequest>();
+	attach<AccountRequest>();
+	attach<UserRequest>();
 }

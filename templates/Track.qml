@@ -7,29 +7,32 @@ Template
 
 	id: template
 
-	Section
+	HighlightFilter
 	{
-		title: template.title
-
-		Conditional
+		Section
 		{
-			condition: userLoved
+			title: template.title
+
+			Conditional
+			{
+				condition: userLoved
+
+				Text
+				{
+					text: "[♥]"
+				}
+			}
 
 			Text
 			{
-				text: "[♥]"
+				text: formattedTitle()
 			}
-		}
-
-		Text
-		{
-			text: formattedTitle()
 		}
 	}
 
 	Conditional
 	{
-		condition: hasTags
+		condition: tags.count > 0
 
 		Section
 		{

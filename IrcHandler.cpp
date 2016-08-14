@@ -3,7 +3,7 @@
 #include "IrcHandler.h"
 
 IrcHandler::IrcHandler()
-	: m_channel("#swr")
+	: m_channel("#np")
 	, m_outputHandler(*this, m_channel)
 	, m_messageHandler(m_outputHandler, m_requestRepository)
 {

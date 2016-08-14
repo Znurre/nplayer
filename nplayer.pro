@@ -57,7 +57,13 @@ SOURCES += main.cpp \
     iterators/TagArtistIterator.cpp \
     entities/ArtistsEnvelope.cpp \
     iterators/TagTrackIterator.cpp \
-    iterators/AlbumTrackIterator.cpp
+    iterators/AlbumTrackIterator.cpp \
+    UserMapper.cpp \
+    requests/AccountRequest.cpp \
+    iterators/TrackArtistIterator.cpp \
+    requests/UserRequest.cpp \
+    components/HighlightFilter.cpp \
+    entities/User.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -112,7 +118,13 @@ HEADERS += \
     iterators/TagArtistIterator.h \
     entities/ArtistsEnvelope.h \
     iterators/TagTrackIterator.h \
-    iterators/AlbumTrackIterator.h
+    iterators/AlbumTrackIterator.h \
+    UserMapper.h \
+    requests/AccountRequest.h \
+    iterators/TrackArtistIterator.h \
+    requests/UserRequest.h \
+    components/HighlightFilter.h \
+    entities/User.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -124,4 +136,7 @@ gcc:QMAKE_CXXFLAGS += -Werror
 DISTFILES += \
     templates/Artist.qml \
     templates/Track.qml \
-    templates/Tag.qml
+    templates/Tag.qml \
+    templates/AccountRegistered.qml \
+    templates/NoMoreData.qml \
+    templates/User.qml

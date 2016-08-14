@@ -1,6 +1,7 @@
 #include "NowPlayingRequest.h"
 #include "RequestInvocationContext.h"
 #include "RequestHandler.h"
+#include "UserMapper.h"
 #include "IOutputHandler.h"
 
 #include "entities/TracksEnvelope.h"
@@ -22,10 +23,7 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 {
 	Q_UNUSED(arguments);
 
-	InformationResourceRepository &repository = context.informationResourceRepository();
-	IdGenerator &idGenerator = context.idGenerator();
-
-	Track *nowPlaying = getNowPlaying(who, repository, idGenerator);
+	Track *nowPlaying = getNowPlaying(who, context);
 
 	if (nowPlaying)
 	{
@@ -38,13 +36,18 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 	return RequestResponse("templates/NotPlaying.qml", notPlaying);
 }
 
-Track *NowPlayingRequest::getNowPlaying(const QString &user, InformationResourceRepository &repository, IdGenerator &idGenerator) const
+Track *NowPlayingRequest::getNowPlaying(const QString &who, const RequestInvocationContext &context) const
 {
+	InformationResourceRepository &repository = context.informationResourceRepository();
+	IdGenerator &idGenerator = context.idGenerator();
+	UserMapper &userMapper = context.userMapper();
+
 	const RequestHandler requestHandler(repository, idGenerator);
 	const TracksEnvelope *recentTracks = requestHandler
 		.get<TracksEnvelope>("user.getRecentTracks"
 			, as::limit = 1
-			, as::user = user
+			, as::user = userMapper.map(who)
+			, as::nick = who
 		);
 
 	if (recentTracks)

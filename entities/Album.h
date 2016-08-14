@@ -18,9 +18,12 @@ class Album : public InformationResource<Album>
 
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	Q_PROPERTY(QString artist READ artist WRITE setArtist NOTIFY artistChanged)
+	Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
 
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 	Q_PROPERTY(Array<Track *> tracks READ tracks WRITE setTracks)
+
+	Q_PROPERTY(int userPlayCount READ userPlayCount WRITE setUserPlayCount NOTIFY userPlayCountChanged)
 
 	public:
 		Album(InformationResourceRepository &repository, IdGenerator &idGenerator);
@@ -33,11 +36,17 @@ class Album : public InformationResource<Album>
 		QString artist() const;
 		void setArtist(const QString &artist);
 
+		QString user() const;
+		void setUser(const QString &user);
+
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
 		Array<Track *> tracks() const;
 		void setTracks(const Array<Track *> &tracks);
+
+		int userPlayCount() const;
+		void setUserPlayCount(int userPlayCount);
 
 	private:
 		void fetchExtendedInfo() override;
@@ -47,15 +56,19 @@ class Album : public InformationResource<Album>
 		QString m_id;
 		QString m_name;
 		QString m_artist;
+		QString m_user;
 
 		Array<QString> m_tags;
-
 		Array<Track *> m_tracks;
+
+		int m_userPlayCount;
 
 	signals:
 		void nameChanged();
 		void artistChanged();
 		void tagsChanged();
+		void userChanged();
+		void userPlayCountChanged(int userPlayCount);
 };
 
 Q_DECLARE_METATYPE(Array<Album *>)

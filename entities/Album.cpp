@@ -7,6 +7,7 @@
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
+	, m_userPlayCount(0)
 {
 	repository.add(this);
 
@@ -38,6 +39,16 @@ void Album::setArtist(const QString &artist)
 	m_artist = artist;
 }
 
+QString Album::user() const
+{
+	return m_user;
+}
+
+void Album::setUser(const QString &user)
+{
+	m_user = user;
+}
+
 Array<QString> Album::tags()
 {
 	return property(&Album::m_tags);
@@ -58,11 +69,22 @@ void Album::setTracks(const Array<Track *> &tracks)
 	m_tracks = tracks;
 }
 
+int Album::userPlayCount() const
+{
+	return m_userPlayCount;
+}
+
+void Album::setUserPlayCount(int userPlayCount)
+{
+	m_userPlayCount = userPlayCount;
+}
+
 void Album::fetchExtendedInfo()
 {
 	m_requestHandler
 			.get(this, "album.getInfo"
 			, as::artist = m_artist
 			, as::album = m_name
+			, as::user = m_user
 		);
 }

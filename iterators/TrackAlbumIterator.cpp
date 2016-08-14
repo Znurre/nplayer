@@ -17,5 +17,6 @@ Album *TrackAlbumIterator::next(InformationResourceRepository &informationResour
 		.get<Album>("album.getInfo"
 			, as::artist = m_track->artist()
 			, as::album = m_track->album()
+			, as::user = m_track->user()
 		);
 }

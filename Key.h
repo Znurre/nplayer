@@ -28,6 +28,7 @@ namespace as
 	const Key limit = "limit";
 	const Key page = "page";
 	const Key user = "user";
+	const Key nick = "nick";
 	const Key username = "username";
 	const Key artist = "artist";
 	const Key tag = "tag";

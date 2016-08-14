@@ -9,6 +9,7 @@
 #include "components/StringModel.h"
 #include "components/List.h"
 #include "components/Conditional.h"
+#include "components/HighlightFilter.h"
 
 int main(int argc, char **argv)
 {
@@ -20,6 +21,7 @@ int main(int argc, char **argv)
 	qmlRegisterType<StringModel>("NowPlaying", 1, 0, "StringModel");
 	qmlRegisterType<List>("NowPlaying", 1, 0, "List");
 	qmlRegisterType<Conditional>("NowPlaying", 1, 0, "Conditional");
+	qmlRegisterType<HighlightFilter>("NowPlaying", 1, 0, "HighlightFilter");
 
 	IrcHandler ircHandler;
 	ircHandler.open();

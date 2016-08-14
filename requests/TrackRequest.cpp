@@ -1,6 +1,7 @@
 #include "TrackRequest.h"
 #include "RequestInvocationContext.h"
 #include "InformationResourceRepository.h"
+#include "UserMapper.h"
 
 #include "entities/Track.h"
 
@@ -23,6 +24,7 @@ RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString
 
 	InformationResourceRepository &repository = context.informationResourceRepository();
 	IdGenerator &idGenerator = context.idGenerator();
+	UserMapper &userMapper = context.userMapper();
 
 	IInformationResource *resource = repository.get(id);
 
@@ -54,7 +56,7 @@ RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString
 				.get<Track>("track.getInfo"
 					, as::artist = match.captured("artist")
 					, as::track = match.captured("title")
-					, as::username = who
+					, as::username = userMapper.map(who)
 				);
 
 			if (track)

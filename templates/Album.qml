@@ -23,14 +23,29 @@ Template
 		}
 	}
 
+	Conditional
+	{
+		condition: tags.length > 0
+
+		Section
+		{
+			title: "Tags"
+
+			List
+			{
+				values: tags
+				limit: 3
+			}
+		}
+	}
+
 	Section
 	{
-		title: "Tags"
+		title: "Plays"
 
-		List
+		Text
 		{
-			values: tags
-			limit: 3
+			text: userPlayCount
 		}
 	}
 
