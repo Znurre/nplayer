@@ -12,9 +12,11 @@ void QueryBuilder::setParameters(const QList<as::KeyValue> &values, bool &valid)
 
 QString QueryBuilder::build(const SignatureBuilder &signatureBuilder) const
 {
-	const QString &parameters = m_parameters.join("&");
 	const QString &signature = signatureBuilder.signature();
-	const QString &query = QStringEx::format("%1&api_sig=%2", parameters, signature);
+	const QString &parameterPart = m_parameters.join("&");
+	const QString &signaturePart = QStringEx::format("api_sig=%1", signature);
 
-	return query;
+	const QStringList query = { parameterPart, signaturePart };
+
+	return query.join("&");
 }

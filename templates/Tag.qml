@@ -13,14 +13,19 @@ Template
 		}
 	}
 
-	Section
+	Conditional
 	{
-		title: "Description"
+		condition: description.length > 0
 
-		Text
+		Section
 		{
-			text: description
-			maxLength: 250
+			title: "Description"
+
+			Text
+			{
+				text: description
+				maxLength: 250
+			}
 		}
 	}
 
