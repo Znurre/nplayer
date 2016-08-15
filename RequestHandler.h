@@ -25,13 +25,16 @@ class RequestHandler : public QObject
 		{
 			TReturn *target = (TReturn *)m_objectFactory.create(&TReturn::staticMetaObject);
 
-			get(target, method, arguments...);
+			if (get(target, method, arguments...))
+			{
+				return target;
+			}
 
-			return target;
+			return nullptr;
 		}
 
 		template<class TReturn, class ...TArguments>
-		void get(TReturn *target, const QString &method, TArguments ...arguments) const
+		bool get(TReturn *target, const QString &method, TArguments ...arguments) const
 		{
 			QList<as::KeyValue> list =
 			{
@@ -72,6 +75,8 @@ class RequestHandler : public QObject
 
 			serializer.setObjectFactory(&m_objectFactory);
 			serializer.deserialize(data, target);
+
+			return urlBuilder.valid();
 		}
 
 	private:

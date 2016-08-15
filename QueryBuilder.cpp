@@ -2,11 +2,11 @@
 #include "SignatureBuilder.h"
 #include "QStringEx.h"
 
-void QueryBuilder::setParameters(const QList<as::KeyValue> &values)
+void QueryBuilder::setParameters(const QList<as::KeyValue> &values, bool &valid)
 {
 	for(const as::KeyValue &value : values)
 	{
-		m_parameters << value.asQueryParameter();
+		m_parameters << value.asQueryParameter(valid);
 	}
 }
 

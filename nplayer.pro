@@ -63,7 +63,8 @@ SOURCES += main.cpp \
     iterators/TrackArtistIterator.cpp \
     requests/UserRequest.cpp \
     components/HighlightFilter.cpp \
-    entities/User.cpp
+    entities/User.cpp \
+    Utility.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -124,7 +125,8 @@ HEADERS += \
     iterators/TrackArtistIterator.h \
     requests/UserRequest.h \
     components/HighlightFilter.h \
-    entities/User.h
+    entities/User.h \
+    Utility.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

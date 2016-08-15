@@ -25,7 +25,7 @@ Template
 
 	Conditional
 	{
-		condition: tags.length > 0
+		condition: Utility.isNotEmpty(tags)
 
 		Section
 		{

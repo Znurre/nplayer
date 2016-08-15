@@ -18,8 +18,12 @@ class UrlBuilder
 
 		QString url(const SignatureBuilder &signatureBuilder) const;
 
+		bool valid() const;
+
 	private:
 		QString m_baseUrl;
 		QueryBuilder m_queryBuilder;
+
+		bool m_valid;
 };
 #endif // URLBUILDER_H

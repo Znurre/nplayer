@@ -8,8 +8,12 @@
 
 namespace as
 {
+	class RequiredKey;
+
 	class Key
 	{
+		friend class RequiredKey;
+
 		public:
 			Key(const char *name);
 
@@ -20,6 +24,19 @@ namespace as
 		private:
 			QString m_name;
 	};
+
+	class RequiredKey
+	{
+		public:
+			RequiredKey(const Key &key);
+
+			KeyValue operator =(const QString &value) const;
+
+		private:
+			QString m_name;
+	};
+
+	RequiredKey required(const Key &key);
 
 	const Key token = "token";
 	const Key api_key = "api_key";

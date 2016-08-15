@@ -13,25 +13,35 @@ Template
 		}
 	}
 
-	Section
+	Conditional
 	{
-		title: "Description"
+		condition: bio.length > 0
 
-		Text
+		Section
 		{
-			text: bio
-			maxLength: 250
+			title: "Description"
+
+			Text
+			{
+				text: bio
+				maxLength: 250
+			}
 		}
 	}
 
-	Section
+	Conditional
 	{
-		title: "Tags"
+		condition: Utility.isNotEmpty(tags)
 
-		List
+		Section
 		{
-			values: tags
-			limit: 3
+			title: "Tags"
+
+			List
+			{
+				values: tags
+				limit: 3
+			}
 		}
 	}
 

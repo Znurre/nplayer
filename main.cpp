@@ -2,6 +2,7 @@
 #include <QQmlComponent>
 
 #include "IrcHandler.h"
+#include "Utility.h"
 
 #include "components/Template.h"
 #include "components/Section.h"
@@ -14,6 +15,8 @@
 int main(int argc, char **argv)
 {
 	QCoreApplication application(argc, argv);
+
+	qmlRegisterSingletonType<Utility>("NowPlaying", 1, 0, "Utility", Utility::instance);
 
 	qmlRegisterType<Template>("NowPlaying", 1, 0, "Template");
 	qmlRegisterType<Section>("NowPlaying", 1, 0, "Section");

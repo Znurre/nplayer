@@ -32,7 +32,7 @@ Template
 
 	Conditional
 	{
-		condition: tags.count > 0
+		condition: Utility.isNotEmpty(tags)
 
 		Section
 		{

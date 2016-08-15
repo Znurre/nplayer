@@ -8,9 +8,9 @@ namespace as
 	class KeyValue
 	{
 		public:
-			KeyValue(const QString &name, const QString &value);
+			KeyValue(const QString &name, const QString &value, bool required);
 
-			QString asQueryParameter() const;
+			QString asQueryParameter(bool &isValid) const;
 			QString asJoined() const;
 
 			bool operator <(const KeyValue &other) const;
@@ -18,6 +18,8 @@ namespace as
 		private:
 			QString m_name;
 			QString m_value;
+
+			bool m_required;
 	};
 }
 

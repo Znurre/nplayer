@@ -11,7 +11,7 @@ class SignatureBuilder;
 class QueryBuilder
 {
 	public:
-		void setParameters(const QList<as::KeyValue> &values);
+		void setParameters(const QList<as::KeyValue> &values, bool &valid);
 
 		QString build(const SignatureBuilder &signatureBuilder) const;
 

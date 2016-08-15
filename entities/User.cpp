@@ -1,16 +1,54 @@
 #include "User.h"
+#include "IdGenerator.h"
 
-User::User()
+User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
+	: m_requestHandler(repository, idGenerator)
+	, m_id(idGenerator)
 {
 
 }
 
-QString User::username() const
+QString User::id() const
 {
-	return m_username;
+	return m_id;
 }
 
-void User::setUsername(const QString &username)
+QString User::user() const
 {
-	m_username = username;
+	return m_user;
+}
+
+void User::setUser(const QString &user)
+{
+	m_user = user;
+}
+
+QString User::country() const
+{
+	return m_country;
+}
+
+void User::setCountry(const QString &country)
+{
+	m_country = country;
+}
+
+QDateTime User::registered() const
+{
+	return m_registered;
+}
+
+void User::setRegistered(const QDateTime &registered)
+{
+	m_registered = registered;
+}
+
+int User::playCount() const
+{
+	return m_playCount;
+}
+
+void User::setPlayCount(int playCount)
+{
+	m_playCount = playCount;
 }

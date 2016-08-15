@@ -4,6 +4,7 @@
 #include "entities/Artist.h"
 #include "entities/Album.h"
 #include "entities/Tag.h"
+#include "entities/User.h"
 
 ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
 	: m_informationResourceRepository(informationResourceRepository)
@@ -15,6 +16,7 @@ ObjectFactory::ObjectFactory(InformationResourceRepository &informationResourceR
 		new InformationResourceFactory<Artist>(),
 		new InformationResourceFactory<Album>(),
 		new InformationResourceFactory<Tag>(),
+		new InformationResourceFactory<User>(),
 	};
 }
 

@@ -3,15 +3,21 @@
 
 namespace as
 {
-	KeyValue::KeyValue(const QString &name, const QString &value)
+	KeyValue::KeyValue(const QString &name, const QString &value, bool required)
 		: m_name(name)
 		, m_value(value)
+		, m_required(required)
 	{
 
 	}
 
-	QString KeyValue::asQueryParameter() const
+	QString KeyValue::asQueryParameter(bool &isValid) const
 	{
+		if (m_required)
+		{
+			isValid &= !m_value.isEmpty();
+		}
+
 		const QByteArray &encoded = m_value
 			.toUtf8()
 			.toPercentEncoding();
