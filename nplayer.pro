@@ -64,7 +64,8 @@ SOURCES += main.cpp \
     requests/UserRequest.cpp \
     components/HighlightFilter.cpp \
     entities/User.cpp \
-    Utility.cpp
+    Utility.cpp \
+    requests/UrlRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -126,7 +127,8 @@ HEADERS += \
     requests/UserRequest.h \
     components/HighlightFilter.h \
     entities/User.h \
-    Utility.h
+    Utility.h \
+    requests/UrlRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -141,4 +143,5 @@ DISTFILES += \
     templates/Tag.qml \
     templates/AccountRegistered.qml \
     templates/NoMoreData.qml \
-    templates/User.qml
+    templates/User.qml \
+    templates/Url.qml

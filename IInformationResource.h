@@ -62,6 +62,7 @@ class IInformationResource : public QObject
 
 	public:
 		virtual QString id() const = 0;
+		virtual QString url() const = 0;
 
 		template<class TResource>
 		IIterator<TResource> *iterator()

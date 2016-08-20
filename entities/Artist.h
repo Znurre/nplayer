@@ -16,6 +16,7 @@ class Artist : public InformationResource<Artist>
 
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	Q_PROPERTY(QString bio READ bio WRITE setBio NOTIFY bioChanged)
+	Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
 
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 
@@ -32,6 +33,9 @@ class Artist : public InformationResource<Artist>
 		QString bio();
 		void setBio(const QString &bio);
 
+		QString url() const;
+		void setUrl(const QString &url);
+
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
@@ -46,6 +50,7 @@ class Artist : public InformationResource<Artist>
 		QString m_id;
 		QString m_name;
 		QString m_bio;
+		QString m_url;
 
 		Array<QString> m_tags;
 
@@ -54,6 +59,7 @@ class Artist : public InformationResource<Artist>
 	signals:
 		void nameChanged();
 		void bioChanged();
+		void urlChanged();
 		void tagsChanged();
 		void listenersChanged();
 };

@@ -38,3 +38,13 @@ void Tag::setDescription(const QString &description)
 {
 	m_description = description;
 }
+
+QString Tag::url() const
+{
+	return m_url;
+}
+
+void Tag::setUrl(const QString &url)
+{
+	m_url = url;
+}

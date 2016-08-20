@@ -49,6 +49,16 @@ void Album::setUser(const QString &user)
 	m_user = user;
 }
 
+QString Album::url() const
+{
+	return m_url;
+}
+
+void Album::setUrl(const QString &url)
+{
+	m_url = url;
+}
+
 Array<QString> Album::tags()
 {
 	return property(&Album::m_tags);

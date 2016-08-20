@@ -27,6 +27,7 @@ class Track : public InformationResource<Track>
 	Q_PROPERTY(QString album READ album WRITE setAlbum NOTIFY albumChanged)
 	Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
 	Q_PROPERTY(QString nick READ nick WRITE setNick NOTIFY nickChanged)
+	Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
 
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 
@@ -58,6 +59,9 @@ class Track : public InformationResource<Track>
 		QString nick() const;
 		void setNick(const QString &nick);
 
+		QString url() const;
+		void setUrl(const QString &url);
+
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
@@ -81,6 +85,7 @@ class Track : public InformationResource<Track>
 		QString m_user;
 		QString m_id;
 		QString m_nick;
+		QString m_url;
 
 		Array<QString> m_tags;
 
@@ -93,6 +98,7 @@ class Track : public InformationResource<Track>
 		void albumChanged();
 		void userChanged();
 		void nickChanged();
+		void urlChanged();
 		void tagsChanged();
 		void userPlayCountChanged();
 };

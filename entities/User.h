@@ -12,6 +12,7 @@ class User : public InformationResource<User>
 
 	Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
 	Q_PROPERTY(QString country READ country WRITE setCountry NOTIFY countryChanged)
+	Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
 
 	Q_PROPERTY(QDateTime registered READ registered WRITE setRegistered NOTIFY registeredChanged)
 
@@ -28,6 +29,9 @@ class User : public InformationResource<User>
 		QString country() const;
 		void setCountry(const QString &country);
 
+		QString url() const;
+		void setUrl(const QString &url);
+
 		QDateTime registered() const;
 		void setRegistered(const QDateTime &registered);
 
@@ -39,6 +43,7 @@ class User : public InformationResource<User>
 
 		QString m_user;
 		QString m_country;
+		QString m_url;
 		QString m_id;
 
 		QDateTime m_registered;
@@ -48,6 +53,7 @@ class User : public InformationResource<User>
 	signals:
 		void userChanged();
 		void countryChanged();
+		void urlChanged();
 		void registeredChanged();
 		void playCountChanged();
 };

@@ -9,6 +9,7 @@ class Tag : public InformationResource<Tag>
 
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 	Q_PROPERTY(QString description READ description WRITE setDescription NOTIFY descriptionChanged)
+	Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
 
 	public:
 		Tag(InformationResourceRepository &repository, IdGenerator &idGenerator);
@@ -21,14 +22,19 @@ class Tag : public InformationResource<Tag>
 		QString description() const;
 		void setDescription(const QString &description);
 
+		QString url() const;
+		void setUrl(const QString &url);
+
 	private:
 		QString m_id;
 		QString m_name;
 		QString m_description;
+		QString m_url;
 
 	signals:
 		void nameChanged();
 		void descriptionChanged();
+		void urlChanged();
 };
 
 #endif // TAG_H

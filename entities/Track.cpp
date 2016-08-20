@@ -95,6 +95,16 @@ void Track::setNick(const QString &nick)
 	m_nick = nick;
 }
 
+QString Track::url() const
+{
+	return m_url;
+}
+
+void Track::setUrl(const QString &url)
+{
+	m_url = url;
+}
+
 Array<QString> Track::tags()
 {
 	return property(&Track::m_tags);

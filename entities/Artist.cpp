@@ -43,6 +43,16 @@ void Artist::setBio(const QString &bio)
 	m_bio = StringUtils::cleanup(bio);
 }
 
+QString Artist::url() const
+{
+	return m_url;
+}
+
+void Artist::setUrl(const QString &url)
+{
+	m_url = url;
+}
+
 Array<QString> Artist::tags()
 {
 	return property(&Artist::m_tags);

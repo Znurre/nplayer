@@ -1,11 +1,12 @@
 #include "User.h"
 #include "IdGenerator.h"
+#include "InformationResourceRepository.h"
 
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
 {
-
+	repository.add(this);
 }
 
 QString User::id() const
@@ -31,6 +32,16 @@ QString User::country() const
 void User::setCountry(const QString &country)
 {
 	m_country = country;
+}
+
+QString User::url() const
+{
+	return m_url;
+}
+
+void User::setUrl(const QString &url)
+{
+	m_url = url;
 }
 
 QDateTime User::registered() const
