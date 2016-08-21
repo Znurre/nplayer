@@ -26,6 +26,7 @@ class Artist : public InformationResource<Artist>
 		Artist(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
 		QString id() const override;
+		QString key() const override;
 
 		QString name() const;
 		void setName(const QString &name);

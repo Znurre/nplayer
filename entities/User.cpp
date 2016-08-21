@@ -14,6 +14,11 @@ QString User::id() const
 	return m_id;
 }
 
+QString User::key() const
+{
+	return m_user;
+}
+
 QString User::user() const
 {
 	return m_user;

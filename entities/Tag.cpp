@@ -19,6 +19,11 @@ QString Tag::id() const
 	return m_id;
 }
 
+QString Tag::key() const
+{
+	return m_name;
+}
+
 QString Tag::name() const
 {
 	return m_name;

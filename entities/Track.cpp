@@ -5,6 +5,7 @@
 
 #include "iterators/TrackAlbumIterator.h"
 #include "iterators/TrackArtistIterator.h"
+#include "iterators/TrackTrackIterator.h"
 
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
@@ -18,11 +19,17 @@ Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator
 
 	registerIterator<TrackAlbumIterator>();
 	registerIterator<TrackArtistIterator>();
+	registerIterator<TrackTrackIterator>();
 }
 
 QString Track::id() const
 {
 	return m_id;
+}
+
+QString Track::key() const
+{
+	return QStringEx::format("%1%2", m_artist, m_name);
 }
 
 bool Track::nowPlaying() const

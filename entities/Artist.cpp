@@ -6,6 +6,7 @@
 
 #include "iterators/ArtistTrackIterator.h"
 #include "iterators/ArtistAlbumIterator.h"
+#include "iterators/ArtistArtistIterator.h"
 
 Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
@@ -16,11 +17,17 @@ Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerat
 
 	registerIterator<ArtistTrackIterator>();
 	registerIterator<ArtistAlbumIterator>();
+	registerIterator<ArtistArtistIterator>();
 }
 
 QString Artist::id() const
 {
 	return m_id;
+}
+
+QString Artist::key() const
+{
+	return m_name;
 }
 
 QString Artist::name() const

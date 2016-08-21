@@ -22,6 +22,7 @@ class User : public InformationResource<User>
 		User(InformationResourceRepository &repository, IdGenerator &idGenerator);
 
 		QString id() const override;
+		QString key() const override;
 
 		QString user() const;
 		void setUser(const QString &user);

@@ -19,6 +19,11 @@ QString Album::id() const
 	return m_id;
 }
 
+QString Album::key() const
+{
+	return m_name;
+}
+
 QString Album::name() const
 {
 	return m_name;
