@@ -9,6 +9,7 @@
 #include "requests/AccountRequest.h"
 #include "requests/UserRequest.h"
 #include "requests/UrlRequest.h"
+#include "requests/ArtistsRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -21,4 +22,5 @@ RequestRepository::RequestRepository()
 	attach<AccountRequest>();
 	attach<UserRequest>();
 	attach<UrlRequest>();
+	attach<ArtistsRequest>();
 }

@@ -67,7 +67,9 @@ SOURCES += main.cpp \
     Utility.cpp \
     requests/UrlRequest.cpp \
     iterators/ArtistArtistIterator.cpp \
-    iterators/TrackTrackIterator.cpp
+    iterators/TrackTrackIterator.cpp \
+    requests/ArtistsRequest.cpp \
+    entities/Artists.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -132,7 +134,9 @@ HEADERS += \
     Utility.h \
     requests/UrlRequest.h \
     iterators/ArtistArtistIterator.h \
-    iterators/TrackTrackIterator.h
+    iterators/TrackTrackIterator.h \
+    requests/ArtistsRequest.h \
+    entities/Artists.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -148,4 +152,5 @@ DISTFILES += \
     templates/AccountRegistered.qml \
     templates/NoMoreData.qml \
     templates/User.qml \
-    templates/Url.qml
+    templates/Url.qml \
+    templates/Artists.qml

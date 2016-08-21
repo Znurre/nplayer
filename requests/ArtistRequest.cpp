@@ -26,11 +26,11 @@ RequestResponse ArtistRequest::invoke(const QStringList &arguments, const QStrin
 
 		if (iterator)
 		{
-			Artist *track = iterator->next(repository, idGenerator);
+			Artist *artist = iterator->next(repository, idGenerator);
 
-			if (track)
+			if (artist)
 			{
-				return RequestResponse("templates/Artist.qml", track);
+				return RequestResponse("templates/Artist.qml", artist);
 			}
 
 			return RequestResponse("templates/NoMoreData.qml", nullptr);
