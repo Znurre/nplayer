@@ -17,26 +17,33 @@ QString Url::text() const
 
 void Url::setText(const QString &text)
 {
-	QNetworkAccessManager network;
-	QEventLoop loop;
+	if (!text.isEmpty())
+	{
+		QNetworkAccessManager network;
+		QEventLoop loop;
 
-	connect(&network, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
+		connect(&network, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit);
 
-	const QByteArray &urlEncoded = text
-		.toUtf8()
-		.toPercentEncoding();
+		const QByteArray &urlEncoded = text
+			.toUtf8()
+			.toPercentEncoding();
 
-	const QString &input = QString::fromUtf8(urlEncoded);
-	const QString &url = QStringEx::format("http://lt3.in/s/?url=%1", input);
+		const QString &input = QString::fromUtf8(urlEncoded);
+		const QString &url = QStringEx::format("http://lt3.in/s/?url=%1", input);
 
-	const QNetworkRequest request(url);
+		const QNetworkRequest request(url);
 
-	QNetworkReply *reply = network.get(request);
+		QNetworkReply *reply = network.get(request);
 
-	loop.exec();
+		loop.exec();
 
-	const QByteArray &data = reply->readAll();
-	const QString &encoded = QString::fromUtf8(data);
+		const QByteArray &data = reply->readAll();
+		const QString &encoded = QString::fromUtf8(data);
 
-	m_text = encoded;
+		m_text = encoded;
+	}
+	else
+	{
+		m_text = text;
+	}
 }
