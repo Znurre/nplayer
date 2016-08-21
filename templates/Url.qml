@@ -7,7 +7,7 @@ Template
 	{
 		title: "Url"
 
-		Text
+		Url
 		{
 			text: url
 		}

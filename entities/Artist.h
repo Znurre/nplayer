@@ -34,7 +34,7 @@ class Artist : public InformationResource<Artist>
 		QString bio();
 		void setBio(const QString &bio);
 
-		QString url() const;
+		QString url() const override;
 		void setUrl(const QString &url);
 
 		Array<QString> tags();

@@ -60,7 +60,7 @@ class Track : public InformationResource<Track>
 		QString nick() const;
 		void setNick(const QString &nick);
 
-		QString url() const;
+		QString url() const override;
 		void setUrl(const QString &url);
 
 		Array<QString> tags();

@@ -41,7 +41,7 @@ class Album : public InformationResource<Album>
 		QString user() const;
 		void setUser(const QString &user);
 
-		QString url() const;
+		QString url() const override;
 		void setUrl(const QString &url);
 
 		Array<QString> tags();

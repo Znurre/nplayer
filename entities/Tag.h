@@ -23,7 +23,7 @@ class Tag : public InformationResource<Tag>
 		QString description() const;
 		void setDescription(const QString &description);
 
-		QString url() const;
+		QString url() const override;
 		void setUrl(const QString &url);
 
 	private:

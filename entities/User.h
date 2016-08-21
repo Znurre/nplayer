@@ -30,7 +30,7 @@ class User : public InformationResource<User>
 		QString country() const;
 		void setCountry(const QString &country);
 
-		QString url() const;
+		QString url() const override;
 		void setUrl(const QString &url);
 
 		QDateTime registered() const;

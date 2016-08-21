@@ -11,6 +11,7 @@
 #include "components/List.h"
 #include "components/Conditional.h"
 #include "components/HighlightFilter.h"
+#include "components/Url.h"
 
 int main(int argc, char **argv)
 {
@@ -25,6 +26,7 @@ int main(int argc, char **argv)
 	qmlRegisterType<List>("NowPlaying", 1, 0, "List");
 	qmlRegisterType<Conditional>("NowPlaying", 1, 0, "Conditional");
 	qmlRegisterType<HighlightFilter>("NowPlaying", 1, 0, "HighlightFilter");
+	qmlRegisterType<Url>("NowPlaying", 1, 0, "Url");
 
 	IrcHandler ircHandler;
 	ircHandler.open();
