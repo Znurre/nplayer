@@ -16,7 +16,7 @@ IrcHandler::IrcHandler()
 	connect(this, &IrcHandler::noticeMessageReceived, this, &IrcHandler::onNoticeMessageReceived);
 	connect(this, &IrcHandler::privateMessageReceived, this, &IrcHandler::onPrivateMessageReceived);
 	connect(this, &IrcHandler::joinMessageReceived, this, &IrcHandler::onJoinMessageReceived);
-	connect(this, &IrcHandler::partMessageReceived, this, &IrcHandler::partMessageReceived);
+	connect(this, &IrcHandler::partMessageReceived, this, &IrcHandler::onPartMessageReceived);
 }
 
 void IrcHandler::onConnected()
