@@ -8,15 +8,10 @@
 class Track;
 class Artist;
 
-class ArtistTrackIterator : public IteratorBase<Track>
+class ArtistTrackIterator : public PagingIterator<Artist, Track>
 {
 	public:
-		ArtistTrackIterator(Artist *artist);
-
-		QList<Track *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
-
-	private:
-		Artist *m_artist;
+		QList<Track *> fetchMore(Artist *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // ARTISTTRACKITERATOR_H

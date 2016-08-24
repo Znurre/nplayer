@@ -6,15 +6,10 @@
 class Tag;
 class Track;
 
-class TagTrackIterator : public IteratorBase<Track>
+class TagTrackIterator : public PagingIterator<Tag, Track>
 {
 	public:
-		TagTrackIterator(Tag *tag);
-
-		QList<Track *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
-
-	private:
-		Tag *m_tag;
+		QList<Track *> fetchMore(Tag *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // TAGTRACKITERATOR_H

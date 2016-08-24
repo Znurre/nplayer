@@ -6,6 +6,7 @@
 
 class InformationResourceRepository;
 class IdGenerator;
+class IInformationResource;
 
 template<class T>
 class IIterator
@@ -13,20 +14,33 @@ class IIterator
 	public:
 		typedef T TResource;
 
-		virtual T *next(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;
+		virtual T *next(IInformationResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;
 };
 
-template<class T>
+template<class TResource, class T>
 class IteratorBase : public IIterator<T>
 {
 	public:
-		IteratorBase()
+		T *next(IInformationResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override
+		{
+			return next((TResource *)resource, informationResourceRepository, idGenerator);
+		}
+
+	protected:
+		virtual T *next(TResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;
+};
+
+template<class TResource, class T>
+class PagingIterator : public IteratorBase<TResource, T>
+{
+	public:
+		PagingIterator()
 			: m_page(0)
 		{
 
 		}
 
-		T *next(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override
+		T *next(TResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override
 		{
 			for (int i = false; m_queue.isEmpty(); i++)
 			{
@@ -35,14 +49,14 @@ class IteratorBase : public IIterator<T>
 					return nullptr;
 				}
 
-				m_queue << fetchMore(informationResourceRepository, idGenerator, m_page++);
+				m_queue << fetchMore(resource, informationResourceRepository, idGenerator, m_page++);
 			}
 
 			return m_queue.dequeue();
 		}
 
 	protected:
-		virtual QList<T *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) = 0;
+		virtual QList<T *> fetchMore(TResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) = 0;
 
 	private:
 		int m_page;

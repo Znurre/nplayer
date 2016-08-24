@@ -26,7 +26,7 @@ RequestResponse ArtistRequest::invoke(const QStringList &arguments, const QStrin
 
 		if (iterator)
 		{
-			Artist *artist = iterator->next(repository, idGenerator);
+			Artist *artist = iterator->next(resource, repository, idGenerator);
 
 			if (artist)
 			{

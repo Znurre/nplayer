@@ -34,7 +34,7 @@ RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString
 
 		if (iterator)
 		{
-			Track *track = iterator->next(repository, idGenerator);
+			Track *track = iterator->next(resource, repository, idGenerator);
 
 			if (track)
 			{

@@ -9,49 +9,25 @@
 template<class TResource>
 class IteratorResolverBase;
 
+class IInformationResource;
+
 class IIteratorResolver
 {
 	public:
 		virtual ~IIteratorResolver() = default;
 
 		template<class TResource>
-		IIterator<TResource> *resolve()
+		IIterator<TResource> *resolve(IInformationResource *resource)
 		{
 			auto resolver = dynamic_cast<IteratorResolverBase<TResource> *>(this);
 
 			if (resolver)
 			{
-				return resolver->resolve();
+				return resolver->resolve(resource);
 			}
 
 			return nullptr;
 		}
-};
-
-template<class TResource>
-class IteratorResolverBase : public IIteratorResolver
-{
-	public:
-		virtual IIterator<TResource> *resolve() = 0;
-};
-
-template<class TInstance, class TIterator>
-class IteratorResolver : public IteratorResolverBase<typename TIterator::TResource>
-{
-	public:
-		IteratorResolver(TInstance *instance)
-			: m_iterator(instance)
-		{
-
-		}
-
-		IIterator<typename TIterator::TResource> *resolve() override
-		{
-			return &m_iterator;
-		}
-
-	private:
-		TIterator m_iterator;
 };
 
 class IInformationResource : public QObject
@@ -70,7 +46,7 @@ class IInformationResource : public QObject
 		{
 			for (IIteratorResolver *resolver : m_iterators)
 			{
-				IIterator<TResource> *iterator = resolver->resolve<TResource>();
+				IIterator<TResource> *iterator = resolver->resolve<TResource>(this);
 
 				if (iterator)
 				{
@@ -84,6 +60,31 @@ class IInformationResource : public QObject
 	protected:
 		QList<IIteratorResolver *> m_iterators;
 };
+
+template<class TResource>
+class IteratorResolverBase : public IIteratorResolver
+{
+	public:
+		virtual IIterator<TResource> *resolve(IInformationResource *resource) = 0;
+};
+
+template<class TInstance, class TIterator>
+class IteratorResolver : public IteratorResolverBase<typename TIterator::TResource>
+{
+	public:
+		IIterator<typename TIterator::TResource> *resolve(IInformationResource *resource) override
+		{
+			const QString &key = resource->key();
+			
+			return &s_iterators[key];
+		}
+
+	private:
+		static QHash<QString, TIterator> s_iterators;
+};
+
+template<class TInstance, class TIterator>
+QHash<QString, TIterator> IteratorResolver<TInstance, TIterator>::s_iterators;
 
 template<class T>
 class InformationResource : public IInformationResource
@@ -99,7 +100,7 @@ class InformationResource : public IInformationResource
 		template<class TIterator>
 		void registerIterator()
 		{
-			m_iterators << new IteratorResolver<T, TIterator>((T *)this);
+			m_iterators << new IteratorResolver<T, TIterator>();
 		}
 
 		template<class TReturn>

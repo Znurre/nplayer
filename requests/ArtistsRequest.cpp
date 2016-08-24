@@ -32,7 +32,7 @@ RequestResponse ArtistsRequest::invoke(const QStringList &arguments, const QStri
 
 			for (int i = 0; i < 10; i++)
 			{
-				Artist *artist = iterator->next(repository, idGenerator);
+				Artist *artist = iterator->next(resource, repository, idGenerator);
 
 				if (!artist)
 				{

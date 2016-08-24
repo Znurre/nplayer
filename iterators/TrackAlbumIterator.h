@@ -7,15 +7,10 @@
 
 class Track;
 
-class TrackAlbumIterator : public IIterator<Album>
+class TrackAlbumIterator : public IteratorBase<Track, Album>
 {
 	public:
-		TrackAlbumIterator(Track *track);
-
-		Album *next(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override;
-
-	private:
-		Track *m_track;
+		Album *next(Track *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override;
 };
 
 #endif // TRACKALBUMITERATOR_H

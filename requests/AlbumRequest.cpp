@@ -31,7 +31,7 @@ RequestResponse AlbumRequest::invoke(const QStringList &arguments, const QString
 
 		if (iterator)
 		{
-			Album *album = iterator->next(repository, idGenerator);
+			Album *album = iterator->next(resource, repository, idGenerator);
 
 			if (album)
 			{

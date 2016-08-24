@@ -4,18 +4,12 @@
 #include "entities/Tag.h"
 #include "entities/TracksEnvelope.h"
 
-TagTrackIterator::TagTrackIterator(Tag *tag)
-	: m_tag(tag)
-{
-
-}
-
-QList<Track *> TagTrackIterator::fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
+QList<Track *> TagTrackIterator::fetchMore(Tag *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
 	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 	TracksEnvelope *envelope = requestHandler
 		.get<TracksEnvelope>("tag.getTopTracks"
-			, as::tag = m_tag->name()
+			, as::tag = resource->name()
 			, as::limit = 10
 			, as::page = page
 		);

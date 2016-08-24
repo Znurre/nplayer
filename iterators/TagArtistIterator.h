@@ -4,15 +4,10 @@
 #include "entities/Artist.h"
 #include "entities/Tag.h"
 
-class TagArtistIterator : public IteratorBase<Artist>
+class TagArtistIterator : public PagingIterator<Tag, Artist>
 {
 	public:
-		TagArtistIterator(Tag *tag);
-
-		QList<Artist *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
-
-	private:
-		Tag *m_tag;
+		QList<Artist *> fetchMore(Tag *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // TAGARTISTITERATOR_H

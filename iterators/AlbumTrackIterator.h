@@ -6,15 +6,10 @@
 class Album;
 class Track;
 
-class AlbumTrackIterator : public IteratorBase<Track>
+class AlbumTrackIterator : public PagingIterator<Album, Track>
 {
 	public:
-		AlbumTrackIterator(Album *album);
-
-		QList<Track *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
-
-	private:
-		Album *m_album;
+		QList<Track *> fetchMore(Album *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // ALBUMTRACKITERATOR_H

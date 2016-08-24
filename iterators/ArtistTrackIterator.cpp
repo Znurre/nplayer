@@ -4,18 +4,12 @@
 #include "entities/Track.h"
 #include "entities/TracksEnvelope.h"
 
-ArtistTrackIterator::ArtistTrackIterator(Artist *artist)
-	: m_artist(artist)
-{
-
-}
-
-QList<Track *> ArtistTrackIterator::fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
+QList<Track *> ArtistTrackIterator::fetchMore(Artist *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
 	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 	TracksEnvelope *envelope = requestHandler
 		.get<TracksEnvelope>("artist.getTopTracks"
-			, as::artist = m_artist->name()
+			, as::artist = resource->name()
 			, as::limit = 10
 			, as::page = page
 		);

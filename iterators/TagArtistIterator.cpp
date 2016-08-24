@@ -3,18 +3,12 @@
 
 #include "entities/ArtistsEnvelope.h"
 
-TagArtistIterator::TagArtistIterator(Tag *tag)
-	: m_tag(tag)
-{
-
-}
-
-QList<Artist *> TagArtistIterator::fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
+QList<Artist *> TagArtistIterator::fetchMore(Tag *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
 	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 	ArtistsEnvelope *envelope = requestHandler
 		.get<ArtistsEnvelope>("tag.getTopArtists"
-			, as::tag = m_tag->name()
+			, as::tag = resource->name()
 			, as::limit = 10
 			, as::page = page
 		);

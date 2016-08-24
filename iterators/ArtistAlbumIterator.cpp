@@ -4,18 +4,12 @@
 #include "entities/Artist.h"
 #include "entities/AlbumsEnvelope.h"
 
-ArtistAlbumIterator::ArtistAlbumIterator(Artist *artist)
-	: m_artist(artist)
-{
-
-}
-
-QList<Album *> ArtistAlbumIterator::fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
+QList<Album *> ArtistAlbumIterator::fetchMore(Artist *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
 	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 	AlbumsEnvelope *envelope = requestHandler
 		.get<AlbumsEnvelope>("artist.getTopAlbums"
-			, as::artist = m_artist->name()
+			, as::artist = resource->name()
 			, as::limit = 10
 			, as::page = page
 		);

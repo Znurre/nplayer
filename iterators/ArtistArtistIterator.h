@@ -5,15 +5,10 @@
 
 class Artist;
 
-class ArtistArtistIterator : public IteratorBase<Artist>
+class ArtistArtistIterator : public PagingIterator<Artist, Artist>
 {
 	public:
-		ArtistArtistIterator(Artist *artist);
-
-		QList<Artist *> fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
-
-	private:
-		Artist *m_artist;
+		QList<Artist *> fetchMore(Artist *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // ARTISTARTISTITERATOR_H

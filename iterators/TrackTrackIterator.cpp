@@ -4,19 +4,13 @@
 #include "entities/TracksEnvelope.h"
 #include "entities/Track.h"
 
-TrackTrackIterator::TrackTrackIterator(Track *track)
-	: m_track(track)
-{
-
-}
-
-QList<Track *> TrackTrackIterator::fetchMore(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
+QList<Track *> TrackTrackIterator::fetchMore(Track *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
 	RequestHandler requestHandler(informationResourceRepository, idGenerator);
 	TracksEnvelope *envelope = requestHandler
 		.get<TracksEnvelope>("track.getSimilar"
-			, as::artist = m_track->artist()
-			, as::track = m_track->name()
+			, as::artist = resource->artist()
+			, as::track = resource->name()
 			, as::limit = 10
 			, as::page = page
 		);

@@ -6,15 +6,10 @@
 class Track;
 class Artist;
 
-class TrackArtistIterator : public IIterator<Artist>
+class TrackArtistIterator : public IteratorBase<Track, Artist>
 {
 	public:
-		TrackArtistIterator(Track *track);
-
-		Artist *next(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override;
-
-	private:
-		Track *m_track;
+		Artist *next(Track *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) override;
 };
 
 #endif // TRACKARTISTITERATOR_H
