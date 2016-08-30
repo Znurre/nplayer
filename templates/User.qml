@@ -36,13 +36,18 @@ Template
 		}
 	}
 
-	Section
+	Conditional
 	{
-		title: "Country"
-
-		Text
+		condition: country.length > 0
+	
+		Section
 		{
-			text: country
+			title: "Country"
+
+			Text
+			{
+				text: country
+			}
 		}
 	}
 

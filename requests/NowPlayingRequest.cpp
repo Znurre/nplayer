@@ -21,9 +21,7 @@ QString NowPlayingRequest::trigger() const
 
 RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
-	Q_UNUSED(arguments);
-
-	Track *nowPlaying = getNowPlaying(who, context);
+	Track *nowPlaying = getNowPlaying(arguments, who, context);
 
 	if (nowPlaying)
 	{
@@ -36,7 +34,7 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 	return RequestResponse("templates/NotPlaying.qml", notPlaying);
 }
 
-Track *NowPlayingRequest::getNowPlaying(const QString &who, const RequestInvocationContext &context) const
+Track *NowPlayingRequest::getNowPlaying(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) const
 {
 	InformationResourceRepository &repository = context.informationResourceRepository();
 	IdGenerator &idGenerator = context.idGenerator();
@@ -46,7 +44,7 @@ Track *NowPlayingRequest::getNowPlaying(const QString &who, const RequestInvocat
 	const TracksEnvelope *recentTracks = requestHandler
 		.get<TracksEnvelope>("user.getRecentTracks"
 			, as::limit = 1
-			, as::user = userMapper.map(who)
+			, as::user = userMapper.map(arguments, who)
 			, as::nick = who
 		);
 

@@ -13,6 +13,13 @@ UserMapper::UserMapper()
 	}
 }
 
+QString UserMapper::map(const QStringList &arguments, const QString &fallback)
+{
+	const QString &nickname = arguments.value(0, fallback);
+
+	return map(nickname);
+}
+
 QString UserMapper::map(const QString &nickname)
 {
 	return m_mapping.value(nickname, nickname);

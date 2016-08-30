@@ -13,8 +13,6 @@ QString UserRequest::trigger() const
 
 RequestResponse UserRequest::invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context)
 {
-	Q_UNUSED(arguments);
-
 	InformationResourceRepository &repository = context.informationResourceRepository();
 	IdGenerator &idGenerator = context.idGenerator();
 	UserMapper &userMapper = context.userMapper();
@@ -23,7 +21,7 @@ RequestResponse UserRequest::invoke(const QStringList &arguments, const QString 
 
 	User *user = requestHandler
 		.get<User>("user.getInfo"
-			, as::user = userMapper.map(who)
+			, as::user = userMapper.map(arguments, who)
 		);
 
 	if (user)

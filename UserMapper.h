@@ -11,6 +11,7 @@ class UserMapper
 	public:
 		UserMapper();
 
+		QString map(const QStringList &arguments, const QString &fallback);
 		QString map(const QString &nickname);
 
 		void store(const QString &nickname, const QString &map);

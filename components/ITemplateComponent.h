@@ -28,7 +28,7 @@ class ITemplateComponent : public QQuickItem
 		{
 			QStringList components;
 
-			for (QObject *child: children())
+			for (QObject *child : children())
 			{
 				ITemplateComponent *component = qobject_cast<ITemplateComponent *>(child);
 
