@@ -1,11 +1,11 @@
 #include "Artists.h"
 
-Array<QString> Artists::artists() const
+QList<QObject *> Artists::artists() const
 {
 	return m_artists;
 }
 
-void Artists::setArtists(const Array<QString> &artists)
+void Artists::setArtists(const QList<QObject *> &artists)
 {
 	m_artists = artists;
 }

@@ -2,11 +2,15 @@
 #include "IdGenerator.h"
 #include "InformationResourceRepository.h"
 
+#include "iterators/UserArtistIterator.h"
+
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
 {
 	repository.add(this);
+	
+	registerIterator<UserArtistIterator>();
 }
 
 QString User::id() const

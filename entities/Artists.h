@@ -2,20 +2,20 @@
 #define ARTISTS_H
 
 #include <QObject>
-#include <QJsonSerializer>
+#include <QList>
 
 class Artists : public QObject
 {
 	Q_OBJECT
 
-	Q_PROPERTY(Array<QString> artists READ artists WRITE setArtists NOTIFY artistsChanged)
+	Q_PROPERTY(QList<QObject *> artists READ artists WRITE setArtists NOTIFY artistsChanged)
 
 	public:
-		Array<QString> artists() const;
-		void setArtists(const Array<QString> &artists);
+		QList<QObject *> artists() const;
+		void setArtists(const QList<QObject *> &artists);
 
 	private:
-		Array<QString> m_artists;
+		QList<QObject *> m_artists;
 
 	signals:
 		void artistsChanged();

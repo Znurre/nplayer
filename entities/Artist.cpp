@@ -12,6 +12,7 @@ Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerat
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
 	, m_listeners(0)
+	, m_playCount(0)
 {
 	repository.add(this);
 
@@ -78,6 +79,16 @@ int Artist::listeners()
 void Artist::setListeners(int listeners)
 {
 	m_listeners = listeners;
+}
+
+int Artist::playCount() const
+{
+	return m_playCount;
+}
+
+void Artist::setPlayCount(int playCount)
+{
+	m_playCount = playCount;
 }
 
 void Artist::fetchExtendedInfo()

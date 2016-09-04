@@ -28,7 +28,7 @@ RequestResponse ArtistsRequest::invoke(const QStringList &arguments, const QStri
 
 		if (iterator)
 		{
-			Array<QString> artists;
+			QList<QObject *> artists;
 
 			for (int i = 0; i < 10; i++)
 			{
@@ -45,7 +45,7 @@ RequestResponse ArtistsRequest::invoke(const QStringList &arguments, const QStri
 				}
 				else
 				{
-					artists << artist->name();
+					artists << artist;
 				}
 			}
 

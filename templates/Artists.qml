@@ -7,9 +7,26 @@ Template
 	{
 		title: "Artists"
 
-		List
+		ListNg
 		{
 			values: artists
+			delegate: Container
+			{
+				Text
+				{
+					text: name
+				}
+
+				Conditional
+				{
+					condition: playCount > 0
+
+					Text
+					{
+						text: "(%1)".arg(playCount)
+					}
+				}
+			}
 		}
 	}
 }

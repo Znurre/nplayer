@@ -35,7 +35,7 @@ class PagingIterator : public IteratorBase<TResource, T>
 {
 	public:
 		PagingIterator()
-			: m_page(0)
+			: m_page(1)
 		{
 
 		}

@@ -70,7 +70,10 @@ SOURCES += main.cpp \
     iterators/TrackTrackIterator.cpp \
     requests/ArtistsRequest.cpp \
     entities/Artists.cpp \
-    components/Url.cpp
+    components/Url.cpp \
+    iterators/UserArtistIterator.cpp \
+    components/ListNg.cpp \
+    components/Container.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -138,7 +141,10 @@ HEADERS += \
     iterators/TrackTrackIterator.h \
     requests/ArtistsRequest.h \
     entities/Artists.h \
-    components/Url.h
+    components/Url.h \
+    iterators/UserArtistIterator.h \
+    components/ListNg.h \
+    components/Container.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
