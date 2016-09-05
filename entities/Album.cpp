@@ -103,7 +103,7 @@ void Album::setUserPlayCount(int userPlayCount)
 void Album::fetchExtendedInfo()
 {
 	m_requestHandler
-			.get(this, "album.getInfo"
+		.get(this, "album.getInfo"
 			, as::artist = m_artist
 			, as::album = m_name
 			, as::user = m_user

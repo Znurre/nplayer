@@ -1,8 +1,11 @@
 #ifndef TAG_H
 #define TAG_H
 
+#include <QJsonSerializer>
+
 #include "IInformationResource.h"
 #include "InformationResourceRepository.h"
+#include "RequestHandler.h"
 
 class Tag : public InformationResource<Tag>
 {
@@ -22,13 +25,16 @@ class Tag : public InformationResource<Tag>
 		QString name() const;
 		void setName(const QString &name);
 
-		QString description() const;
+		QString description();
 		void setDescription(const QString &description);
 
 		QString url() const override;
 		void setUrl(const QString &url);
 
 	private:
+		void fetchExtendedInfo() override;
+
+		RequestHandler m_requestHandler;
 		InformationResourceRepository &m_repository;
 
 		QString m_id;
@@ -41,5 +47,7 @@ class Tag : public InformationResource<Tag>
 		void descriptionChanged();
 		void urlChanged();
 };
+
+Q_DECLARE_METATYPE(Array<Tag *>)
 
 #endif // TAG_H

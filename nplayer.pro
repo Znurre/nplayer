@@ -74,7 +74,12 @@ SOURCES += main.cpp \
     iterators/UserArtistIterator.cpp \
     components/ListNg.cpp \
     components/Container.cpp \
-    requests/PingRequest.cpp
+    requests/PingRequest.cpp \
+    iterators/UserTrackIterator.cpp \
+    iterators/UserTagIterator.cpp \
+    entities/TagsEnvelope.cpp \
+    entities/Tags.cpp \
+    requests/TagsRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -146,7 +151,12 @@ HEADERS += \
     iterators/UserArtistIterator.h \
     components/ListNg.h \
     components/Container.h \
-    requests/PingRequest.h
+    requests/PingRequest.h \
+    iterators/UserTrackIterator.h \
+    iterators/UserTagIterator.h \
+    entities/TagsEnvelope.h \
+    entities/Tags.h \
+    requests/TagsRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -164,4 +174,5 @@ DISTFILES += \
     templates/User.qml \
     templates/Url.qml \
     templates/Artists.qml \
-    templates/Pong.qml
+    templates/Pong.qml \
+    templates/Tags.qml

@@ -3,6 +3,8 @@
 #include "InformationResourceRepository.h"
 
 #include "iterators/UserArtistIterator.h"
+#include "iterators/UserTrackIterator.h"
+#include "iterators/UserTagIterator.h"
 
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
@@ -13,6 +15,8 @@ User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	m_repository.add(this);
 	
 	registerIterator<UserArtistIterator>();
+	registerIterator<UserTrackIterator>();
+	registerIterator<UserTagIterator>();
 }
 
 User::~User()

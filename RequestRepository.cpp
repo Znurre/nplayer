@@ -11,6 +11,7 @@
 #include "requests/UrlRequest.h"
 #include "requests/ArtistsRequest.h"
 #include "requests/PingRequest.h"
+#include "requests/TagsRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -25,4 +26,5 @@ RequestRepository::RequestRepository()
 	attach<UrlRequest>();
 	attach<ArtistsRequest>();
 	attach<PingRequest>();
+	attach<TagsRequest>();
 }

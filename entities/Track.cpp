@@ -146,7 +146,7 @@ QString Track::formattedTitle() const
 void Track::fetchExtendedInfo()
 {
 	m_requestHandler
-			.get(this, "track.getInfo"
+		.get(this, "track.getInfo"
 			, as::artist = m_artist
 			, as::track = m_name
 			, as::username = m_user

@@ -14,19 +14,42 @@ RequestResponse TagRequest::invoke(const QStringList &arguments, const QString &
 {
 	Q_UNUSED(who);
 
+	const QString &id = arguments.join(QChar::Space);
+
 	InformationResourceRepository &repository = context.informationResourceRepository();
 	IdGenerator &idGenerator = context.idGenerator();
 
-	RequestHandler requestHandler(repository, idGenerator);
+	IInformationResource *resource = repository.get(id);
 
-	Tag *artist = requestHandler
-		.get<Tag>("tag.getInfo"
-			, as::tag = arguments.join(QChar::Space)
-		);
-
-	if (artist)
+	if (resource)
 	{
-		return RequestResponse("templates/Tag.qml", artist);
+		IIterator<Tag> *iterator = resource->iterator<Tag>();
+
+		if (iterator)
+		{
+			Tag *tag = iterator->next(resource, repository, idGenerator);
+
+			if (tag)
+			{
+				return RequestResponse("templates/Tag.qml", tag);
+			}
+
+			return RequestResponse("templates/NoMoreData.qml", nullptr);
+		}
+	}
+	else
+	{
+		RequestHandler requestHandler(repository, idGenerator);
+
+		Tag *tag = requestHandler
+			.get<Tag>("tag.getInfo"
+				, as::tag = arguments.join(QChar::Space)
+			);
+
+		if (tag)
+		{
+			return RequestResponse("templates/Tag.qml", tag);
+		}
 	}
 
 	return RequestResponse();

@@ -6,7 +6,8 @@
 #include "iterators/TagTrackIterator.h"
 
 Tag::Tag(InformationResourceRepository &repository, IdGenerator &idGenerator)
-	: m_repository(repository)
+	: m_requestHandler(repository, idGenerator)
+	, m_repository(repository)
 	, m_id(idGenerator)
 {
 	m_repository.add(this);
@@ -40,9 +41,9 @@ void Tag::setName(const QString &name)
 	m_name = name;
 }
 
-QString Tag::description() const
+QString Tag::description()
 {
-	return m_description;
+	return property(&Tag::m_description);
 }
 
 void Tag::setDescription(const QString &description)
@@ -58,4 +59,12 @@ QString Tag::url() const
 void Tag::setUrl(const QString &url)
 {
 	m_url = url;
+}
+
+void Tag::fetchExtendedInfo()
+{
+	m_requestHandler
+		.get(this, "tag.getInfo"
+			, as::tag = m_name
+		);
 }
