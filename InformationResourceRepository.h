@@ -50,6 +50,7 @@ class InformationResourceRepository
 		InformationResourceRepository();
 
 		void add(IInformationResource *resource);
+		void remove(IInformationResource *resource);
 
 		template<class TResource>
 		TResource *get(const QString &id) const

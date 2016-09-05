@@ -6,12 +6,18 @@
 
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
+	, m_repository(repository)
 	, m_id(idGenerator)
 	, m_userPlayCount(0)
 {
-	repository.add(this);
+	m_repository.add(this);
 
 	registerIterator<AlbumTrackIterator>();
+}
+
+Album::~Album()
+{
+	m_repository.remove(this);
 }
 
 QString Album::id() const

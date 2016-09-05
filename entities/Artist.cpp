@@ -10,15 +10,21 @@
 
 Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
+	, m_repository(repository)
 	, m_id(idGenerator)
 	, m_listeners(0)
 	, m_userPlayCount(0)
 {
-	repository.add(this);
+	m_repository.add(this);
 
 	registerIterator<ArtistTrackIterator>();
 	registerIterator<ArtistAlbumIterator>();
 	registerIterator<ArtistArtistIterator>();
+}
+
+Artist::~Artist()
+{
+	m_repository.remove(this);
 }
 
 QString Artist::id() const

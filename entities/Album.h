@@ -5,6 +5,7 @@
 #include <QJsonSerializer>
 
 #include "IInformationResource.h"
+#include "InformationResourceRepository.h"
 #include "RequestHandler.h"
 
 #include "entities/Track.h"
@@ -28,6 +29,7 @@ class Album : public InformationResource<Album>
 
 	public:
 		Album(InformationResourceRepository &repository, IdGenerator &idGenerator);
+		~Album();
 
 		QString id() const override;
 		QString key() const override;
@@ -57,6 +59,7 @@ class Album : public InformationResource<Album>
 		void fetchExtendedInfo() override;
 
 		RequestHandler m_requestHandler;
+		InformationResourceRepository &m_repository;
 
 		QString m_id;
 		QString m_name;

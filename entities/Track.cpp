@@ -9,17 +9,23 @@
 
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
+	, m_repository(repository)
 	, m_nowPlaying(false)
 	, m_fetched(false)
 	, m_userLoved(false)
 	, m_id(idGenerator)
 	, m_userPlayCount(0)
 {
-	repository.add(this);
+	m_repository.add(this);
 
 	registerIterator<TrackAlbumIterator>();
 	registerIterator<TrackArtistIterator>();
 	registerIterator<TrackTrackIterator>();
+}
+
+Track::~Track()
+{
+	m_repository.remove(this);
 }
 
 QString Track::id() const

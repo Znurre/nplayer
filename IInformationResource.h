@@ -16,6 +16,8 @@ class IIteratorResolver
 	public:
 		virtual ~IIteratorResolver() = default;
 
+		virtual void unregister(IInformationResource *resource) = 0;
+
 		template<class TResource>
 		IIterator<TResource> *resolve(IInformationResource *resource)
 		{
@@ -79,6 +81,13 @@ class IteratorResolver : public IteratorResolverBase<typename TIterator::TResour
 			return &s_iterators[key];
 		}
 
+		void unregister(IInformationResource *resource) override
+		{
+			const QString &key = resource->key();
+
+			s_iterators.remove(key);
+		}
+
 	private:
 		static QHash<QString, TIterator> s_iterators;
 };
@@ -93,7 +102,7 @@ class InformationResource : public IInformationResource
 		InformationResource()
 			: m_fetched(false)
 		{
-
+			startTimer(1000 * 60 * 5);
 		}
 
 	protected:
@@ -132,6 +141,20 @@ class InformationResource : public IInformationResource
 		}
 
 	private:
+		void timerEvent(QTimerEvent *event) override
+		{
+			Q_UNUSED(event);
+
+			for (IIteratorResolver *iterator : m_iterators)
+			{
+				iterator->unregister(this);
+
+				delete iterator;
+			}
+
+			delete this;
+		}
+
 		bool m_fetched;
 };
 

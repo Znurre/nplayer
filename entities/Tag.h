@@ -2,6 +2,7 @@
 #define TAG_H
 
 #include "IInformationResource.h"
+#include "InformationResourceRepository.h"
 
 class Tag : public InformationResource<Tag>
 {
@@ -13,6 +14,7 @@ class Tag : public InformationResource<Tag>
 
 	public:
 		Tag(InformationResourceRepository &repository, IdGenerator &idGenerator);
+		~Tag();
 
 		QString id() const override;
 		QString key() const override;
@@ -27,6 +29,8 @@ class Tag : public InformationResource<Tag>
 		void setUrl(const QString &url);
 
 	private:
+		InformationResourceRepository &m_repository;
+
 		QString m_id;
 		QString m_name;
 		QString m_description;

@@ -4,6 +4,7 @@
 #include <QDateTime>
 
 #include "IInformationResource.h"
+#include "InformationResourceRepository.h"
 #include "RequestHandler.h"
 
 class User : public InformationResource<User>
@@ -20,6 +21,7 @@ class User : public InformationResource<User>
 
 	public:
 		User(InformationResourceRepository &repository, IdGenerator &idGenerator);
+		~User();
 
 		QString id() const override;
 		QString key() const override;
@@ -41,6 +43,7 @@ class User : public InformationResource<User>
 
 	private:
 		RequestHandler m_requestHandler;
+		InformationResourceRepository &m_repository;
 
 		QString m_user;
 		QString m_country;

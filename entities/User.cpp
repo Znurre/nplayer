@@ -6,12 +6,18 @@
 
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
+	, m_repository(repository)
 	, m_id(idGenerator)
 	, m_playCount(0)
 {
-	repository.add(this);
+	m_repository.add(this);
 	
 	registerIterator<UserArtistIterator>();
+}
+
+User::~User()
+{
+	m_repository.remove(this);
 }
 
 QString User::id() const
