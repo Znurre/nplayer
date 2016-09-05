@@ -3,12 +3,24 @@
 #include "entities/Track.h"
 #include "entities/Artist.h"
 
-Artist *TrackArtistIterator::next(Track *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator)
+QList<Artist *> TrackArtistIterator::fetchMore(Track *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page)
 {
-	RequestHandler requestHandler(informationResourceRepository, idGenerator);
+	QList<Artist *> artists;
 
-	return requestHandler
-		.get<Artist>("artist.getInfo"
-			, as::artist = resource->artist()
-		);
+	if (page <= 1)
+	{
+		RequestHandler requestHandler(informationResourceRepository, idGenerator);
+
+		Artist *artist = requestHandler
+			.get<Artist>("artist.getInfo"
+				, as::artist = resource->artist()
+			);
+
+		if (artist)
+		{
+			artists << artist;
+		}
+	}
+
+	return artists;
 }

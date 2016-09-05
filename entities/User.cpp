@@ -7,6 +7,7 @@
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_id(idGenerator)
+	, m_playCount(0)
 {
 	repository.add(this);
 	

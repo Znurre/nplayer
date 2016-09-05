@@ -21,7 +21,7 @@ class Artist : public InformationResource<Artist>
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 
 	Q_PROPERTY(int listeners READ listeners WRITE setListeners NOTIFY listenersChanged)
-	Q_PROPERTY(int playCount READ playCount WRITE setPlayCount NOTIFY playCountChanged)
+	Q_PROPERTY(int userPlayCount READ userPlayCount WRITE setUserPlayCount NOTIFY userPlayCountChanged)
 
 	public:
 		Artist(InformationResourceRepository &repository, IdGenerator &idGenerator);
@@ -44,8 +44,8 @@ class Artist : public InformationResource<Artist>
 		int listeners();
 		void setListeners(int listeners);
 
-		int playCount() const;
-		void setPlayCount(int playCount);
+		int userPlayCount() const;
+		void setUserPlayCount(int userPlayCount);
 
 	private:
 		void fetchExtendedInfo() override;
@@ -60,7 +60,7 @@ class Artist : public InformationResource<Artist>
 		Array<QString> m_tags;
 
 		int m_listeners;
-		int m_playCount;
+		int m_userPlayCount;
 
 	signals:
 		void nameChanged();
@@ -68,7 +68,7 @@ class Artist : public InformationResource<Artist>
 		void urlChanged();
 		void tagsChanged();
 		void listenersChanged();
-		void playCountChanged();
+		void userPlayCountChanged();
 };
 
 Q_DECLARE_METATYPE(Array<Artist *>)

@@ -19,11 +19,11 @@ Template
 
 				Conditional
 				{
-					condition: playCount > 0
+					condition: userPlayCount > 0
 
 					Text
 					{
-						text: "(%1)".arg(playCount)
+						text: "(%1)".arg(userPlayCount)
 					}
 				}
 			}
