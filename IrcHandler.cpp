@@ -3,13 +3,13 @@
 #include "IrcHandler.h"
 
 IrcHandler::IrcHandler()
-	: m_channel("#swr")
+	: m_channel("#np")
 	, m_outputHandler(*this, m_channel)
 	, m_messageHandler(m_outputHandler, m_requestRepository)
 {
-	setUserName("MrRobot");
-	setNickName("MrRobot");
-	setRealName("MrRobot");
+	setUserName("nplayer");
+	setNickName("nplayer");
+	setRealName("nplayer");
 	setServers(QStringList() << "irc.quakenet.org");
 
 	connect(this, &IrcHandler::connected, this, &IrcHandler::onConnected);

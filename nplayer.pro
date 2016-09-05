@@ -73,7 +73,8 @@ SOURCES += main.cpp \
     components/Url.cpp \
     iterators/UserArtistIterator.cpp \
     components/ListNg.cpp \
-    components/Container.cpp
+    components/Container.cpp \
+    requests/PingRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -144,7 +145,8 @@ HEADERS += \
     components/Url.h \
     iterators/UserArtistIterator.h \
     components/ListNg.h \
-    components/Container.h
+    components/Container.h \
+    requests/PingRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -161,4 +163,5 @@ DISTFILES += \
     templates/NoMoreData.qml \
     templates/User.qml \
     templates/Url.qml \
-    templates/Artists.qml
+    templates/Artists.qml \
+    templates/Pong.qml
