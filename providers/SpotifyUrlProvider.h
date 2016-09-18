@@ -11,8 +11,6 @@
 #include "SpotifySearchResult.h"
 #include "QStringEx.h"
 
-class Track;
-
 class ISpotifyUrlProvider : public IUrlProvider
 {
 	// Marker interface

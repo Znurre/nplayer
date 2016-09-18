@@ -3,6 +3,8 @@
 
 #include "SpotifyUrlProvider.h"
 
+class Track;
+
 class TrackSpotifyUrlProvider : public SpotifyUrlProvider<Track, SpotifyTrack>
 {
 	protected:

@@ -34,8 +34,20 @@ class SpotifyTrackSearchFragment : public SpotifySearchFragment<SpotifyTrack>
 		Q_INVOKABLE SpotifyTrackSearchFragment() = default;
 };
 
+class SpotifyArtistSearchFragment : public SpotifySearchFragment<SpotifyArtist>
+{
+	Q_OBJECT
+
+	Q_PROPERTY(Array<SpotifyArtist *> items READ items WRITE setItems)
+
+	public:
+		Q_INVOKABLE SpotifyArtistSearchFragment() = default;
+};
+
 Q_DECLARE_METATYPE(SpotifyTrackSearchFragment *)
+Q_DECLARE_METATYPE(SpotifyArtistSearchFragment *)
 
 Q_DECLARE_METATYPE(Array<SpotifyTrack *>)
+Q_DECLARE_METATYPE(Array<SpotifyArtist *>)
 
 #endif // SPOTIFYSEARCHFRAGMENT_H

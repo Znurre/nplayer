@@ -26,4 +26,9 @@ class SpotifyTrack : public SpotifyItem
 
 };
 
+class SpotifyArtist : public SpotifyItem
+{
+
+};
+
 #endif // SPOTIFYTRACK_H
