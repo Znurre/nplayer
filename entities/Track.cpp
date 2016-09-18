@@ -7,6 +7,9 @@
 #include "iterators/TrackArtistIterator.h"
 #include "iterators/TrackTrackIterator.h"
 
+#include "providers/LastFmUrlProvider.h"
+#include "providers/TrackSpotifyUrlProvider.h"
+
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_repository(repository)
@@ -21,6 +24,9 @@ Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator
 	registerIterator<TrackAlbumIterator>();
 	registerIterator<TrackArtistIterator>();
 	registerIterator<TrackTrackIterator>();
+
+	registerUrlProvider<LastFmUrlProvider>();
+	registerUrlProvider<TrackSpotifyUrlProvider>();
 }
 
 Track::~Track()

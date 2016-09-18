@@ -8,10 +8,11 @@
 #include "requests/TagRequest.h"
 #include "requests/AccountRequest.h"
 #include "requests/UserRequest.h"
-#include "requests/UrlRequest.h"
+#include "requests/LastFmUrlRequest.h"
 #include "requests/ArtistsRequest.h"
 #include "requests/PingRequest.h"
 #include "requests/TagsRequest.h"
+#include "requests/SpotifyUrlRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -23,8 +24,9 @@ RequestRepository::RequestRepository()
 	attach<TagRequest>();
 	attach<AccountRequest>();
 	attach<UserRequest>();
-	attach<UrlRequest>();
+	attach<LastFmUrlRequest>();
 	attach<ArtistsRequest>();
 	attach<PingRequest>();
 	attach<TagsRequest>();
+	attach<SpotifyUrlRequest>();
 }

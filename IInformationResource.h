@@ -10,6 +10,7 @@ template<class TResource>
 class IteratorResolverBase;
 
 class IInformationResource;
+class IUrlProvider;
 
 class IIteratorResolver
 {
@@ -59,8 +60,25 @@ class IInformationResource : public QObject
 			return nullptr;
 		}
 
+		template<class TProvider>
+		IUrlProvider *provider()
+		{
+			for (IUrlProvider *provider : m_urlProviders)
+			{
+				IUrlProvider *casted = dynamic_cast<TProvider *>(provider);
+
+				if (casted)
+				{
+					return casted;
+				}
+			}
+
+			return nullptr;
+		}
+
 	protected:
 		QList<IIteratorResolver *> m_iterators;
+		QList<IUrlProvider *> m_urlProviders;
 };
 
 template<class TResource>
@@ -110,6 +128,12 @@ class InformationResource : public IInformationResource
 		void registerIterator()
 		{
 			m_iterators << new IteratorResolver<T, TIterator>();
+		}
+
+		template<class TProvider>
+		void registerUrlProvider()
+		{
+			m_urlProviders << new TProvider();
 		}
 
 		template<class TReturn>

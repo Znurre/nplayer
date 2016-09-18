@@ -4,6 +4,8 @@
 
 #include "iterators/AlbumTrackIterator.h"
 
+#include "providers/LastFmUrlProvider.h"
+
 Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_repository(repository)
@@ -13,6 +15,8 @@ Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator
 	m_repository.add(this);
 
 	registerIterator<AlbumTrackIterator>();
+
+	registerUrlProvider<LastFmUrlProvider>();
 }
 
 Album::~Album()

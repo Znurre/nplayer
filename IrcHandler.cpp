@@ -7,9 +7,9 @@ IrcHandler::IrcHandler()
 	, m_outputHandler(*this, m_channel)
 	, m_messageHandler(m_outputHandler, m_requestRepository)
 {
-	setUserName("MrRobot");
-	setNickName("MrRobot");
-	setRealName("MrRobot");
+	setUserName("MrRoboto");
+	setNickName("MrRoboto");
+	setRealName("MrRoboto");
 	setServers(QStringList() << "irc.quakenet.org");
 
 	connect(this, &IrcHandler::connected, this, &IrcHandler::onConnected);

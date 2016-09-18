@@ -6,6 +6,8 @@
 #include "iterators/UserTrackIterator.h"
 #include "iterators/UserTagIterator.h"
 
+#include "providers/LastFmUrlProvider.h"
+
 User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_repository(repository)
@@ -17,6 +19,8 @@ User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	registerIterator<UserArtistIterator>();
 	registerIterator<UserTrackIterator>();
 	registerIterator<UserTagIterator>();
+
+	registerUrlProvider<LastFmUrlProvider>();
 }
 
 User::~User()

@@ -8,6 +8,8 @@
 #include "iterators/ArtistAlbumIterator.h"
 #include "iterators/ArtistArtistIterator.h"
 
+#include "providers/LastFmUrlProvider.h"
+
 Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
 	, m_repository(repository)
@@ -20,6 +22,8 @@ Artist::Artist(InformationResourceRepository &repository, IdGenerator &idGenerat
 	registerIterator<ArtistTrackIterator>();
 	registerIterator<ArtistAlbumIterator>();
 	registerIterator<ArtistArtistIterator>();
+
+	registerUrlProvider<LastFmUrlProvider>();
 }
 
 Artist::~Artist()

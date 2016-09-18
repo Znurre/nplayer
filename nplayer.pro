@@ -1,6 +1,6 @@
 QT += quick
 
-CONFIG += c++11 communi
+CONFIG += c++14 communi
 COMMUNI += core
 
 TARGET = nplayer
@@ -79,7 +79,15 @@ SOURCES += main.cpp \
     iterators/UserTagIterator.cpp \
     entities/TagsEnvelope.cpp \
     entities/Tags.cpp \
-    requests/TagsRequest.cpp
+    requests/TagsRequest.cpp \
+    providers/LastFmUrlProvider.cpp \
+    requests/LastFmUrlRequest.cpp \
+    entities/UrlContext.cpp \
+    providers/SpotifySearchResult.cpp \
+	providers/SpotifyTrack.cpp \
+    requests/SpotifyUrlRequest.cpp \
+    providers/SpotifyExternalUrl.cpp \
+    providers/TrackSpotifyUrlProvider.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -156,7 +164,18 @@ HEADERS += \
     iterators/UserTagIterator.h \
     entities/TagsEnvelope.h \
     entities/Tags.h \
-    requests/TagsRequest.h
+    requests/TagsRequest.h \
+    IUrlProvider.h \
+    providers/LastFmUrlProvider.h \
+    requests/LastFmUrlRequest.h \
+    entities/UrlContext.h \
+    providers/SpotifyUrlProvider.h \
+    providers/SpotifySearchResult.h \
+	providers/SpotifyTrack.h \
+    providers/SpotifySearchFragment.h \
+    requests/SpotifyUrlRequest.h \
+    providers/SpotifyExternalUrl.h \
+    providers/TrackSpotifyUrlProvider.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
