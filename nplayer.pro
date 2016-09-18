@@ -88,7 +88,8 @@ SOURCES += main.cpp \
     requests/SpotifyUrlRequest.cpp \
     providers/SpotifyExternalUrl.cpp \
     providers/TrackSpotifyUrlProvider.cpp \
-    providers/ArtistSpotifyUrlProvider.cpp
+    providers/ArtistSpotifyUrlProvider.cpp \
+    providers/AlbumSpotifyUrlProvider.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -177,7 +178,8 @@ HEADERS += \
     requests/SpotifyUrlRequest.h \
     providers/SpotifyExternalUrl.h \
     providers/TrackSpotifyUrlProvider.h \
-    providers/ArtistSpotifyUrlProvider.h
+    providers/ArtistSpotifyUrlProvider.h \
+    providers/AlbumSpotifyUrlProvider.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

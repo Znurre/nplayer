@@ -26,3 +26,13 @@ void SpotifySearchResult::setArtists(SpotifyArtistSearchFragment *artists)
 {
 	m_artists = artists;
 }
+
+SpotifyAlbumSearchFragment *SpotifySearchResult::albums() const
+{
+	return m_albums;
+}
+
+void SpotifySearchResult::setAlbums(SpotifyAlbumSearchFragment *albums)
+{
+	m_albums = albums;
+}

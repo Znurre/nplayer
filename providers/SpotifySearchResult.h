@@ -13,6 +13,7 @@ class SpotifySearchResult : public QObject
 
 	Q_PROPERTY(SpotifyTrackSearchFragment *tracks READ tracks WRITE setTracks)
 	Q_PROPERTY(SpotifyArtistSearchFragment *artists READ artists WRITE setArtists)
+	Q_PROPERTY(SpotifyAlbumSearchFragment *albums READ albums WRITE setAlbums)
 
 	public:
 		Q_INVOKABLE SpotifySearchResult();
@@ -23,9 +24,13 @@ class SpotifySearchResult : public QObject
 		SpotifyArtistSearchFragment *artists() const;
 		void setArtists(SpotifyArtistSearchFragment *artists);
 
+		SpotifyAlbumSearchFragment* albums() const;
+		void setAlbums(SpotifyAlbumSearchFragment* albums);
+
 	private:
 		SpotifyTrackSearchFragment *m_tracks;
 		SpotifyArtistSearchFragment *m_artists;
+		SpotifyAlbumSearchFragment *m_albums;
 };
 
 #endif // SPOTIFYSEARCHRESULT_H

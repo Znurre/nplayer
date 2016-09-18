@@ -41,13 +41,16 @@ class SpotifyUrlProvider : public UrlProvider<TResource, ISpotifyUrlProvider>
 
 			SpotifySearchFragment<TResult> *fragment = getFragment(result);
 
-			for (TResult *track : fragment->items())
+			if (fragment)
 			{
-				SpotifyExternalUrl *external = track->externalUrls();
-
-				if (external)
+				for (TResult *track : fragment->items())
 				{
-					return external->spotify();
+					SpotifyExternalUrl *external = track->externalUrls();
+
+					if (external)
+					{
+						return external->spotify();
+					}
 				}
 			}
 
