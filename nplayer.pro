@@ -83,13 +83,18 @@ SOURCES += main.cpp \
     providers/LastFmUrlProvider.cpp \
     requests/LastFmUrlRequest.cpp \
     entities/UrlContext.cpp \
-    providers/SpotifySearchResult.cpp \
-	providers/SpotifyTrack.cpp \
+	providers/spotify/SpotifySearchResult.cpp \
+	providers/spotify/SpotifyTrack.cpp \
     requests/SpotifyUrlRequest.cpp \
-    providers/SpotifyExternalUrl.cpp \
+	providers/spotify/SpotifyExternalUrl.cpp \
     providers/TrackSpotifyUrlProvider.cpp \
     providers/ArtistSpotifyUrlProvider.cpp \
-    providers/AlbumSpotifyUrlProvider.cpp
+    providers/AlbumSpotifyUrlProvider.cpp \
+    providers/YouTubeUrlProvider.cpp \
+    providers/youtube/YouTubeSearchResult.cpp \
+    providers/youtube/YouTubeSearchResultItem.cpp \
+    providers/youtube/YouTubeSearchResultId.cpp \
+    requests/YouTubeUrlRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -172,14 +177,19 @@ HEADERS += \
     requests/LastFmUrlRequest.h \
     entities/UrlContext.h \
     providers/SpotifyUrlProvider.h \
-    providers/SpotifySearchResult.h \
-	providers/SpotifyTrack.h \
-    providers/SpotifySearchFragment.h \
+	providers/spotify/SpotifySearchResult.h \
+	providers/spotify/SpotifyTrack.h \
+	providers/spotify/SpotifySearchFragment.h \
     requests/SpotifyUrlRequest.h \
-    providers/SpotifyExternalUrl.h \
+	providers/spotify/SpotifyExternalUrl.h \
     providers/TrackSpotifyUrlProvider.h \
     providers/ArtistSpotifyUrlProvider.h \
-    providers/AlbumSpotifyUrlProvider.h
+    providers/AlbumSpotifyUrlProvider.h \
+    providers/YouTubeUrlProvider.h \
+    providers/youtube/YouTubeSearchResult.h \
+    providers/youtube/YouTubeSearchResultItem.h \
+    providers/youtube/YouTubeSearchResultId.h \
+    requests/YouTubeUrlRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

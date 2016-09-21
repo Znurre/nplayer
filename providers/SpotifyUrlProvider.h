@@ -8,8 +8,9 @@
 #include <QNetworkRequest>
 
 #include "IUrlProvider.h"
-#include "SpotifySearchResult.h"
 #include "QStringEx.h"
+
+#include "spotify/SpotifySearchResult.h"
 
 class ISpotifyUrlProvider : public IUrlProvider
 {

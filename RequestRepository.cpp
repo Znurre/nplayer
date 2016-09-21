@@ -13,6 +13,7 @@
 #include "requests/PingRequest.h"
 #include "requests/TagsRequest.h"
 #include "requests/SpotifyUrlRequest.h"
+#include "requests/YouTubeUrlRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -29,4 +30,5 @@ RequestRepository::RequestRepository()
 	attach<PingRequest>();
 	attach<TagsRequest>();
 	attach<SpotifyUrlRequest>();
+	attach<YouTubeUrlRequest>();
 }

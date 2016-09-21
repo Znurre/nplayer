@@ -9,6 +9,7 @@
 
 #include "providers/LastFmUrlProvider.h"
 #include "providers/TrackSpotifyUrlProvider.h"
+#include "providers/YouTubeUrlProvider.h"
 
 Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_requestHandler(repository, idGenerator)
@@ -27,6 +28,7 @@ Track::Track(InformationResourceRepository &repository, IdGenerator &idGenerator
 
 	registerUrlProvider<LastFmUrlProvider>();
 	registerUrlProvider<TrackSpotifyUrlProvider>();
+	registerUrlProvider<YouTubeUrlProvider>();
 }
 
 Track::~Track()
