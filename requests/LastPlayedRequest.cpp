@@ -11,7 +11,7 @@ RequestResponse LastPlayedRequest::invoke(const QStringList &arguments, const QS
 {
 	const QString &nick = arguments.value(0, who);
 
-	Track *track = getRecentTrack(nick, context, &TrackFilter::any);
+	Track *track = getRecentTrack(nick, context, &TrackFilter::lastPlayed);
 
 	return RequestResponse("templates/LastPlayed.qml", track);
 }

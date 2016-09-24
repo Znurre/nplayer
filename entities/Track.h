@@ -116,6 +116,11 @@ struct TrackFilter
 		return track->nowPlaying();
 	}
 
+	static bool lastPlayed(Track *track)
+	{
+		return !track->nowPlaying();
+	}
+
 	static bool any(Track *track)
 	{
 		Q_UNUSED(track);
