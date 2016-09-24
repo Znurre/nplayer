@@ -5,6 +5,6 @@ Template
 {
 	Text
 	{
-		text: "User '%1' is not listening to anything currently".arg(user)
+		text: "User '%1' is not scrobbling anything currently".arg(user)
 	}
 }
