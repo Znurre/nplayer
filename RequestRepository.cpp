@@ -14,6 +14,7 @@
 #include "requests/TagsRequest.h"
 #include "requests/SpotifyUrlRequest.h"
 #include "requests/YouTubeUrlRequest.h"
+#include "requests/LastPlayedRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -31,4 +32,5 @@ RequestRepository::RequestRepository()
 	attach<TagsRequest>();
 	attach<SpotifyUrlRequest>();
 	attach<YouTubeUrlRequest>();
+	attach<LastPlayedRequest>();
 }

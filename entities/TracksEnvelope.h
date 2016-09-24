@@ -21,4 +21,6 @@ class TracksEnvelope : public QObject
 		Array<Track *> m_tracks;
 };
 
+Q_DECLARE_METATYPE(TracksEnvelope *)
+
 #endif // RECENTTRACKS_H

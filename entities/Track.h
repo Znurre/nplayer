@@ -109,4 +109,19 @@ class Track : public InformationResource<Track>
 
 Q_DECLARE_METATYPE(Array<Track *>)
 
+struct TrackFilter
+{
+	static bool nowPlaying(Track *track)
+	{
+		return track->nowPlaying();
+	}
+
+	static bool any(Track *track)
+	{
+		Q_UNUSED(track);
+
+		return true;
+	}
+};
+
 #endif // TRACK_H

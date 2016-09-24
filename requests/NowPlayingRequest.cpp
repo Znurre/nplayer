@@ -4,15 +4,8 @@
 #include "UserMapper.h"
 #include "IOutputHandler.h"
 
-#include "entities/TracksEnvelope.h"
 #include "entities/NotPlaying.h"
-
-#include "components/ITemplateComponent.h"
-
-NowPlayingRequest::NowPlayingRequest()
-{
-	qRegisterMetaType<TracksEnvelope *>();
-}
+#include "entities/Track.h"
 
 QString NowPlayingRequest::trigger() const
 {
@@ -23,7 +16,7 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 {
 	const QString &nick = arguments.value(0, who);
 
-	Track *nowPlaying = getNowPlaying(nick, context);
+	Track *nowPlaying = getRecentTrack(nick, context, &TrackFilter::nowPlaying);
 
 	if (nowPlaying)
 	{
@@ -34,32 +27,4 @@ RequestResponse NowPlayingRequest::invoke(const QStringList &arguments, const QS
 	notPlaying->setUser(nick);
 
 	return RequestResponse("templates/NotPlaying.qml", notPlaying);
-}
-
-Track *NowPlayingRequest::getNowPlaying(const QString &nick, const RequestInvocationContext &context) const
-{
-	InformationResourceRepository &repository = context.informationResourceRepository();
-	IdGenerator &idGenerator = context.idGenerator();
-	UserMapper &userMapper = context.userMapper();
-
-	const RequestHandler requestHandler(repository, idGenerator);
-	const TracksEnvelope *recentTracks = requestHandler
-		.get<TracksEnvelope>("user.getRecentTracks"
-			, as::limit = 1
-			, as::user = userMapper.map(nick)
-			, as::nick = nick
-		);
-
-	if (recentTracks)
-	{
-		for (Track *track : recentTracks->tracks())
-		{
-			if (track->nowPlaying())
-			{
-				return track;
-			}
-		}
-	}
-
-	return nullptr;
 }

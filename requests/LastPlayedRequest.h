@@ -1,12 +1,9 @@
-#ifndef NOWPLAYINGREQUEST_H
-#define NOWPLAYINGREQUEST_H
+#ifndef LASTPLAYEDREQUEST_H
+#define LASTPLAYEDREQUEST_H
 
 #include "RecentTracksRequest.h"
 
-class InformationResourceRepository;
-class IdGenerator;
-
-class NowPlayingRequest : public RecentTracksRequest
+class LastPlayedRequest : public RecentTracksRequest
 {
 	public:
 		QString trigger() const override;
@@ -14,4 +11,4 @@ class NowPlayingRequest : public RecentTracksRequest
 		RequestResponse invoke(const QStringList &arguments, const QString &who, const RequestInvocationContext &context) override;
 };
 
-#endif // NOWPLAYINGREQUEST_H
+#endif // LASTPLAYEDREQUEST_H

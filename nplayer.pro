@@ -94,7 +94,9 @@ SOURCES += main.cpp \
     providers/youtube/YouTubeSearchResult.cpp \
     providers/youtube/YouTubeSearchResultItem.cpp \
     providers/youtube/YouTubeSearchResultId.cpp \
-    requests/YouTubeUrlRequest.cpp
+    requests/YouTubeUrlRequest.cpp \
+    requests/LastPlayedRequest.cpp \
+    requests/RecentTracksRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -189,7 +191,9 @@ HEADERS += \
     providers/youtube/YouTubeSearchResult.h \
     providers/youtube/YouTubeSearchResultItem.h \
     providers/youtube/YouTubeSearchResultId.h \
-    requests/YouTubeUrlRequest.h
+    requests/YouTubeUrlRequest.h \
+    requests/LastPlayedRequest.h \
+    requests/RecentTracksRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -208,4 +212,5 @@ DISTFILES += \
     templates/Url.qml \
     templates/Artists.qml \
     templates/Pong.qml \
-    templates/Tags.qml
+    templates/Tags.qml \
+    templates/LastPlayed.qml
