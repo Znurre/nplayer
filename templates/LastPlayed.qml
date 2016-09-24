@@ -3,5 +3,6 @@ import NowPlaying 1.0
 
 Track
 {
-	title: "%1's last played track".arg(nick)
+	title: "%1 lp".arg(nick)
+	showDate: true
 }

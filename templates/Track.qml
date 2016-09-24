@@ -4,6 +4,7 @@ import NowPlaying 1.0
 Template
 {
 	property string title: "Track"
+	property bool showDate: false
 
 	id: template
 
@@ -26,6 +27,21 @@ Template
 			Text
 			{
 				text: formattedTitle()
+			}
+		}
+	}
+
+	Conditional
+	{
+		condition: template.showDate
+
+		Section
+		{
+			title: "Scrobbled"
+
+			Text
+			{
+				text: Qt.formatDateTime(date, "yyyy-MM-dd hh:mm")
 			}
 		}
 	}

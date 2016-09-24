@@ -126,6 +126,16 @@ void Track::setUrl(const QString &url)
 	m_url = url;
 }
 
+QDateTime Track::date() const
+{
+	return m_date;
+}
+
+void Track::setDate(const QDateTime &date)
+{
+	m_date = date;
+}
+
 Array<QString> Track::tags()
 {
 	return property(&Track::m_tags);

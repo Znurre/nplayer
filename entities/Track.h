@@ -30,6 +30,8 @@ class Track : public InformationResource<Track>
 	Q_PROPERTY(QString nick READ nick WRITE setNick NOTIFY nickChanged)
 	Q_PROPERTY(QString url READ url WRITE setUrl NOTIFY urlChanged)
 
+	Q_PROPERTY(QDateTime date READ date WRITE setDate NOTIFY dateChanged)
+
 	Q_PROPERTY(Array<QString> tags READ tags WRITE setTags NOTIFY tagsChanged)
 
 	Q_PROPERTY(int userPlayCount READ userPlayCount WRITE setUserPlayCount NOTIFY userPlayCountChanged)
@@ -65,6 +67,9 @@ class Track : public InformationResource<Track>
 		QString url() const override;
 		void setUrl(const QString &url);
 
+		QDateTime date() const;
+		void setDate(const QDateTime &date);
+
 		Array<QString> tags();
 		void setTags(const Array<QString> &tags);
 
@@ -91,6 +96,8 @@ class Track : public InformationResource<Track>
 		QString m_nick;
 		QString m_url;
 
+		QDateTime m_date;
+
 		Array<QString> m_tags;
 
 		int m_userPlayCount;
@@ -103,6 +110,7 @@ class Track : public InformationResource<Track>
 		void userChanged();
 		void nickChanged();
 		void urlChanged();
+		void dateChanged();
 		void tagsChanged();
 		void userPlayCountChanged();
 };
