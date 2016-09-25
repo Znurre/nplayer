@@ -52,7 +52,7 @@ class Album : public InformationResource<Album>
 		Array<Track *> tracks() const;
 		void setTracks(const Array<Track *> &tracks);
 
-		int userPlayCount() const;
+		int userPlayCount();
 		void setUserPlayCount(int userPlayCount);
 
 	private:

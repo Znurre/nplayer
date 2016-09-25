@@ -4,6 +4,7 @@
 
 #include "iterators/TagArtistIterator.h"
 #include "iterators/TagTrackIterator.h"
+#include "iterators/TagAlbumIterator.h"
 
 #include "providers/LastFmUrlProvider.h"
 
@@ -16,6 +17,7 @@ Tag::Tag(InformationResourceRepository &repository, IdGenerator &idGenerator)
 
 	registerIterator<TagArtistIterator>();
 	registerIterator<TagTrackIterator>();
+	registerIterator<TagAlbumIterator>();
 
 	registerUrlProvider<LastFmUrlProvider>();
 }

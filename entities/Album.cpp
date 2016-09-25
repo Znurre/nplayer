@@ -96,9 +96,9 @@ void Album::setTracks(const Array<Track *> &tracks)
 	m_tracks = tracks;
 }
 
-int Album::userPlayCount() const
+int Album::userPlayCount()
 {
-	return m_userPlayCount;
+	return property(&Album::m_userPlayCount);
 }
 
 void Album::setUserPlayCount(int userPlayCount)
