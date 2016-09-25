@@ -5,6 +5,7 @@
 #include "iterators/UserArtistIterator.h"
 #include "iterators/UserTrackIterator.h"
 #include "iterators/UserTagIterator.h"
+#include "iterators/UserAlbumIterator.h"
 
 UserPeriod::UserPeriod(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_repository(repository)
@@ -14,6 +15,7 @@ UserPeriod::UserPeriod(InformationResourceRepository &repository, IdGenerator &i
 
 	registerIterator<UserArtistIterator>();
 	registerIterator<UserTrackIterator>();
+	registerIterator<UserAlbumIterator>();
 }
 
 UserPeriod::~UserPeriod()

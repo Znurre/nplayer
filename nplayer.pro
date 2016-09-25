@@ -101,7 +101,8 @@ SOURCES += main.cpp \
     requests/WeekRequest.cpp \
     requests/MonthRequest.cpp \
     requests/PeriodRequest.cpp \
-    requests/YearRequest.cpp
+    requests/YearRequest.cpp \
+    iterators/UserAlbumIterator.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -204,7 +205,8 @@ HEADERS += \
     requests/WeekRequest.h \
     requests/MonthRequest.h \
     requests/PeriodRequest.h \
-    requests/YearRequest.h
+    requests/YearRequest.h \
+    iterators/UserAlbumIterator.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

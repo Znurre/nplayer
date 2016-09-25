@@ -5,6 +5,7 @@
 #include "iterators/UserArtistIterator.h"
 #include "iterators/UserTrackIterator.h"
 #include "iterators/UserTagIterator.h"
+#include "iterators/UserAlbumIterator.h"
 
 #include "providers/LastFmUrlProvider.h"
 
@@ -19,6 +20,7 @@ User::User(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	registerIterator<UserArtistIterator>();
 	registerIterator<UserTrackIterator>();
 	registerIterator<UserTagIterator>();
+	registerIterator<UserAlbumIterator>();
 
 	registerUrlProvider<LastFmUrlProvider>();
 }
