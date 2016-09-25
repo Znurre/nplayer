@@ -3,6 +3,7 @@
 #include "IdGenerator.h"
 
 #include "iterators/AlbumTrackIterator.h"
+#include "iterators/AlbumArtistIterator.h"
 
 #include "providers/LastFmUrlProvider.h"
 #include "providers/AlbumSpotifyUrlProvider.h"
@@ -16,6 +17,7 @@ Album::Album(InformationResourceRepository &repository, IdGenerator &idGenerator
 	m_repository.add(this);
 
 	registerIterator<AlbumTrackIterator>();
+	registerIterator<AlbumArtistIterator>();
 
 	registerUrlProvider<LastFmUrlProvider>();
 	registerUrlProvider<AlbumSpotifyUrlProvider>();
