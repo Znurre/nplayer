@@ -52,6 +52,7 @@ namespace as
 	const Key track = "track";
 	const Key album = "album";
 	const Key sk = "sk";
+	const Key period = "period";
 	const Key artist0 = "artist[0]";
 	const Key track0 = "track[0]";
 	const Key timestamp0 = "timestamp[0]";

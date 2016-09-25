@@ -3,11 +3,12 @@
 
 #include <QDateTime>
 
+#include "IUser.h"
 #include "IInformationResource.h"
 #include "InformationResourceRepository.h"
 #include "RequestHandler.h"
 
-class User : public InformationResource<User>
+class User : public IUser
 {
 	Q_OBJECT
 
@@ -25,6 +26,7 @@ class User : public InformationResource<User>
 
 		QString id() const override;
 		QString key() const override;
+		QString period() const override;
 
 		QString user() const;
 		void setUser(const QString &user);

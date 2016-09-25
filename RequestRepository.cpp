@@ -15,6 +15,9 @@
 #include "requests/SpotifyUrlRequest.h"
 #include "requests/YouTubeUrlRequest.h"
 #include "requests/LastPlayedRequest.h"
+#include "requests/WeekRequest.h"
+#include "requests/MonthRequest.h"
+#include "requests/YearRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -33,4 +36,7 @@ RequestRepository::RequestRepository()
 	attach<SpotifyUrlRequest>();
 	attach<YouTubeUrlRequest>();
 	attach<LastPlayedRequest>();
+	attach<WeekRequest>();
+	attach<MonthRequest>();
+	attach<YearRequest>();
 }

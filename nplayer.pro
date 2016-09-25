@@ -96,7 +96,12 @@ SOURCES += main.cpp \
     providers/youtube/YouTubeSearchResultId.cpp \
     requests/YouTubeUrlRequest.cpp \
     requests/LastPlayedRequest.cpp \
-    requests/RecentTracksRequest.cpp
+    requests/RecentTracksRequest.cpp \
+    entities/UserPeriod.cpp \
+    requests/WeekRequest.cpp \
+    requests/MonthRequest.cpp \
+    requests/PeriodRequest.cpp \
+    requests/YearRequest.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -193,7 +198,13 @@ HEADERS += \
     providers/youtube/YouTubeSearchResultId.h \
     requests/YouTubeUrlRequest.h \
     requests/LastPlayedRequest.h \
-    requests/RecentTracksRequest.h
+    requests/RecentTracksRequest.h \
+    entities/IUser.h \
+    entities/UserPeriod.h \
+    requests/WeekRequest.h \
+    requests/MonthRequest.h \
+    requests/PeriodRequest.h \
+    requests/YearRequest.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

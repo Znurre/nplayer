@@ -3,13 +3,13 @@
 
 #include "IIterator.h"
 
-class User;
+class IUser;
 class Track;
 
-class UserTrackIterator : public PagingIterator<User, Track>
+class UserTrackIterator : public PagingIterator<IUser, Track>
 {
 	public:
-		QList<Track *> fetchMore(User *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
+		QList<Track *> fetchMore(IUser *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // USERTRACKITERATOR_H

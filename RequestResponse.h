@@ -10,6 +10,7 @@ class RequestResponse
 	public:
 		RequestResponse();
 		RequestResponse(const QString &templateName, QObject *dataContext);
+		RequestResponse(QObject *dataContext);
 
 		QString templateName() const;
 		QObject *dataContext() const;

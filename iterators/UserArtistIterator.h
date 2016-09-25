@@ -5,13 +5,13 @@
 
 #include "IIterator.h"
 
-class User;
+class IUser;
 class Artist;
 
-class UserArtistIterator : public PagingIterator<User, Artist>
+class UserArtistIterator : public PagingIterator<IUser, Artist>
 {
 	public:
-		QList<Artist *> fetchMore(User *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
+		QList<Artist *> fetchMore(IUser *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator, int page) override;
 };
 
 #endif // USERARTISTITERATOR_H

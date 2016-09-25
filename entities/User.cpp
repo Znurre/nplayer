@@ -38,6 +38,11 @@ QString User::key() const
 	return m_user;
 }
 
+QString User::period() const
+{
+	return "overall";
+}
+
 QString User::user() const
 {
 	return m_user;

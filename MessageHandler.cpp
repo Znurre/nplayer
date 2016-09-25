@@ -36,24 +36,29 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 
 	if (response.isValid())
 	{
-		QQmlEngine engine;
-		QQmlComponent component(&engine, response.templateName());
+		const QString &templateName = response.templateName();
 
-		QQmlContext *context = engine.rootContext();
-		context->setContextObject(response.dataContext());
-
-		ITemplateComponent *templateComponent = (ITemplateComponent *)component.create();
-
-		if (!templateComponent)
+		if (!templateName.isEmpty())
 		{
-			qDebug() << component.errorString();
+			QQmlEngine engine;
+			QQmlComponent component(&engine, templateName);
 
-			return;
+			QQmlContext *context = engine.rootContext();
+			context->setContextObject(response.dataContext());
+
+			ITemplateComponent *templateComponent = (ITemplateComponent *)component.create();
+
+			if (!templateComponent)
+			{
+				qDebug() << component.errorString();
+
+				return;
+			}
+
+			const QString &text = templateComponent->render();
+
+			m_outputHandler.say(text);
 		}
-
-		const QString &text = templateComponent->render();
-
-		m_outputHandler.say(text);
 	}
 
 	qDebug() << trigger << arguments;

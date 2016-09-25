@@ -15,6 +15,12 @@ RequestResponse::RequestResponse(const QString &templateName, QObject *dataConte
 
 }
 
+RequestResponse::RequestResponse(QObject *dataContext)
+	: m_dataContext(dataContext)
+{
+
+}
+
 QString RequestResponse::templateName() const
 {
 	return m_templateName;
@@ -32,5 +38,5 @@ IInformationResource *RequestResponse::resource() const
 
 bool RequestResponse::isValid() const
 {
-	return !m_templateName.isEmpty();
+	return !m_templateName.isEmpty() || m_dataContext;
 }
