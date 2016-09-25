@@ -6,9 +6,8 @@
 #include "iterators/UserTrackIterator.h"
 #include "iterators/UserTagIterator.h"
 
-UserPeriod::UserPeriod(User *subject, InformationResourceRepository &repository, IdGenerator &idGenerator)
+UserPeriod::UserPeriod(InformationResourceRepository &repository, IdGenerator &idGenerator)
 	: m_repository(repository)
-	, m_subject(subject)
 	, m_id(idGenerator)
 {
 	m_repository.add(this);
@@ -29,7 +28,7 @@ QString UserPeriod::id() const
 
 QString UserPeriod::key() const
 {
-	return m_subject->key() + m_period;
+	return m_user + m_period;
 }
 
 QString UserPeriod::url() const
@@ -39,7 +38,12 @@ QString UserPeriod::url() const
 
 QString UserPeriod::user() const
 {
-	return m_subject->user();
+	return m_user;
+}
+
+void UserPeriod::setUser(const QString &user)
+{
+	m_user = user;
 }
 
 QString UserPeriod::period() const

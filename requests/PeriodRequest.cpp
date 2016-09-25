@@ -10,7 +10,6 @@ RequestResponse PeriodRequest::invoke(const QStringList &arguments, const QStrin
 {
 	Q_UNUSED(who);
 
-	const QString &periodName = period();
 	const QString &id = arguments.join(QChar::Space);
 
 	InformationResourceRepository &repository = context.informationResourceRepository();
@@ -20,8 +19,12 @@ RequestResponse PeriodRequest::invoke(const QStringList &arguments, const QStrin
 
 	if (user)
 	{
-		UserPeriod *period = new UserPeriod(user, repository, idGenerator);
-		period->setPeriod(periodName	);
+		const QString &periodName = period();
+		const QString &userName = user->user();
+
+		UserPeriod *period = new UserPeriod(repository, idGenerator);
+		period->setPeriod(periodName);
+		period->setUser(userName);
 
 		return RequestResponse(period);
 	}

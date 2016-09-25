@@ -9,13 +9,15 @@ class User;
 class UserPeriod : public IUser
 {
 	public:
-		UserPeriod(User *subject, InformationResourceRepository &repository, IdGenerator &idGenerator);
+		UserPeriod(InformationResourceRepository &repository, IdGenerator &idGenerator);
 		~UserPeriod();
 
 		QString id() const override;
 		QString key() const override;
 		QString url() const override;
+
 		QString user() const override;
+		void setUser(const QString &user);
 
 		QString period() const override;
 		void setPeriod(const QString &period);
@@ -23,9 +25,8 @@ class UserPeriod : public IUser
 	private:
 		InformationResourceRepository &m_repository;
 
-		User *m_subject;
-
 		QString m_id;
+		QString m_user;
 		QString m_period;
 };
 
