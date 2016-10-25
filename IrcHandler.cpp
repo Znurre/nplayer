@@ -11,9 +11,11 @@ IrcHandler::IrcHandler()
 	setNickName("MrRoboto");
 	setRealName("MrRoboto");
 	setServers(QStringList() << "irc.quakenet.org");
+	setReconnectDelay(10);
 
 	connect(this, &IrcHandler::connected, this, &IrcHandler::onConnected);
 	connect(this, &IrcHandler::noticeMessageReceived, this, &IrcHandler::onNoticeMessageReceived);
+	connect(this, &IrcHandler::errorMessageReceived, this, &IrcHandler::onErrorMessageReceived);
 	connect(this, &IrcHandler::privateMessageReceived, this, &IrcHandler::onPrivateMessageReceived);
 	connect(this, &IrcHandler::joinMessageReceived, this, &IrcHandler::onJoinMessageReceived);
 	connect(this, &IrcHandler::partMessageReceived, this, &IrcHandler::onPartMessageReceived);
@@ -28,7 +30,12 @@ void IrcHandler::onConnected()
 
 void IrcHandler::onNoticeMessageReceived(IrcNoticeMessage *message)
 {
-	qDebug() << message->content();
+	qDebug() << "NOTICE" << message->content();
+}
+
+void IrcHandler::onErrorMessageReceived(IrcErrorMessage *message)
+{
+	qDebug() << "ERROR" << message->error();
 }
 
 void IrcHandler::onPrivateMessageReceived(IrcPrivateMessage *message)

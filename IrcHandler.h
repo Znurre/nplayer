@@ -16,6 +16,7 @@ class IrcHandler : public IrcConnection
 	private:
 		void onConnected();
 		void onNoticeMessageReceived(IrcNoticeMessage* message);
+		void onErrorMessageReceived(IrcErrorMessage* message);
 		void onPrivateMessageReceived(IrcPrivateMessage *message);
 		void onJoinMessageReceived(IrcJoinMessage *message);
 		void onNamesMessageReceived(IrcNamesMessage *message);
