@@ -1,4 +1,4 @@
-QT += quick
+QT += quick xml
 
 CONFIG += c++14 communi
 COMMUNI += core
@@ -104,7 +104,10 @@ SOURCES += main.cpp \
     requests/YearRequest.cpp \
     iterators/UserAlbumIterator.cpp \
     iterators/TagAlbumIterator.cpp \
-    iterators/AlbumArtistIterator.cpp
+    iterators/AlbumArtistIterator.cpp \
+    requests/StatusRequest.cpp \
+    LastFmStatusParser.cpp \
+    entities/StatusResponse.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -210,7 +213,10 @@ HEADERS += \
     requests/YearRequest.h \
     iterators/UserAlbumIterator.h \
     iterators/TagAlbumIterator.h \
-    iterators/AlbumArtistIterator.h
+    iterators/AlbumArtistIterator.h \
+    requests/StatusRequest.h \
+    LastFmStatusParser.h \
+    entities/StatusResponse.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -230,4 +236,5 @@ DISTFILES += \
     templates/Artists.qml \
     templates/Pong.qml \
     templates/Tags.qml \
-    templates/LastPlayed.qml
+    templates/LastPlayed.qml \
+    templates/Status.qml

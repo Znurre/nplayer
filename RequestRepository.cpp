@@ -18,6 +18,7 @@
 #include "requests/WeekRequest.h"
 #include "requests/MonthRequest.h"
 #include "requests/YearRequest.h"
+#include "requests/StatusRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -39,4 +40,5 @@ RequestRepository::RequestRepository()
 	attach<WeekRequest>();
 	attach<MonthRequest>();
 	attach<YearRequest>();
+	attach<StatusRequest>();
 }
