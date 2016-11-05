@@ -15,7 +15,7 @@ class Text : public ITemplateComponent
 		Text();
 
 		QString text() const;
-		void setText(const QString &text);
+		void setText(QString text);
 
 		int maxLength() const;
 		void setMaxLength(int maxLength);

@@ -12,9 +12,9 @@ QString Text::text() const
 	return m_text;
 }
 
-void Text::setText(const QString &text)
+void Text::setText(QString text)
 {
-	m_text = text;
+	m_text = text.replace(QChar::LineFeed, QChar::Space);
 }
 
 int Text::maxLength() const
