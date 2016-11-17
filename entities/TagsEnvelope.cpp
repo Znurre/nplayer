@@ -1,10 +1,5 @@
 #include "TagsEnvelope.h"
 
-TagsEnvelope::TagsEnvelope()
-{
-
-}
-
 Array<Tag *> TagsEnvelope::tags() const
 {
 	return m_tags;
@@ -13,4 +8,9 @@ Array<Tag *> TagsEnvelope::tags() const
 void TagsEnvelope::setTags(const Array<Tag *> &tags)
 {
 	m_tags = tags;
+}
+
+bool TagsEnvelope::isValid() const
+{
+	return !m_tags.isEmpty();
 }

@@ -1,8 +1,8 @@
 #include "TracksEnvelope.h"
 
-TracksEnvelope::TracksEnvelope()
+Array<Track *> TracksEnvelope::tracks() const
 {
-
+	return m_tracks;
 }
 
 void TracksEnvelope::setTracks(const Array<Track *> &tracks)
@@ -10,7 +10,7 @@ void TracksEnvelope::setTracks(const Array<Track *> &tracks)
 	m_tracks = tracks;
 }
 
-Array<Track *> TracksEnvelope::tracks() const
+bool TracksEnvelope::isValid() const
 {
-	return m_tracks;
+	return !m_tracks.isEmpty();
 }

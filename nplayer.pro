@@ -107,7 +107,8 @@ SOURCES += main.cpp \
     iterators/AlbumArtistIterator.cpp \
     requests/StatusRequest.cpp \
     LastFmStatusParser.cpp \
-    entities/StatusResponse.cpp
+    entities/StatusResponse.cpp \
+    entities/NotFound.cpp
 
 HEADERS += \
     IrcHandler.h \
@@ -216,7 +217,9 @@ HEADERS += \
     iterators/AlbumArtistIterator.h \
     requests/StatusRequest.h \
     LastFmStatusParser.h \
-    entities/StatusResponse.h
+    entities/StatusResponse.h \
+    IVerifiable.h \
+    entities/NotFound.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -237,4 +240,5 @@ DISTFILES += \
     templates/Pong.qml \
     templates/Tags.qml \
     templates/LastPlayed.qml \
-    templates/Status.qml
+    templates/Status.qml \
+    templates/NotFound.qml

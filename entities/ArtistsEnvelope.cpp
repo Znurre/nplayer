@@ -1,10 +1,5 @@
 #include "ArtistsEnvelope.h"
 
-ArtistsEnvelope::ArtistsEnvelope()
-{
-
-}
-
 Array<Artist *> ArtistsEnvelope::artists() const
 {
 	return m_artists;
@@ -13,4 +8,9 @@ Array<Artist *> ArtistsEnvelope::artists() const
 void ArtistsEnvelope::setArtists(const Array<Artist *> &artists)
 {
 	m_artists = artists;
+}
+
+bool ArtistsEnvelope::isValid() const
+{
+	return !m_artists.isEmpty();
 }

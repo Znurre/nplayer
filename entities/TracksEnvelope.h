@@ -5,17 +5,21 @@
 
 #include "Track.h"
 
-class TracksEnvelope : public QObject
+class TracksEnvelope
+	: public QObject
+	, public IVerifiable
 {
 	Q_OBJECT
 
 	Q_PROPERTY(Array<Track *> tracks READ tracks WRITE setTracks)
 
 	public:
-		Q_INVOKABLE TracksEnvelope();
+		Q_INVOKABLE TracksEnvelope() = default;
 
 		Array<Track *> tracks() const;
 		void setTracks(const Array<Track *> &tracks);
+
+		bool isValid() const override;
 
 	private:
 		Array<Track *> m_tracks;

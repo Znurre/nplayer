@@ -5,6 +5,7 @@
 #include "InformationResourceRepository.h"
 
 #include "entities/Artist.h"
+#include "entities/NotFound.h"
 
 QString ArtistRequest::trigger() const
 {
@@ -50,6 +51,11 @@ RequestResponse ArtistRequest::invoke(const QStringList &arguments, const QStrin
 		{
 			return RequestResponse("templates/Artist.qml", artist);
 		}
+
+		NotFound *notFound = new NotFound();
+		notFound->setTypeName("Artist");
+
+		return RequestResponse("templates/NotFound.qml", notFound);
 	}
 
 	return RequestResponse();

@@ -1,10 +1,5 @@
 #include "AlbumsEnvelope.h"
 
-AlbumsEnvelope::AlbumsEnvelope()
-{
-
-}
-
 Array<Album *> AlbumsEnvelope::albums() const
 {
 	return m_albums;
@@ -13,4 +8,9 @@ Array<Album *> AlbumsEnvelope::albums() const
 void AlbumsEnvelope::setAlbums(const Array<Album *> &albums)
 {
 	m_albums = albums;
+}
+
+bool AlbumsEnvelope::isValid() const
+{
+	return !m_albums.isEmpty();
 }

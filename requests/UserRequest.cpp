@@ -5,6 +5,7 @@
 #include "InformationResourceRepository.h"
 
 #include "entities/User.h"
+#include "entities/NotFound.h"
 
 QString UserRequest::trigger() const
 {
@@ -29,5 +30,8 @@ RequestResponse UserRequest::invoke(const QStringList &arguments, const QString 
 		return RequestResponse("templates/User.qml", user);
 	}
 
-	return RequestResponse();
+	NotFound *notFound = new NotFound();
+	notFound->setTypeName("User");
+
+	return RequestResponse("templates/NotFound.qml", notFound);
 }

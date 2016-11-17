@@ -6,17 +6,21 @@
 
 #include "Album.h"
 
-class AlbumsEnvelope : public QObject
+class AlbumsEnvelope
+	: public QObject
+	, public IVerifiable
 {
 	Q_OBJECT
 
 	Q_PROPERTY(Array<Album *> albums READ albums WRITE setAlbums NOTIFY albumsChanged)
 
 	public:
-		Q_INVOKABLE AlbumsEnvelope();
+		Q_INVOKABLE AlbumsEnvelope() = default;
 
 		Array<Album *> albums() const;
 		void setAlbums(const Array<Album *> &albums);
+
+		bool isValid() const override;
 
 	private:
 		Array<Album *> m_albums;

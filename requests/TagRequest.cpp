@@ -4,6 +4,7 @@
 #include "RequestResponse.h"
 
 #include "entities/Tag.h"
+#include "entities/NotFound.h"
 
 QString TagRequest::trigger() const
 {
@@ -50,6 +51,11 @@ RequestResponse TagRequest::invoke(const QStringList &arguments, const QString &
 		{
 			return RequestResponse("templates/Tag.qml", tag);
 		}
+
+		NotFound *notFound = new NotFound();
+		notFound->setTypeName("Tag");
+
+		return RequestResponse("templates/NotFound.qml", notFound);
 	}
 
 	return RequestResponse();

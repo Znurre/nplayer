@@ -4,6 +4,7 @@
 #include "UserMapper.h"
 
 #include "entities/Track.h"
+#include "entities/NotFound.h"
 
 TrackRequest::TrackRequest()
 	: m_regex("(?'artist'.+) \\- (?'title'.+)")
@@ -63,6 +64,11 @@ RequestResponse TrackRequest::invoke(const QStringList &arguments, const QString
 			{
 				return RequestResponse("templates/Track.qml", track);
 			}
+
+			NotFound *notFound = new NotFound();
+			notFound->setTypeName("Track");
+
+			return RequestResponse("templates/NotFound.qml", notFound);
 		}
 	}
 

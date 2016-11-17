@@ -11,6 +11,7 @@
 #include "ObjectFactory.h"
 #include "SignatureBuilder.h"
 #include "UrlBuilder.h"
+#include "IVerifiable.h"
 
 const QByteArray APIKEY = "086633358dc877dfd9c47a2812b06bc4";
 const QByteArray SECRET = "02194139392e43fb7d89753185caeeb5";
@@ -27,7 +28,10 @@ class RequestHandler : public QObject
 
 			if (get(target, method, arguments...))
 			{
-				return target;
+				if (target->isValid())
+				{
+					return target;
+				}
 			}
 
 			return nullptr;

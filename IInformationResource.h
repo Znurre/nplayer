@@ -5,6 +5,7 @@
 #include <QString>
 
 #include "IIterator.h"
+#include "IVerifiable.h"
 
 template<class TResource>
 class IteratorResolverBase;
@@ -33,7 +34,7 @@ class IIteratorResolver
 		}
 };
 
-class IInformationResource : public QObject
+class IInformationResource : public QObject, public IVerifiable
 {
 	Q_OBJECT
 
@@ -74,6 +75,11 @@ class IInformationResource : public QObject
 			}
 
 			return nullptr;
+		}
+
+		bool isValid() const override
+		{
+			return !key().isEmpty();
 		}
 
 	protected:
