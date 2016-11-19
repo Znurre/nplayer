@@ -6,6 +6,7 @@
 
 #include "IIterator.h"
 #include "IVerifiable.h"
+#include "IteratorKey.h"
 
 template<class TResource>
 class IteratorResolverBase;
@@ -82,6 +83,11 @@ class IInformationResource : public QObject, public IVerifiable
 			return !key().isEmpty();
 		}
 
+		operator IteratorKey() const
+		{
+			return key();
+		}
+
 	protected:
 		QList<IIteratorResolver *> m_iterators;
 		QList<IUrlProvider *> m_urlProviders;
@@ -100,24 +106,27 @@ class IteratorResolver : public IteratorResolverBase<typename TIterator::TResour
 	public:
 		IIterator<typename TIterator::TResource> *resolve(IInformationResource *resource) override
 		{
-			const QString &key = resource->key();
-			
-			return &s_iterators[key];
+			auto &iterator = s_iterators[*resource];
+
+			return iterator.use();
 		}
 
 		void unregister(IInformationResource *resource) override
 		{
-			const QString &key = resource->key();
+//			auto &iterator = s_iterators[*resource];
 
-			s_iterators.remove(key);
+//			if (iterator.release())
+//			{
+				s_iterators.remove(*resource);
+//			}
 		}
 
 	private:
-		static QHash<QString, TIterator> s_iterators;
+		static QHash<IteratorKey, TIterator> s_iterators;
 };
 
 template<class TInstance, class TIterator>
-QHash<QString, TIterator> IteratorResolver<TInstance, TIterator>::s_iterators;
+QHash<IteratorKey, TIterator> IteratorResolver<TInstance, TIterator>::s_iterators;
 
 template<class T>
 class InformationResource : public IInformationResource

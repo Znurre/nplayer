@@ -35,6 +35,8 @@ class RequestRepository
 			return nullptr;
 		}
 
+		QList<IRequest *> requests() const;
+
 	private:
 		QSet<IRequest *> m_requests;
 };

@@ -33,6 +33,7 @@ class ObjectFactory : public DefaultObjectFactory
 {
 	public:
 		ObjectFactory(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator);
+		~ObjectFactory();
 
 		QObject *create(const QMetaObject *metaObject) const override;
 

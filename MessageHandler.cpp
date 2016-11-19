@@ -30,7 +30,7 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 		.value(0)
 		.toLower();
 
-	const RequestInvocationContext context(m_outputHandler, m_informationResourceRepository, m_idGenerator, m_userMapper);
+	const RequestInvocationContext context(m_outputHandler, m_informationResourceRepository, m_idGenerator, m_userMapper, m_requestRepository);
 	const TriggerWalker walker(m_requestRepository, context);
 	const RequestResponse &response = walker.walk(trigger, who, arguments);
 

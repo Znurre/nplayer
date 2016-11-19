@@ -38,7 +38,6 @@ SOURCES += main.cpp \
     IdGenerator.cpp \
     RequestResponse.cpp \
     entities/NotPlaying.cpp \
-    requests/HelloWorldRequest.cpp \
     requests/NowPlayingRequest.cpp \
     requests/AlbumRequest.cpp \
     RequestRepository.cpp \
@@ -108,12 +107,14 @@ SOURCES += main.cpp \
     requests/StatusRequest.cpp \
     LastFmStatusParser.cpp \
     entities/StatusResponse.cpp \
-    entities/NotFound.cpp
+    entities/NotFound.cpp \
+    IteratorKey.cpp \
+    requests/HelpRequest.cpp \
+    entities/Triggers.cpp
 
 HEADERS += \
     IrcHandler.h \
     MessageHandler.h \
-    QMutableListIteratorEx.h \
     OutputHandler.h \
     Channel.h \
     IRequest.h \
@@ -144,7 +145,6 @@ HEADERS += \
     IdGenerator.h \
     RequestResponse.h \
     entities/NotPlaying.h \
-    requests/HelloWorldRequest.h \
     requests/NowPlayingRequest.h \
     requests/AlbumRequest.h \
     TriggerWalker.h \
@@ -219,7 +219,10 @@ HEADERS += \
     LastFmStatusParser.h \
     entities/StatusResponse.h \
     IVerifiable.h \
-    entities/NotFound.h
+    entities/NotFound.h \
+    IteratorKey.h \
+    requests/HelpRequest.h \
+    entities/Triggers.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \
@@ -241,4 +244,5 @@ DISTFILES += \
     templates/Tags.qml \
     templates/LastPlayed.qml \
     templates/Status.qml \
-    templates/NotFound.qml
+    templates/NotFound.qml \
+    templates/Triggers.qml

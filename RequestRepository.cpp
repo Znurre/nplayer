@@ -19,6 +19,7 @@
 #include "requests/MonthRequest.h"
 #include "requests/YearRequest.h"
 #include "requests/StatusRequest.h"
+#include "requests/HelpRequest.h"
 
 RequestRepository::RequestRepository()
 {
@@ -41,4 +42,10 @@ RequestRepository::RequestRepository()
 	attach<MonthRequest>();
 	attach<YearRequest>();
 	attach<StatusRequest>();
+	attach<HelpRequest>();
+}
+
+QList<IRequest *> RequestRepository::requests() const
+{
+	return m_requests.toList();
 }

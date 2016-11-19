@@ -47,8 +47,6 @@ class TrackId : public IResourceId
 class InformationResourceRepository
 {
 	public:
-		InformationResourceRepository();
-
 		void add(IInformationResource *resource);
 		void remove(IInformationResource *resource);
 

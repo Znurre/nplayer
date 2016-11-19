@@ -14,7 +14,28 @@ class IIterator
 	public:
 		typedef T TResource;
 
+		IIterator()
+			: m_users(0)
+		{
+
+		}
+
 		virtual T *next(IInformationResource *resource, InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;
+
+		IIterator<T> *use()
+		{
+			m_users++;
+
+			return this;
+		}
+
+		bool release()
+		{
+			return (--m_users) <= 0;
+		}
+
+	private:
+		int m_users;
 };
 
 template<class TResource, class T>

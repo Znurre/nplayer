@@ -17,7 +17,7 @@ class TriggerWalker
 		RequestResponse walk(const QString &string, const QString &who, const QStringList &arguments) const;
 
 	private:
-		RequestResponse walk(const RequestResponse &response, const QString &string, const QString &who, const QStringList &arguments) const;
+		RequestResponse walk(const RequestResponse &candidate, const QString &string, const QString &who, const QStringList &arguments) const;
 
 		const RequestRepository &m_requestRepository;
 		const RequestInvocationContext &m_requestInvocationContext;
