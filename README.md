@@ -162,9 +162,9 @@ The album name can only be specified as an id:
 ----------
 
 
-**.year** id --- **User**
-**.week** id --- **User**
-**.month** id --- **User**
+**.year** id --- **User**  
+**.week** id --- **User**  
+**.month** id --- **User**  
 
 These triggers are very special, in that they take an id pointing to a user and returns a new user object limited by the specified time period.
 This can be used for filtering the output for other triggers that works on user objects, such as **.album**, **.artist**, **.tag** and **.track**.
