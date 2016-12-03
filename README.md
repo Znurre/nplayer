@@ -173,9 +173,9 @@ This can be used for filtering the output for other triggers that works on user 
 ----------
 
 
-**.yt** id
-**.fm** id
-**.spot** id
+**.yt** id  
+**.fm** id  
+**.spot** id  
 
 These triggers returns links to YouTube, last.fm and Spotify respectively.
 Not all types of objects are supported by all URL providers, so please refer to the table below:
