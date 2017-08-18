@@ -208,7 +208,7 @@ Using this **id** we can refer to the trigger documentation above, and actually 
 Let's say we want more detailed information about this artist.  
 We can see in the documentation that **.artist** supports working on **Track** objects.
 
-This means that we can simply invoke **.artist** with our id as an argument, in this case we would simply type **.np 08wz** which would give us an output similar to the following:
+This means that we can simply invoke **.artist** with our id as an argument, in this case we would simply type **.artist 08wz** which would give us an output similar to the following:
 
 > **Artist:** Uplift & Euphony | **Tags:** uk Hardcore, uk Hardcore | **Listeners:** 168 | **Id:** 7kkr
 
