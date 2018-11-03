@@ -25,7 +25,7 @@ ObjectFactory::~ObjectFactory()
 	qDeleteAll(m_factories);
 }
 
-QObject *ObjectFactory::create(const QMetaObject *metaObject) const
+void *ObjectFactory::create(const QMetaObject *metaObject) const
 {
 	for (IInformationResourceFactory *factory : m_factories)
 	{

@@ -1,25 +1,23 @@
 #ifndef MESSAGEHANDLER_H
 #define MESSAGEHANDLER_H
 
-#include <IrcMessage>
-
 #include "InformationResourceRepository.h"
 #include "IdGenerator.h"
 #include "UserMapper.h"
 
-class OutputHandler;
+class IOutputHandler;
 class RequestRepository;
 class IPluginLoader;
 
 class MessageHandler
 {
 	public:
-		MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository);
+		MessageHandler(IOutputHandler &outputHandler, RequestRepository &requestRepository);
 
-		void handle(IrcPrivateMessage *message);
+		void handle(const QString &who, const QString &content);
 
 	private:
-		OutputHandler &m_outputHandler;
+		IOutputHandler &m_outputHandler;
 		RequestRepository &m_requestRepository;
 
 		InformationResourceRepository m_informationResourceRepository;

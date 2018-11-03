@@ -5,24 +5,20 @@
 #include "MessageHandler.h"
 #include "RequestInvocationContext.h"
 #include "RequestRepository.h"
-#include "OutputHandler.h"
+#include "IOutputHandler.h"
 #include "TriggerWalker.h"
 
 #include "components/ITemplateComponent.h"
 
-MessageHandler::MessageHandler(OutputHandler &outputHandler, RequestRepository &requestRepository)
+MessageHandler::MessageHandler(IOutputHandler &outputHandler, RequestRepository &requestRepository)
 	: m_outputHandler(outputHandler)
 	, m_requestRepository(requestRepository)
 {
 
 }
 
-void MessageHandler::handle(IrcPrivateMessage *message)
+void MessageHandler::handle(const QString &who, const QString &content)
 {
-	const QString &who = message->nick();
-	const QString &content = message->content();
-	const QString &prefix = message->prefix();
-
 	const QStringList &split = content.split(QChar::Space);
 	const QStringList &arguments = split.mid(1);
 
@@ -60,8 +56,4 @@ void MessageHandler::handle(IrcPrivateMessage *message)
 			m_outputHandler.say(text);
 		}
 	}
-
-	qDebug() << trigger << arguments;
-
-	Q_UNUSED(prefix);
 }

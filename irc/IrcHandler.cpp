@@ -3,7 +3,7 @@
 #include "IrcHandler.h"
 
 IrcHandler::IrcHandler()
-	: m_channel("#np")
+	: m_channel("#swr")
 	, m_outputHandler(*this, m_channel)
 	, m_messageHandler(m_outputHandler, m_requestRepository)
 {
@@ -40,7 +40,10 @@ void IrcHandler::onErrorMessageReceived(IrcErrorMessage *message)
 
 void IrcHandler::onPrivateMessageReceived(IrcPrivateMessage *message)
 {
-	m_messageHandler.handle(message);
+	const QString &who = message->nick();
+	const QString &content = message->content();
+
+	m_messageHandler.handle(who, content);
 }
 
 void IrcHandler::onJoinMessageReceived(IrcJoinMessage *message)
