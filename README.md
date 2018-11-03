@@ -1,4 +1,4 @@
-##Introduction ##
+## Introduction ##
 nplayer is an advanced last.fm bot developed for use in #np on quakenet (IRC) and #np:matrix.znurre.com (Matrix).
 
 ## Features ##
