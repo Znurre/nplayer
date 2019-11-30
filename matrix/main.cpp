@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 	qmlRegisterType<Container>("NowPlaying", 1, 0, "Container");
 
 	MatrixHandler matrixHandler;
-	matrixHandler.setHomeserver(QUrl("http://matrix.znurre.com"));
+	matrixHandler.setHomeserver(QUrl("https://matrix.znurre.com"));
 	matrixHandler.connectToServer(argv[1], argv[2], argv[3]);
 
 	return application.exec();
