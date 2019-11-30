@@ -10,7 +10,7 @@ COMMUNI += core
 TEMPLATE = app
 TARGET = nplayer-irc
 
-INCLUDEPATH += . ../lib
+INCLUDEPATH += . ../lib ../lib/components
 DEPENDPATH += . ../lib
 
 # The following define makes your compiler warn you if you use any

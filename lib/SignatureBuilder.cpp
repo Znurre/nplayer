@@ -19,7 +19,7 @@ void SignatureBuilder::setParameters(const QList<as::KeyValue> &values)
 QString SignatureBuilder::signature() const
 {
 	const QByteArray &joined = m_parameters
-		.join(QString::null)
+		.join(QString())
 		.toUtf8();
 
 	const QByteArray &hash = QCryptographicHash::hash(joined + m_secret, QCryptographicHash::Md5);

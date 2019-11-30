@@ -50,7 +50,7 @@ class RequestHandler : public QObject
 				as::method = method
 			};
 
-			qSort(list);
+			std::sort(list.begin(), list.end());
 
 			UrlBuilder urlBuilder("http://ws.avoidpointer.com/");
 			urlBuilder.setParameters(list);
