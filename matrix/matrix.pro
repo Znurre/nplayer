@@ -10,7 +10,7 @@ COMMUNI += core
 TEMPLATE = app
 TARGET = nplayer-matrix
 
-INCLUDEPATH += . ../lib
+INCLUDEPATH += . ../lib ../lib/components
 DEPENDPATH += . ../lib
 
 # The following define makes your compiler warn you if you use any
@@ -44,7 +44,6 @@ HEADERS += \
     OutputHandler.h \
     components/Template.h \
     components/Section.h \
-    components/ITemplateComponent.h \
     components/Text.h \
     components/StringModel.h \
     components/List.h \

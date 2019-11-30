@@ -191,7 +191,8 @@ HEADERS += \
     entities/NotFound.h \
     IteratorKey.h \
     requests/HelpRequest.h \
-    entities/Triggers.h
+    entities/Triggers.h \
+    components/ITemplateComponent.h
 
 OTHER_FILES += \
     templates/NowPlaying.qml \

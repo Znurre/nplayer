@@ -29,7 +29,6 @@ HEADERS += IrcHandler.h \
     OutputHandler.h \
     components/Template.h \
     components/Section.h \
-    components/ITemplateComponent.h \
     components/Text.h \
     components/StringModel.h \
     components/List.h \
