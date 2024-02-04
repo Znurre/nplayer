@@ -45,5 +45,5 @@ RequestRepository::RequestRepository()
 
 QList<IRequest *> RequestRepository::requests() const
 {
-	return m_requests.toList();
+	return m_requests.values();
 }

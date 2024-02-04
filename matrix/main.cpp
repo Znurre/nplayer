@@ -19,13 +19,6 @@ int main(int argc, char **argv)
 {
 	QCoreApplication application(argc, argv);
 
-	if (argc < 4)
-	{
-		qDebug() << "Usage: nplayer-matrix <user> <password> <device_name>";
-
-		return -1;
-	}
-
 	qmlRegisterSingletonType<Utility>("NowPlaying", 1, 0, "Utility", Utility::instance);
 
 	qmlRegisterType<Template>("NowPlaying", 1, 0, "Template");
@@ -40,8 +33,8 @@ int main(int argc, char **argv)
 	qmlRegisterType<Container>("NowPlaying", 1, 0, "Container");
 
 	MatrixHandler matrixHandler;
-	matrixHandler.setHomeserver(QUrl("https://matrix.znurre.com"));
-	matrixHandler.connectToServer(argv[1], argv[2], argv[3]);
+	matrixHandler.setHomeserver(QUrl(qEnvironmentVariable("HOMESERVER")));
+	matrixHandler.loginWithPassword(qEnvironmentVariable("USERNAME"), qEnvironmentVariable("PASSWORD"), qEnvironmentVariable("DEVICE_NAME"));
 
 	return application.exec();
 }

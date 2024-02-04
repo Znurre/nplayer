@@ -1,49 +1,75 @@
-#include <user.h>
+#include <Quotient/user.h>
 
 #include "MatrixHandler.h"
 
 MatrixHandler::MatrixHandler()
-	: m_channel("#np:matrix.znurre.com")
-	, m_outputHandler(*this, m_channel)
-	, m_messageHandler(m_outputHandler, m_requestRepository)
 {
-	connect(this, &Connection::loginError, this, &MatrixHandler::onLoginError);
-	connect(this, &Connection::networkError, this, &MatrixHandler::onNetworkError);
-	connect(this, &Connection::connected, this, &MatrixHandler::onConnected);
-	connect(this, &Connection::loadedRoomState, this, &MatrixHandler::onLoadedRoomState);
-	connect(this, &Connection::syncDone, this, &MatrixHandler::onSyncDone);
-	connect(this, &Connection::syncError, this, &MatrixHandler::onSyncError);
+	connect(&m_connection, &Quotient::Connection::loginError, this, &MatrixHandler::onLoginError);
+	connect(&m_connection, &Quotient::Connection::networkError, this, &MatrixHandler::onNetworkError);
+	connect(&m_connection, &Quotient::Connection::connected, this, &MatrixHandler::onConnected);
+	connect(&m_connection, &Quotient::Connection::loadedRoomState, this, &MatrixHandler::onLoadedRoomState);
+	connect(&m_connection, &Quotient::Connection::syncDone, this, &MatrixHandler::onSyncDone);
+	connect(&m_connection, &Quotient::Connection::syncError, this, &MatrixHandler::onSyncError);
+
+	for (auto channel : qEnvironmentVariable("CHANNELS").split(";"))
+	{
+		qDebug() << "DEBUG:" << "joining room" << channel;
+
+		m_channels.emplace_back(channel, *this, m_requestRepository);
+	}
+}
+
+void MatrixHandler::setHomeserver(const QUrl &homeserver)
+{
+	m_connection.setHomeserver(homeserver);
+}
+
+void MatrixHandler::loginWithPassword(const QString &user, const QString &password, const QString &deviceName)
+{
+	m_connection.loginWithPassword(user, password, deviceName);
 }
 
 void MatrixHandler::onConnected()
 {
 	qDebug() << "NOTICE" << "Connected";
 
-	sync();
+	m_connection.sync();
 
-	joinRoom(m_channel);
+	for (auto& channel : m_channels)
+	{
+		m_connection.joinRoom(channel.subject);
+	}
 }
 
-void MatrixHandler::onLoadedRoomState(Room *room)
+void MatrixHandler::onLoadedRoomState(Quotient::Room *room)
 {
-	Q_UNUSED(room);
+	if (auto channel = channel_for(room->canonicalAlias()))
+	{
+		qDebug() << "DEBUG:" << "joined room" << room->canonicalAlias();
 
-	connect(room, &Room::aboutToAddNewMessages, this, &MatrixHandler::onAboutToAddNewMessages);
+		channel->outputHandler.setRoom(room);
 
-	m_outputHandler.setRoom(room);
+		connect(room, &Quotient::Room::aboutToAddNewMessages, this, [channel, room, this](Quotient::RoomEventsRange events) {
+			onAboutToAddNewMessages(events, channel, room);
+		});
+	}
+	else
+	{
+		qDebug() << "ERROR" << "no channel for room id" << room->canonicalAlias();
+	}
 }
 
 void MatrixHandler::onSyncDone()
 {
-	sync(10000);
+	m_connection.sync(10000);
 }
 
-void MatrixHandler::onLoginError(QString message, QByteArray details)
+void MatrixHandler::onLoginError(QString message, QString details)
 {
 	qDebug() << "ERROR" << message << details;
 }
 
-void MatrixHandler::onNetworkError(QString message, QByteArray details, int retriesTaken, int nextRetryInMilliseconds)
+void MatrixHandler::onNetworkError(QString message, QString details, int retriesTaken, int nextRetryInMilliseconds)
 {
 	Q_UNUSED(retriesTaken);
 	Q_UNUSED(nextRetryInMilliseconds);
@@ -51,24 +77,24 @@ void MatrixHandler::onNetworkError(QString message, QByteArray details, int retr
 	qDebug() << "ERROR" << message << details;
 }
 
-void MatrixHandler::onSyncError(QString message, QByteArray details)
+void MatrixHandler::onSyncError(QString message, QString details)
 {
 	qDebug() << "ERROR" << message << details;
 }
 
-void MatrixHandler::onAboutToAddNewMessages(RoomEventsRange events)
+void MatrixHandler::onAboutToAddNewMessages(Quotient::RoomEventsRange events, channel *channel, Quotient::Room* room)
 {
 	for (auto &event : events)
 	{
-		RoomMessageEvent *message = dynamic_cast<RoomMessageEvent *>(event.get());
+		auto message = dynamic_cast<Quotient::RoomMessageEvent *>(event.get());
 
 		if (message)
 		{
-			const QString &senderId = message->senderId();
-			const QString &content = message->plainBody();
-			const QString &who = user(senderId)->name();
+			auto senderId = message->senderId();
+			auto content = message->plainBody();
+			auto who = m_connection.user(senderId)->name(room);
 
-			m_messageHandler.handle(who, content);
+			channel->messageHandler.handle(who, content);
 		}
 	}
 }

@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS = lib irc matrix
+SUBDIRS = lib matrix

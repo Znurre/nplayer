@@ -10,7 +10,7 @@ OutputHandler::OutputHandler(MatrixHandler &matrixHandler, Channel &channel)
 
 void OutputHandler::say(const QString &message) const
 {
-	m_room->postHtmlMessage(message, message, MessageEventType::Text);
+	m_room->postHtmlMessage(message, message, Quotient::MessageEventType::Text);
 }
 
 void OutputHandler::act(const QString &action) const
@@ -30,7 +30,7 @@ void OutputHandler::message(const QString &target, const QString &message) const
 	Q_UNUSED(message);
 }
 
-void OutputHandler::setRoom(Room *room)
+void OutputHandler::setRoom(Quotient::Room *room)
 {
 	m_room = room;
 }

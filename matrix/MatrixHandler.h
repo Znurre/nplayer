@@ -1,33 +1,64 @@
 #ifndef MATRIXHANDLER_H
 #define MATRIXHANDLER_H
 
-#include <connection.h>
+#include <Quotient/connection.h>
 
 #include "OutputHandler.h"
 #include "RequestRepository.h"
 #include "MessageHandler.h"
 #include "Channel.h"
 
-using namespace QMatrixClient;
+class MatrixHandler;
 
-class MatrixHandler : public Connection
+struct channel
+{
+	channel(const QString& name, MatrixHandler& matrixHandler, RequestRepository& requestRepository)
+		: subject(name)
+		, outputHandler(matrixHandler, subject)
+		, messageHandler(outputHandler, requestRepository)
+	{
+	}
+
+	Channel subject;
+	OutputHandler outputHandler;
+	MessageHandler messageHandler;
+};
+
+class MatrixHandler : public QObject
 {
 	public:
 		MatrixHandler();
 
+		void setHomeserver(const QUrl &homeserver);
+		void loginWithPassword(const QString& user, const QString& password, const QString& deviceName);
+
 	private:
 		void onConnected();
-		void onLoadedRoomState(Room *room);
+		void onLoadedRoomState(Quotient::Room *room);
 		void onSyncDone();
-		void onLoginError(QString message, QByteArray details);
-		void onNetworkError(QString message, QByteArray details, int retriesTaken, int nextRetryInMilliseconds);
-		void onSyncError(QString message, QByteArray details);
-		void onAboutToAddNewMessages(RoomEventsRange events);
+		void onLoginError(QString message, QString details);
+		void onNetworkError(QString message, QString details, int retriesTaken, int nextRetryInMilliseconds);
+		void onSyncError(QString message, QString details);
+		void onAboutToAddNewMessages(Quotient::RoomEventsRange events, channel *channel, Quotient::Room *room);
 
-		Channel m_channel;
-		OutputHandler m_outputHandler;
+		channel* channel_for(const QString& name)
+		{
+			for (auto& channel : m_channels)
+			{
+				if (channel.subject == name)
+				{
+					return &channel;
+				}
+			}
+
+			return nullptr;
+		}
+
+		std::list<channel> m_channels;
+
 		RequestRepository m_requestRepository;
-		MessageHandler m_messageHandler;
+
+		Quotient::Connection m_connection;
 };
 
 #endif // MATRIXHANDLER_H

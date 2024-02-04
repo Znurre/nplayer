@@ -15,7 +15,7 @@ QString StringUtils::cleanup(QString string)
 
 QString StringUtils::elide(QString string, int length)
 {
-	if (string.count() > length)
+	if (string.size() > length)
 	{
 		string.truncate(length);
 

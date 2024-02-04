@@ -9,6 +9,8 @@ class IdGenerator;
 class IInformationResourceFactory
 {
 	public:
+		virtual ~IInformationResourceFactory() = default;
+
 		virtual bool canHandle(const QMetaObject *metaObject) = 0;
 
 		virtual QObject *create(InformationResourceRepository &informationResourceRepository, IdGenerator &idGenerator) = 0;

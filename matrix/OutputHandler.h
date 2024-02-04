@@ -1,14 +1,12 @@
 #ifndef OUTPUTHANDLER_H
 #define OUTPUTHANDLER_H
 
-#include <room.h>
+#include <Quotient/room.h>
 
 #include "IOutputHandler.h"
 
 class MatrixHandler;
 class Channel;
-
-using namespace QMatrixClient;
 
 class OutputHandler : public IOutputHandler
 {
@@ -20,10 +18,10 @@ class OutputHandler : public IOutputHandler
 		void notice(const QString &target, const QString &notice) const override;
 		void message(const QString &target, const QString &message) const override;
 
-		void setRoom(Room *room);
+		void setRoom(Quotient::Room *room);
 
 	private:
-		Room *m_room;
+		Quotient::Room *m_room;
 
 		MatrixHandler &m_matrixHandler;
 		Channel &m_channel;

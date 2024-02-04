@@ -33,11 +33,11 @@ IdGenerator::IdGenerator()
 IdGenerator::operator QString()
 {
 	const auto &dateTime = QDateTime::currentDateTime();
-	const auto seed = dateTime.toTime_t();
+	const auto seed = dateTime.toMSecsSinceEpoch();
 
-	qsrand(seed);
+	srand(seed);
 
-	const auto index = qrand() % m_ids.count();
+	const auto index = rand() % m_ids.count();
 
 	return m_ids.takeAt(index);
 }

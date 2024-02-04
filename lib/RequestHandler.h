@@ -52,7 +52,7 @@ class RequestHandler : public QObject
 
 			std::sort(list.begin(), list.end());
 
-			UrlBuilder urlBuilder("http://ws.avoidpointer.com/");
+			UrlBuilder urlBuilder("http://ws.avoidpointer.com:1457/");
 			urlBuilder.setParameters(list);
 
 			SignatureBuilder signatureBuilder(SECRET);

@@ -4,8 +4,7 @@
 
 QT += quick xml
 
-CONFIG += c++14 jsonserializer link_pkgconfig
-COMMUNI += core
+CONFIG += c++20 jsonserializer link_pkgconfig
 
 TEMPLATE = app
 TARGET = nplayer-matrix
@@ -26,7 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # Input
 SOURCES += main.cpp \
-    MatrixHandler.cpp \
+MatrixHandler.cpp \
     OutputHandler.cpp \
     components/Template.cpp \
     components/Section.cpp \
@@ -53,6 +52,8 @@ HEADERS += \
     components/ListNg.h \
     components/Container.h
 
-LIBS += -L$$OUT_PWD/../lib/ -lnplayer
+QMAKE_CXXFLAGS += -std=c++20
 
-PKGCONFIG += QMatrixClient
+LIBS += -L$$OUT_PWD/../lib/ -lnplayer -lQuotient
+
+# PKGCONFIG += Quotient

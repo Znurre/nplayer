@@ -1,6 +1,6 @@
 QT += quick xml
 
-CONFIG += c++14 console jsonserializer staticlib
+CONFIG += c++20 console jsonserializer staticlib
 
 TARGET = nplayer
 
@@ -199,7 +199,9 @@ OTHER_FILES += \
     templates/NotPlaying.qml \
     templates/Album.qml
 
-gcc:QMAKE_CXXFLAGS += -Werror
+QMAKE_CXXFLAGS += -std=c++20
+
+gcc:QMAKE_CXXFLAGS += -Werror -Wno-deprecated-declarations
 
 DISTFILES += \
     templates/Artist.qml \
