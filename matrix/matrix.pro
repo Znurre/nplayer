@@ -54,6 +54,6 @@ HEADERS += \
 
 QMAKE_CXXFLAGS += -std=c++20
 
-LIBS += -L$$OUT_PWD/../lib/ -lnplayer -lQuotient
+LIBS += -L$$OUT_PWD/../lib/ -lnplayer
 
-# PKGCONFIG += Quotient
+PKGCONFIG += Quotient
