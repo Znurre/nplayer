@@ -9,7 +9,7 @@ CONFIG += c++20 jsonserializer link_pkgconfig
 TEMPLATE = app
 TARGET = nplayer-matrix
 
-INCLUDEPATH += . ../lib ../lib/components
+INCLUDEPATH += . ../lib ../lib/components /usr/include/Quotient
 DEPENDPATH += . ../lib
 
 # The following define makes your compiler warn you if you use any
